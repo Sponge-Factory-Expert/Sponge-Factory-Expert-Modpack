@@ -1,0 +1,31 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "a"
+	group: "0460A39D8CE5799E"
+	id: "1513025367AA7960"
+	order_index: 0
+	quest_links: [ ]
+	quests: [{
+		description: [""]
+		id: "550B735563808CDD"
+		progression_mode: "flexible"
+		subtitle: "{chapter.spongefactory.chapter_1.cut_logs_first.subtitle}"
+		tasks: [{
+			id: "016C108813C0E554"
+			item: {
+				Count: 1b
+				id: "itemfilters:tag"
+				tag: {
+					value: "minecraft:logs"
+				}
+			}
+			title: "Any #minecraft:logs"
+			type: "item"
+		}]
+		title: "{chapter.spongefactory.chapter_1.cut_logs_first.title}"
+		x: 0.0d
+		y: -3.0d
+	}]
+	title: "{chapter.spongefactory.chapter_1.title}"
+}

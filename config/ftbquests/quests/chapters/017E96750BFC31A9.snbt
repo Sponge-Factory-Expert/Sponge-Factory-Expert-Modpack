@@ -1,0 +1,22 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "017E96750BFC31A9"
+	group: ""
+	id: "017E96750BFC31A9"
+	order_index: 0
+	quest_links: [ ]
+	quests: [{
+		id: "446788A0401FB4B9"
+		shape: "octagon"
+		size: 3.0d
+		tasks: [{
+			id: "378A786F7874D511"
+			title: "{chapter.spongefactory.welcome.welcome.title}"
+			type: "checkmark"
+		}]
+		x: 1.0d
+		y: 0.5d
+	}]
+	title: "{chapter.spongefactory.welcome.title}"
+}
