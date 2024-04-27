@@ -1,0 +1,23 @@
+PCL/
+saves/
+.cache/
+.idea/
+.vscode/
+crash-reports/
+local/
+logs/
+mordenfix/
+resourcepacks/
+shaderpacks/
+Sponge Factory Expert-natives/
+journeymap/data/
+journeymap/server/
+journeymap/icon/
+journeymap/journeymap.log
+options.txt
+rhino.local.properties
+Sponge Factory Expert.jar
+Sponge Factory Expert.json
+usercache.json
+usernamecache.json
+
