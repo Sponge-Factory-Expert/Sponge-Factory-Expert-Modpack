@@ -6,9 +6,12 @@ saves/
 crash-reports/
 local/
 logs/
-mordenfix/
+modernfix/
+modernfix/structureCacheV1/
+defaultconfigs/
 resourcepacks/
 shaderpacks/
+localconfigs/
 Sponge Factory Expert-natives/
 journeymap/data/
 journeymap/server/
@@ -21,3 +24,5 @@ Sponge Factory Expert.json
 usercache.json
 usernamecache.json
 
+.qmenu_opened.marker
+patchouli_data.json
