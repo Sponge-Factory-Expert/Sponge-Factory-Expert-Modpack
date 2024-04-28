@@ -1,6 +1,7 @@
 ServerEvents.recipes(event => {
     event.remove({input: '#forge:ores', output: '#forge:ingots'})
     event.remove({input: '#forge:ores', output: '#forge:dusts'})
+    event.remove({input: '#forge:ores', output: '#forge:raw_materials'})
     // Create的粉碎矿石
     event.remove({input: '#create:crushed_raw_materials'})
     event.remove({output: '#create:crushed_raw_materials'})

@@ -3,6 +3,7 @@ saves/
 .cache/
 .idea/
 .vscode/
+.mixin.out/
 crash-reports/
 local/
 logs/
@@ -17,6 +18,8 @@ journeymap/data/
 journeymap/server/
 journeymap/icon/
 journeymap/journeymap.log
+kubejs/probe/
+backups/
 options.txt
 rhino.local.properties
 Sponge Factory Expert.jar
@@ -26,3 +29,4 @@ usernamecache.json
 
 .qmenu_opened.marker
 patchouli_data.json
+reauth.toml
