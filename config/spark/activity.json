@@ -1,0 +1,15 @@
+[
+  {
+    "user": {
+      "type": "player",
+      "name": "hai_mian_dy",
+      "uniqueId": "2b563cb8-71c1-474b-b30f-50df62e7c402"
+    },
+    "time": 1714398369723,
+    "type": "Profiler",
+    "data": {
+      "type": "url",
+      "value": "https://spark.lucko.me/mwDVRiiXVK"
+    }
+  }
+]
