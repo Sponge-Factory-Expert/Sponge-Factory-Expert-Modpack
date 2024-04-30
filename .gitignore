@@ -21,6 +21,9 @@ journeymap/journeymap.log
 kubejs/probe/
 backups/
 screenshots/
+lightspeed-cache/
+patchouli_books/
+
 o_prof
 options.txt
 rhino.local.properties

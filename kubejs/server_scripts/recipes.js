@@ -192,6 +192,8 @@ ServerEvents.recipes(event => {
     event.replaceInput({output: 'create:water_wheel'}, 'create:shaft', 'spongefactory:stress_resistance_mechanism')
     event.replaceInput({output: 'create:windmill_bearing'}, 'create:shaft', 'spongefactory:stress_resistance_mechanism')
     event.replaceInput({output: 'create:flywheel'}, 'create:shaft', 'spongefactory:stress_resistance_mechanism')
+    // 蒸汽引擎
+    event.replaceInput({output:'create:steam_engine'},'create:andesite_alloy','spongefactory:stress_resistance_mechanism')
 
     // 工作盆
     event.remove({output: 'create:basin'})
@@ -216,12 +218,29 @@ ServerEvents.recipes(event => {
         M: 'minecraft:iron_bars'
     })
 
+    // 吸附-脱附负焓变循环催化剂
+    event.recipes.create.mixing('spongefactory:negative_enthalpy_change_cycle_catalyst', [
+        'spongefactory:polished_red_corundum',
+        'spongefactory:polished_violet_corundum',
+        'spongefactory:polished_white_corundum',
+        'spongefactory:polished_yellow_corundum',
+        'spongefactory:polished_black_corundum',
+        'spongefactory:polished_blue_corundum',
+        'spongefactory:polished_indigo_corundum',
+        'spongefactory:polished_green_corundum',
+        'spongefactory:polished_orange_corundum'
+    ]).superheated()
     // 神秘元质内衬
     event.remove({output: 'minecraft:enchanted_golden_apple', type: 'minecraft:crafting_shaped'})
-    event.recipes.create.mixing('spongefactory:mysterium_lining', ['4x spongefactory:polished_violet_corundum', '4x spongefactory:polished_green_corundum',
-        '4x spongefactory:polished_indigo_corundum', '4x spongefactory:polished_red_corundum', '8x spongefactory:polished_black_corundum',
-        '4x minecraft:nether_star', '4x minecraft:netherite_ingot',
-        '4x minecraft:enchanted_golden_apple', 'spongefactory:high_temperature_resistant_lining']).superheated()
+    event.recipes.create.mixing('spongefactory:mysterium_lining',
+        [
+            '4x spongefactory:negative_enthalpy_change_cycle_catalyst',
+            '4x minecraft:nether_star',
+            '4x minecraft:netherite_ingot',
+            '4x minecraft:enchanted_golden_apple',
+            'spongefactory:high_temperature_resistant_lining'
+        ]
+    ).superheated()
 
     // 轧机
     event.remove({output: 'createaddition:rolling_mill'})
@@ -261,7 +280,89 @@ ServerEvents.recipes(event => {
             ' P '], {
             P: '#forge:plates/brass',
             X: 'spongefactory:yielding_mechanism'
-        })
+        }
+    )
+
+    // 粉碎轮
+    event.remove({output: 'create:crushing_wheel'})
+    event.custom({
+        "type": "create:mechanical_crafting",
+        "acceptMirrored": false,
+        "key": {
+            "A": {
+                "item": "create:andesite_alloy"
+            },
+            "P": {
+                "tag": "minecraft:planks"
+            },
+            "S": {
+                "item": "spongefactory:stress_endurance_mechanism"
+            }
+        },
+        "pattern": [
+            " AAA ",
+            "AAPAA",
+            "APSPA",
+            "AAPAA",
+            " AAA "
+        ],
+        "result": {
+            "count": 2,
+            "item": "create:crushing_wheel"
+        }
+    })
+
+    // 蛋糕
+    event.replaceInput({output: 'minecraft:cake'}, 'minecraft:sugar', 'create_confectionery:white_chocolate_glazed_marshmallow')
+    event.replaceInput({output: 'createaddition:cake_base'}, 'minecraft:sugar', 'create_confectionery:white_chocolate_glazed_marshmallow')
+
+    // 烈焰蛋糕坯
+    event.remove({output: 'create:blaze_cake_base'})
+    event.recipes.create.compacting('create:blaze_cake_base', ['#forge:eggs', 'create_confectionery:white_chocolate_glazed_marshmallow', 'create:cinder_flour', 'spongefactory:high_temperature_resistant_lining'])
+
+    // 烈焰蛋糕
+    event.remove({output: 'create:blaze_cake'})
+    const inter = 'create:blaze_cake_base'
+    event.recipes.create.sequenced_assembly('create:blaze_cake', inter, [
+        event.recipes.createDeploying(inter, [inter, 'spongefactory:high_temperature_resistant_lining']).keepHeldItem(),
+        event.recipes.createDeploying(inter, [inter, 'minecraft:blaze_powder']),
+        event.recipes.createDeploying(inter, [inter, 'minecraft:cake']),
+        event.recipes.createFilling(inter, [Fluid.lava(1000), inter]),
+        event.recipes.createDeploying(inter, [inter, 'minecraft:blaze_powder'])
+
+    ]).transitionalItem(inter).loops(1)
+
+    // 溜槽
+    event.replaceInput({output: 'create:chute'}, 'minecraft:iron_ingot', 'minecraft:hopper')
+    // 漏斗
+    event.remove({output:'minecraft:hopper'})
+
+    // 灌注室
+    event.remove({output:'ars_nouveau:imbuement_chamber'})
+
+    // 魔源宝石
+    event.remove({output:'ars_nouveau:source_gem', type:'ars_nouveau:imbuement'})
+    event.remove({output:'ars_nouveau:source_gem_block', type:'ars_nouveau:imbuement'})
+    event.custom({
+        "type": "ars_nouveau:imbuement",
+        "count": 1,
+        "input": {
+            "tag": "spongefactory:polished_corundum"
+        },
+        "output": "ars_nouveau:source_gem",
+        "pedestalItems": [],
+        "source": 500
+    })
+    event.custom({
+        "type": "ars_nouveau:imbuement",
+        "count": 1,
+        "input": {
+            "tag": "forge:gems/diamond"
+        },
+        "output": "ars_nouveau:source_gem",
+        "pedestalItems": [],
+        "source": 100
+    })
 })
 
 function replaceRecipes(event, match, wis) {

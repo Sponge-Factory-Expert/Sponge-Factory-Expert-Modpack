@@ -99,6 +99,8 @@
   "pneumaticcraft:camo": null,
   "entangled:entangled_block_component": null,
   "modularrouters:router": null,
+  "custommachinery:machine_server_data_provider": null,
+  "custommachinery:machine_component_provider": null,
   "apotheosis:spawner": null,
   "apotheosis:ench": null,
   "apotheosis:adventure": null,

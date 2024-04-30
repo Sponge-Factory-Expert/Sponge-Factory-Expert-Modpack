@@ -695,6 +695,324 @@
 			x: 20.0d
 			y: -3.0d
 		}
+		{
+			dependencies: ["36467E5BF8E70EEF"]
+			id: "68FF24892BC5A2C5"
+			tasks: [{
+				id: "3F78CB78F93A52EE"
+				item: "create:mechanical_crafter"
+				type: "item"
+			}]
+			x: 19.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["36467E5BF8E70EEF"]
+			id: "63C4DE0C31CCC590"
+			tasks: [{
+				id: "3A1D7E8AB8F82677"
+				item: "create:deployer"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["68FF24892BC5A2C5"]
+			id: "120CF842CBDE3465"
+			tasks: [{
+				id: "05E8A3128FF5F10E"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			x: 19.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3C89BF20ED92DB8C"]
+			id: "22AEA3856E00F2D2"
+			tasks: [{
+				id: "16A983CD60ED2089"
+				item: "create_confectionery:marshmallow"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["120CF842CBDE3465"]
+			id: "693968D428B72D8C"
+			tasks: [{
+				id: "61DAAB8732384E5B"
+				item: "create_confectionery:cocoa_butter"
+				type: "item"
+			}]
+			x: 19.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"22AEA3856E00F2D2"
+				"693968D428B72D8C"
+			]
+			id: "5D80AA260AD8EF2E"
+			tasks: [{
+				id: "58BC47C5CDCEAB81"
+				item: "create_confectionery:white_chocolate_glazed_marshmallow"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5D80AA260AD8EF2E"]
+			id: "7029A1BA40E32B0B"
+			tasks: [{
+				id: "4397A45162877FF5"
+				item: "minecraft:cake"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["120CF842CBDE3465"]
+			id: "31981EB38406B461"
+			tasks: [{
+				id: "55504E16ACFDCA52"
+				item: "create:cinder_flour"
+				type: "item"
+			}]
+			x: 20.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"31981EB38406B461"
+				"5D80AA260AD8EF2E"
+			]
+			id: "07FAC9569DC6681D"
+			tasks: [{
+				id: "59D145099949AF12"
+				item: "create:blaze_cake_base"
+				type: "item"
+			}]
+			x: 20.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"63C4DE0C31CCC590"
+				"07FAC9569DC6681D"
+				"7029A1BA40E32B0B"
+			]
+			id: "0CB81E584FA052D4"
+			rewards: [{
+				id: "4FC28A9269BC6985"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3643ED27C6CC953E"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			x: 19.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"0CB81E584FA052D4"
+				"2F630ABC1B5FB8A9"
+				"7C818D878C229A9D"
+				"3B5A6BE44ED0FA96"
+				"4F0A9448A0449465"
+				"63CE2B068F0612C4"
+				"0DD4BC6BDC728E7F"
+				"53EB9D47C4FABE35"
+				"123DC7663ECC835D"
+				"25B948BEA76D1044"
+			]
+			id: "3ACCB6D423DD9745"
+			rewards: [{
+				id: "04B27EEE562087C4"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			tasks: [{
+				id: "16D25A169CD2E5B2"
+				item: "spongefactory:negative_enthalpy_change_cycle_catalyst"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "25B948BEA76D1044"
+			shape: "diamond"
+			tasks: [{
+				id: "7526F58DD17D8ADB"
+				item: "spongefactory:polished_black_corundum"
+				type: "item"
+			}]
+			x: 19.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "0DD4BC6BDC728E7F"
+			shape: "diamond"
+			tasks: [{
+				id: "58BF7EAB1ADA3FDB"
+				item: "spongefactory:polished_blue_corundum"
+				type: "item"
+			}]
+			x: 20.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "4F0A9448A0449465"
+			shape: "diamond"
+			tasks: [{
+				id: "5C8CE190753B8333"
+				item: "spongefactory:polished_green_corundum"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "53EB9D47C4FABE35"
+			shape: "diamond"
+			tasks: [{
+				id: "79CDD2E4354ECC2C"
+				item: "spongefactory:polished_indigo_corundum"
+				type: "item"
+			}]
+			x: 20.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "2F630ABC1B5FB8A9"
+			shape: "diamond"
+			tasks: [{
+				id: "1F749B505AF7B357"
+				item: "spongefactory:polished_orange_corundum"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "3B5A6BE44ED0FA96"
+			shape: "diamond"
+			tasks: [{
+				id: "1A30C8CAEBFAB4B1"
+				item: "spongefactory:polished_red_corundum"
+				type: "item"
+			}]
+			x: 21.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "63CE2B068F0612C4"
+			shape: "diamond"
+			tasks: [{
+				id: "5C881AD0FC7A8499"
+				item: "spongefactory:polished_violet_corundum"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "7C818D878C229A9D"
+			shape: "diamond"
+			tasks: [{
+				id: "2EBDF2CB8D079E90"
+				item: "spongefactory:polished_white_corundum"
+				type: "item"
+			}]
+			x: 21.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["0CB81E584FA052D4"]
+			hide: true
+			hide_dependency_lines: true
+			id: "123DC7663ECC835D"
+			shape: "diamond"
+			tasks: [{
+				id: "247955774C66B017"
+				item: "spongefactory:polished_yellow_corundum"
+				type: "item"
+			}]
+			x: 21.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3ACCB6D423DD9745"]
+			id: "1B9A6EE528ABFEDE"
+			tasks: [{
+				id: "01CC35EA7C9CB395"
+				item: "spongefactory:mysterium_lining"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["1B9A6EE528ABFEDE"]
+			icon: "create:creative_blaze_cake"
+			id: "52129CC7EA35972E"
+			rewards: [{
+				auto: "disabled"
+				id: "0490B57A1EA17852"
+				item: "create:creative_blaze_cake"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 128L
+					id: "1EEB819DE5707B3F"
+					item: "create:blaze_cake"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "696BFA961F9770C3"
+					item: "spongefactory:mysterium_lining"
+					type: "item"
+				}
+			]
+			x: 17.5d
+			y: 9.0d
+		}
 	]
 	title: "{chapter.spongefactory.chapter_1.title}"
 }
