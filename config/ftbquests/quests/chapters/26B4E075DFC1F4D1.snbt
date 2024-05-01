@@ -1,0 +1,70 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "26B4E075DFC1F4D1"
+	group: "0460A39D8CE5799E"
+	id: "26B4E075DFC1F4D1"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["0A8B666E2D4C5AF3"]
+			id: "3D3D8C794C9F1BDE"
+			tasks: [{
+				id: "74F2E831B0ED722C"
+				item: "immersiveengineering:slab_alloybrick"
+				type: "item"
+			}]
+			x: -7.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["3D3D8C794C9F1BDE"]
+			id: "5063B820230260DB"
+			tasks: [{
+				id: "328A771DA759315E"
+				item: "immersiveengineering:alloybrick"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["5063B820230260DB"]
+			id: "327A9550B73DDFD1"
+			tasks: [{
+				id: "542FCE26EB561509"
+				item: "thermal:electrum_ingot"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0A8B666E2D4C5AF3"]
+			id: "2D953478EC155AD8"
+			tasks: [{
+				id: "73BA182282B783EF"
+				item: "occultism:datura"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"2D953478EC155AD8"
+				"327A9550B73DDFD1"
+			]
+			id: "39ABD355BD156526"
+			tasks: [{
+				id: "7D96C40EB1B0ABFE"
+				item: "spongefactory:ember_electrum_ingot"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -4.5d
+		}
+	]
+	title: "{chapter.spongefactory.chapter_2.title}"
+}

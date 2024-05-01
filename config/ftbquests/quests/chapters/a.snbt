@@ -31,18 +31,8 @@
 				type: "item"
 			}]
 			title: "{chapter.spongefactory.chapter_1.cut_logs_first.title}"
-			x: -1.5d
-			y: -5.0d
-		}
-		{
-			id: "1044637903C09A28"
-			tasks: [{
-				id: "727198922E3A440F"
-				title: "Center"
-				type: "checkmark"
-			}]
-			x: 0.0d
-			y: 0.0d
+			x: -14.0d
+			y: -3.0d
 		}
 		{
 			dependencies: ["550B735563808CDD"]
@@ -52,8 +42,8 @@
 				item: "minecraft:crafting_table"
 				type: "item"
 			}]
-			x: 0.0d
-			y: -5.0d
+			x: -12.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["15DE40ADBCB2BA31"]
@@ -69,8 +59,8 @@
 				}
 				type: "item"
 			}]
-			x: 1.5d
-			y: -6.0d
+			x: -11.0d
+			y: -4.0d
 		}
 		{
 			dependencies: ["69E90FCA72F4D1F3"]
@@ -80,8 +70,8 @@
 				item: "minecraft:cobblestone"
 				type: "item"
 			}]
-			x: 3.0d
-			y: -6.0d
+			x: -9.5d
+			y: -4.0d
 		}
 		{
 			dependencies: ["69E90FCA72F4D1F3"]
@@ -98,8 +88,8 @@
 				title: "Any #forge:limestone"
 				type: "item"
 			}]
-			x: 3.0d
-			y: -7.5d
+			x: -9.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["3F2FD95A7EFE8BBC"]
@@ -109,8 +99,8 @@
 				item: "spongefactory:quicklime"
 				type: "item"
 			}]
-			x: 4.5d
-			y: -8.5d
+			x: -8.0d
+			y: -6.5d
 		}
 		{
 			dependencies: ["36DB83D4D85F114A"]
@@ -120,8 +110,8 @@
 				item: "spongefactory:furnace_lining"
 				type: "item"
 			}]
-			x: 6.0d
-			y: -8.5d
+			x: -6.5d
+			y: -6.5d
 		}
 		{
 			dependencies: ["04C942D989510770"]
@@ -131,8 +121,8 @@
 				item: "minecraft:furnace"
 				type: "item"
 			}]
-			x: 7.0d
-			y: -7.5d
+			x: -5.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["40576616C7D1A80B"]
@@ -148,8 +138,8 @@
 				}
 				type: "item"
 			}]
-			x: 3.0d
-			y: -4.5d
+			x: -9.5d
+			y: -2.5d
 		}
 		{
 			dependencies: ["40576616C7D1A80B"]
@@ -165,8 +155,8 @@
 				}
 				type: "item"
 			}]
-			x: 4.5d
-			y: -6.0d
+			x: -8.0d
+			y: -4.0d
 		}
 		{
 			dependencies: ["4BE2ABE9AE10D3FE"]
@@ -176,8 +166,8 @@
 				item: "minecraft:charcoal"
 				type: "item"
 			}]
-			x: 9.0d
-			y: -6.0d
+			x: -3.5d
+			y: -4.0d
 		}
 		{
 			dependencies: [
@@ -190,8 +180,8 @@
 				item: "mekanism:dust_charcoal"
 				type: "item"
 			}]
-			x: 9.0d
-			y: -4.0d
+			x: -3.5d
+			y: -2.0d
 		}
 		{
 			dependencies: ["151DD7719DA65D05"]
@@ -201,8 +191,8 @@
 				item: "spongefactory:impure_crushed_copper_ore"
 				type: "item"
 			}]
-			x: 3.0d
-			y: -3.0d
+			x: -9.5d
+			y: -1.0d
 		}
 		{
 			dependencies: ["151DD7719DA65D05"]
@@ -212,8 +202,8 @@
 				item: "spongefactory:impure_crushed_iron_ore"
 				type: "item"
 			}]
-			x: 4.5d
-			y: -3.0d
+			x: -8.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["4F2DB83186EA5EA8"]
@@ -223,8 +213,8 @@
 				item: "spongefactory:crushed_copper_ore"
 				type: "item"
 			}]
-			x: 3.0d
-			y: -1.5d
+			x: -9.5d
+			y: 0.5d
 		}
 		{
 			dependencies: ["7392E0875D8371E1"]
@@ -234,8 +224,8 @@
 				item: "spongefactory:crushed_iron_ore"
 				type: "item"
 			}]
-			x: 6.0d
-			y: -3.0d
+			x: -6.5d
+			y: -1.0d
 		}
 		{
 			dependencies: [
@@ -248,8 +238,8 @@
 				item: "spongefactory:ground_iron_ore"
 				type: "item"
 			}]
-			x: 7.5d
-			y: -3.0d
+			x: -5.0d
+			y: -1.0d
 		}
 		{
 			dependencies: [
@@ -262,8 +252,8 @@
 				item: "spongefactory:ground_copper_ore"
 				type: "item"
 			}]
-			x: 7.5d
-			y: -1.5d
+			x: -5.0d
+			y: 0.5d
 		}
 		{
 			dependencies: [
@@ -276,8 +266,8 @@
 				item: "spongefactory:charcoal_iron_ore_mixture"
 				type: "item"
 			}]
-			x: 9.0d
-			y: -3.0d
+			x: -3.5d
+			y: -1.0d
 		}
 		{
 			dependencies: [
@@ -290,8 +280,8 @@
 				item: "spongefactory:charcoal_copper_ore_mixture"
 				type: "item"
 			}]
-			x: 9.0d
-			y: -1.5d
+			x: -3.5d
+			y: 0.5d
 		}
 		{
 			dependencies: ["4F858A698462CBCD"]
@@ -301,8 +291,8 @@
 				item: "minecraft:raw_copper"
 				type: "item"
 			}]
-			x: 10.5d
-			y: -1.5d
+			x: -2.0d
+			y: 0.5d
 		}
 		{
 			dependencies: ["2642F6BFB0B7ABD3"]
@@ -312,8 +302,8 @@
 				item: "minecraft:raw_iron"
 				type: "item"
 			}]
-			x: 10.5d
-			y: -3.0d
+			x: -2.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["4AA79FC805F08C1E"]
@@ -323,8 +313,8 @@
 				item: "minecraft:copper_ingot"
 				type: "item"
 			}]
-			x: 12.0d
-			y: -1.5d
+			x: -0.5d
+			y: 0.5d
 		}
 		{
 			dependencies: ["190AEC84E6A8E90B"]
@@ -334,8 +324,8 @@
 				item: "minecraft:iron_ingot"
 				type: "item"
 			}]
-			x: 12.0d
-			y: -3.0d
+			x: -0.5d
+			y: -1.0d
 		}
 		{
 			dependencies: ["4630AF86DAAAFD28"]
@@ -351,8 +341,8 @@
 				}
 				type: "item"
 			}]
-			x: 12.0d
-			y: -4.5d
+			x: -0.5d
+			y: -2.5d
 		}
 		{
 			dependencies: ["0017901C56265697"]
@@ -362,8 +352,8 @@
 				item: "occultism:tallow"
 				type: "item"
 			}]
-			x: 12.0d
-			y: -6.0d
+			x: -0.5d
+			y: -4.0d
 		}
 		{
 			dependencies: ["2ADBD7949FB1C043"]
@@ -380,8 +370,8 @@
 				title: "Any #create:sandpaper"
 				type: "item"
 			}]
-			x: 12.0d
-			y: -7.5d
+			x: -0.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["4630AF86DAAAFD28"]
@@ -397,8 +387,8 @@
 				}
 				type: "item"
 			}]
-			x: 13.5d
-			y: -3.0d
+			x: 1.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["3A00F5FC2C5AE1F8"]
@@ -408,8 +398,8 @@
 				item: "create:zinc_ingot"
 				type: "item"
 			}]
-			x: 13.5d
-			y: -4.5d
+			x: 1.0d
+			y: -2.5d
 		}
 		{
 			dependencies: [
@@ -429,8 +419,8 @@
 				title: "Any #spongefactory:polished_corundum"
 				type: "item"
 			}]
-			x: 12.0d
-			y: -9.0d
+			x: -0.5d
+			y: -7.0d
 		}
 		{
 			dependencies: ["69E90FCA72F4D1F3"]
@@ -448,8 +438,8 @@
 				title: "Any #spongefactory:corundum_cluster"
 				type: "item"
 			}]
-			x: 10.5d
-			y: -9.0d
+			x: -2.0d
+			y: -7.0d
 		}
 		{
 			dependencies: ["5572C974E93D7C6C"]
@@ -459,8 +449,8 @@
 				item: "spongefactory:stress_endurance_mechanism"
 				type: "item"
 			}]
-			x: 13.5d
-			y: -9.0d
+			x: 1.0d
+			y: -7.0d
 		}
 		{
 			dependencies: [
@@ -479,8 +469,8 @@
 				item: "create:shaft"
 				type: "item"
 			}]
-			x: 13.5d
-			y: -7.5d
+			x: 1.0d
+			y: -5.5d
 		}
 		{
 			dependencies: ["663FB1CF780898FB"]
@@ -511,8 +501,8 @@
 					type: "item"
 				}
 			]
-			x: 15.0d
-			y: -7.5d
+			x: 2.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["663FB1CF780898FB"]
@@ -522,8 +512,8 @@
 				item: "spongefactory:stress_resistance_mechanism"
 				type: "item"
 			}]
-			x: 16.5d
-			y: -9.0d
+			x: 4.0d
+			y: -7.0d
 		}
 		{
 			dependencies: ["485F258478F9CD87"]
@@ -533,8 +523,8 @@
 				item: "spongefactory:yielding_mechanism"
 				type: "item"
 			}]
-			x: 18.5d
-			y: -9.0d
+			x: 6.0d
+			y: -7.0d
 		}
 		{
 			dependencies: ["27DA12EA0FBCA5E5"]
@@ -544,8 +534,8 @@
 				item: "create:andesite_alloy"
 				type: "item"
 			}]
-			x: 15.0d
-			y: -4.5d
+			x: 2.5d
+			y: -2.5d
 		}
 		{
 			dependencies: ["485F258478F9CD87"]
@@ -556,8 +546,8 @@
 				item: "create:water_wheel"
 				type: "item"
 			}]
-			x: 16.0d
-			y: -7.5d
+			x: 3.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["485F258478F9CD87"]
@@ -568,8 +558,8 @@
 				item: "create:windmill_bearing"
 				type: "item"
 			}]
-			x: 17.0d
-			y: -7.5d
+			x: 4.5d
+			y: -5.5d
 		}
 		{
 			dependencies: ["462384BB650DDEEA"]
@@ -579,8 +569,8 @@
 				item: "create:depot"
 				type: "item"
 			}]
-			x: 15.0d
-			y: -5.5d
+			x: 2.5d
+			y: -3.5d
 		}
 		{
 			dependencies: ["663FB1CF780898FB"]
@@ -590,8 +580,8 @@
 				item: "create:mechanical_press"
 				type: "item"
 			}]
-			x: 15.0d
-			y: -6.5d
+			x: 2.5d
+			y: -4.5d
 		}
 		{
 			dependencies: [
@@ -608,8 +598,8 @@
 				}
 				type: "item"
 			}]
-			x: 16.5d
-			y: -6.0d
+			x: 4.0d
+			y: -4.0d
 		}
 		{
 			dependencies: [
@@ -622,8 +612,8 @@
 				item: "create:mechanical_mixer"
 				type: "item"
 			}]
-			x: 18.5d
-			y: -6.0d
+			x: 6.0d
+			y: -4.0d
 		}
 		{
 			dependencies: ["3C89BF20ED92DB8C"]
@@ -633,8 +623,8 @@
 				item: "create:brass_ingot"
 				type: "item"
 			}]
-			x: 16.0d
-			y: -1.5d
+			x: 3.5d
+			y: 0.5d
 		}
 		{
 			dependencies: ["6DD71D7ADA36800B"]
@@ -644,8 +634,8 @@
 				item: "spongefactory:high_temperature_resistant_lining"
 				type: "item"
 			}]
-			x: 17.5d
-			y: -4.5d
+			x: 5.0d
+			y: -2.5d
 		}
 		{
 			dependencies: ["1E9DC5071C23E87E"]
@@ -655,8 +645,8 @@
 				item: "create:empty_blaze_burner"
 				type: "item"
 			}]
-			x: 17.5d
-			y: -3.0d
+			x: 5.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["67E3A83668A0F616"]
@@ -666,8 +656,8 @@
 				item: "create:blaze_burner"
 				type: "item"
 			}]
-			x: 17.5d
-			y: -1.5d
+			x: 5.0d
+			y: 0.5d
 		}
 		{
 			dependencies: [
@@ -681,8 +671,8 @@
 				item: "createaddition:rolling_mill"
 				type: "item"
 			}]
-			x: 20.0d
-			y: -5.0d
+			x: 7.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["791DE02B85FD4ED0"]
@@ -692,8 +682,8 @@
 				item: "create:electron_tube"
 				type: "item"
 			}]
-			x: 20.0d
-			y: -3.0d
+			x: 7.5d
+			y: -1.0d
 		}
 		{
 			dependencies: ["36467E5BF8E70EEF"]
@@ -703,8 +693,8 @@
 				item: "create:mechanical_crafter"
 				type: "item"
 			}]
-			x: 19.5d
-			y: -1.5d
+			x: 7.0d
+			y: 0.5d
 		}
 		{
 			dependencies: ["36467E5BF8E70EEF"]
@@ -714,8 +704,8 @@
 				item: "create:deployer"
 				type: "item"
 			}]
-			x: 20.5d
-			y: -1.5d
+			x: 8.0d
+			y: 0.5d
 		}
 		{
 			dependencies: ["68FF24892BC5A2C5"]
@@ -725,8 +715,8 @@
 				item: "create:crushing_wheel"
 				type: "item"
 			}]
-			x: 19.5d
-			y: 0.0d
+			x: 7.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["3C89BF20ED92DB8C"]
@@ -736,8 +726,8 @@
 				item: "create_confectionery:marshmallow"
 				type: "item"
 			}]
-			x: 17.5d
-			y: 0.0d
+			x: 5.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["120CF842CBDE3465"]
@@ -747,8 +737,8 @@
 				item: "create_confectionery:cocoa_butter"
 				type: "item"
 			}]
-			x: 19.0d
-			y: 1.5d
+			x: 6.5d
+			y: 3.5d
 		}
 		{
 			dependencies: [
@@ -761,8 +751,8 @@
 				item: "create_confectionery:white_chocolate_glazed_marshmallow"
 				type: "item"
 			}]
-			x: 17.5d
-			y: 1.5d
+			x: 5.0d
+			y: 3.5d
 		}
 		{
 			dependencies: ["5D80AA260AD8EF2E"]
@@ -772,8 +762,8 @@
 				item: "minecraft:cake"
 				type: "item"
 			}]
-			x: 17.5d
-			y: 3.5d
+			x: 5.0d
+			y: 5.5d
 		}
 		{
 			dependencies: ["120CF842CBDE3465"]
@@ -783,8 +773,8 @@
 				item: "create:cinder_flour"
 				type: "item"
 			}]
-			x: 20.0d
-			y: 1.5d
+			x: 7.5d
+			y: 3.5d
 		}
 		{
 			dependencies: [
@@ -797,8 +787,8 @@
 				item: "create:blaze_cake_base"
 				type: "item"
 			}]
-			x: 20.0d
-			y: 3.5d
+			x: 7.5d
+			y: 5.5d
 		}
 		{
 			dependencies: [
@@ -817,8 +807,8 @@
 				item: "create:blaze_cake"
 				type: "item"
 			}]
-			x: 19.0d
-			y: 4.5d
+			x: 6.5d
+			y: 6.5d
 		}
 		{
 			dependencies: [
@@ -844,8 +834,8 @@
 				item: "spongefactory:negative_enthalpy_change_cycle_catalyst"
 				type: "item"
 			}]
-			x: 17.5d
-			y: 6.0d
+			x: 5.0d
+			y: 8.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -858,8 +848,8 @@
 				item: "spongefactory:polished_black_corundum"
 				type: "item"
 			}]
-			x: 19.5d
-			y: 6.0d
+			x: 7.0d
+			y: 8.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -872,8 +862,8 @@
 				item: "spongefactory:polished_blue_corundum"
 				type: "item"
 			}]
-			x: 20.0d
-			y: 5.5d
+			x: 7.5d
+			y: 7.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -886,8 +876,8 @@
 				item: "spongefactory:polished_green_corundum"
 				type: "item"
 			}]
-			x: 20.5d
-			y: 5.0d
+			x: 8.0d
+			y: 7.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -900,8 +890,8 @@
 				item: "spongefactory:polished_indigo_corundum"
 				type: "item"
 			}]
-			x: 20.0d
-			y: 6.5d
+			x: 7.5d
+			y: 8.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -914,8 +904,8 @@
 				item: "spongefactory:polished_orange_corundum"
 				type: "item"
 			}]
-			x: 20.5d
-			y: 6.0d
+			x: 8.0d
+			y: 8.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -928,8 +918,8 @@
 				item: "spongefactory:polished_red_corundum"
 				type: "item"
 			}]
-			x: 21.0d
-			y: 5.5d
+			x: 8.5d
+			y: 7.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -942,8 +932,8 @@
 				item: "spongefactory:polished_violet_corundum"
 				type: "item"
 			}]
-			x: 20.5d
-			y: 7.0d
+			x: 8.0d
+			y: 9.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -956,8 +946,8 @@
 				item: "spongefactory:polished_white_corundum"
 				type: "item"
 			}]
-			x: 21.0d
-			y: 6.5d
+			x: 8.5d
+			y: 8.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -970,8 +960,8 @@
 				item: "spongefactory:polished_yellow_corundum"
 				type: "item"
 			}]
-			x: 21.5d
-			y: 6.0d
+			x: 9.0d
+			y: 8.0d
 		}
 		{
 			dependencies: ["3ACCB6D423DD9745"]
@@ -981,8 +971,8 @@
 				item: "spongefactory:mysterium_lining"
 				type: "item"
 			}]
-			x: 17.5d
-			y: 7.5d
+			x: 5.0d
+			y: 9.5d
 		}
 		{
 			dependencies: ["1B9A6EE528ABFEDE"]
@@ -1010,8 +1000,204 @@
 					type: "item"
 				}
 			]
-			x: 17.5d
-			y: 9.0d
+			x: 5.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["04E0FB1642D6AB3C"]
+			id: "21419CD290267A40"
+			tasks: [{
+				id: "2B21846B711108EA"
+				item: "ars_nouveau:imbuement_chamber"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["04E0FB1642D6AB3C"]
+			id: "2B69E9E8BFCCBFC4"
+			tasks: [{
+				id: "5949FCDB4B84A3AE"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["21419CD290267A40"]
+			id: "0BAFEFB3C8D6CCB6"
+			tasks: [{
+				id: "7E867341326C9579"
+				item: "ars_nouveau:source_gem"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"0BAFEFB3C8D6CCB6"
+				"0CB81E584FA052D4"
+			]
+			id: "284C36FB7A08597F"
+			tasks: [{
+				id: "13C60AB8B1887E19"
+				item: "ars_nouveau:volcanic_sourcelink"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["284C36FB7A08597F"]
+			id: "63E9B896474DB906"
+			tasks: [{
+				id: "70B49727442CE129"
+				item: "ars_nouveau:lava_lily"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["63E9B896474DB906"]
+			id: "36852B31DC94C272"
+			tasks: [{
+				id: "00F925432833141D"
+				item: "ars_nouveau:scribes_table"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["3E98F21A972FB4D0"]
+			id: "56111A03CEF9270A"
+			tasks: [{
+				id: "4DF5A2B47406C87D"
+				item: "ars_nouveau:air_essence"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0BAFEFB3C8D6CCB6"]
+			id: "3E98F21A972FB4D0"
+			tasks: [{
+				count: 8L
+				id: "26A6B19E72C58E5B"
+				item: "ars_nouveau:arcane_pedestal"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3E98F21A972FB4D0"]
+			id: "34983DA6AD4A1C44"
+			tasks: [{
+				id: "09AED344BEE273E2"
+				item: "ars_nouveau:earth_essence"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3E98F21A972FB4D0"]
+			id: "26CB813CF0322260"
+			tasks: [{
+				id: "38B37ACB0517B11E"
+				item: "ars_nouveau:water_essence"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3E98F21A972FB4D0"]
+			id: "0A8B666E2D4C5AF3"
+			tasks: [{
+				id: "662E8ED02AB0A5ED"
+				item: "ars_nouveau:fire_essence"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0BAFEFB3C8D6CCB6"]
+			id: "399F4E7A3F420D28"
+			tasks: [
+				{
+					id: "326644483038503E"
+					item: "ars_nouveau:arcane_core"
+					type: "item"
+				}
+				{
+					id: "0BB6EB9C28C9961B"
+					item: "ars_nouveau:enchanting_apparatus"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"34983DA6AD4A1C44"
+				"56111A03CEF9270A"
+				"26CB813CF0322260"
+				"0A8B666E2D4C5AF3"
+				"399F4E7A3F420D28"
+			]
+			id: "465F348B19E9E1DD"
+			tasks: [{
+				id: "4110AECBAE87394F"
+				item: "ars_nouveau:novice_spell_book"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"465F348B19E9E1DD"
+				"36852B31DC94C272"
+			]
+			id: "7928053CA48FD66C"
+			tasks: [{
+				id: "2A83DF8E0CD06170"
+				item: "ars_nouveau:glyph_craft"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["7928053CA48FD66C"]
+			id: "7D4472434C815004"
+			tasks: [{
+				id: "0AE20661AEE3152E"
+				item: "create:precision_mechanism"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["7D4472434C815004"]
+			id: "3D91067BBCB83850"
+			tasks: [{
+				id: "68401BBCDF623B21"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 5.5d
 		}
 	]
 	title: "{chapter.spongefactory.chapter_1.title}"

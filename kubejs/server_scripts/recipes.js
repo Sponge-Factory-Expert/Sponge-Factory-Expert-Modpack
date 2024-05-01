@@ -26,6 +26,11 @@ ServerEvents.recipes(event => {
     addOreWashingRecipes(event, "gold")
     addOreGroundRecipes(event, "gold")
     event.smelting("minecraft:raw_" + "gold", "spongefactory:ground_" + "gold" + "_ore")
+    // 银
+    addOreWashingRecipes(event, "silver")
+    addOreGroundRecipes(event, "silver")
+    addCharcoalDustMixture(event, "silver")
+    event.smelting("thermal:raw_" + "silver", "spongefactory:charcoal_" + "silver" + "_ore_mixture")
 
     // 生石灰
     event.custom({
@@ -47,6 +52,7 @@ ServerEvents.recipes(event => {
         "block_in": {"blocks": ["water_cauldron"], "state": {"level": 3}},
         "post": [{"type": "drop_item", "item": "spongefactory:slaked_lime"}, {"type": "place", "block": "cauldron"}]
     })
+    event.recipes.create.splashing("spongefactory:slaked_lime", "spongefactory:quicklime")
 
     // 石锤
     event.shaped(Item.of('spongefactory:stone_hammer', 1), [' SA', ' TS', 'T  '], {
@@ -193,7 +199,7 @@ ServerEvents.recipes(event => {
     event.replaceInput({output: 'create:windmill_bearing'}, 'create:shaft', 'spongefactory:stress_resistance_mechanism')
     event.replaceInput({output: 'create:flywheel'}, 'create:shaft', 'spongefactory:stress_resistance_mechanism')
     // 蒸汽引擎
-    event.replaceInput({output:'create:steam_engine'},'create:andesite_alloy','spongefactory:stress_resistance_mechanism')
+    event.replaceInput({output: 'create:steam_engine'}, 'create:andesite_alloy', 'spongefactory:stress_resistance_mechanism')
 
     // 工作盆
     event.remove({output: 'create:basin'})
@@ -230,6 +236,7 @@ ServerEvents.recipes(event => {
         'spongefactory:polished_green_corundum',
         'spongefactory:polished_orange_corundum'
     ]).superheated()
+
     // 神秘元质内衬
     event.remove({output: 'minecraft:enchanted_golden_apple', type: 'minecraft:crafting_shaped'})
     event.recipes.create.mixing('spongefactory:mysterium_lining',
@@ -322,27 +329,128 @@ ServerEvents.recipes(event => {
 
     // 烈焰蛋糕
     event.remove({output: 'create:blaze_cake'})
-    const inter = 'create:blaze_cake_base'
-    event.recipes.create.sequenced_assembly('create:blaze_cake', inter, [
-        event.recipes.createDeploying(inter, [inter, 'spongefactory:high_temperature_resistant_lining']).keepHeldItem(),
-        event.recipes.createDeploying(inter, [inter, 'minecraft:blaze_powder']),
-        event.recipes.createDeploying(inter, [inter, 'minecraft:cake']),
-        event.recipes.createFilling(inter, [Fluid.lava(1000), inter]),
-        event.recipes.createDeploying(inter, [inter, 'minecraft:blaze_powder'])
-
-    ]).transitionalItem(inter).loops(1)
+    const blazeCakeBase = 'create:blaze_cake_base'
+    event.recipes.create.sequenced_assembly('create:blaze_cake', blazeCakeBase, [
+        event.recipes.createDeploying(blazeCakeBase, [blazeCakeBase, 'spongefactory:high_temperature_resistant_lining']).keepHeldItem(),
+        event.recipes.createDeploying(blazeCakeBase, [blazeCakeBase, 'minecraft:blaze_powder']),
+        event.recipes.createDeploying(blazeCakeBase, [blazeCakeBase, 'minecraft:cake']),
+        event.recipes.createFilling(blazeCakeBase, [Fluid.lava(1000), blazeCakeBase]),
+        event.recipes.createDeploying(blazeCakeBase, [blazeCakeBase, 'minecraft:blaze_powder'])
+    ]).transitionalItem(blazeCakeBase).loops(1)
 
     // 溜槽
     event.replaceInput({output: 'create:chute'}, 'minecraft:iron_ingot', 'minecraft:hopper')
+
     // 漏斗
-    event.remove({output:'minecraft:hopper'})
+    event.remove({output: 'minecraft:hopper'})
+    event.shaped(Item.of('minecraft:hopper', 1),
+        [
+            'IPI',
+            'IBI',
+            ' I '], {
+            B: '#forge:chests',
+            P: 'create:precision_mechanism',
+            I: 'minecraft:iron_ingot'
+        }
+    )
+
+    // 万向漏斗
+    event.remove({output: 'pneumaticcraft:omnidirectional_hopper'})
+    event.shaped(Item.of('pneumaticcraft:omnidirectional_hopper', 1),
+        [
+            'IPI',
+            'IBI',
+            ' I '], {
+            B: '#forge:chests',
+            P: 'create:precision_mechanism',
+            I: 'pneumaticcraft:ingot_iron_compressed'
+        }
+    )
+
+    // 黄铜漏斗
+    event.replaceInput({output: 'create:brass_funnel'}, 'minecraft:dried_kelp', 'create:andesite_funnel')
+
+    // 安山漏斗
+    event.remove({output: 'create:andesite_funnel'})
+    event.shaped(Item.of('create:andesite_funnel', 2),
+        [
+            'A',
+            'B',
+            'C'], {
+            A: 'create:andesite_alloy',
+            B: 'minecraft:dried_kelp',
+            C: 'minecraft:hopper'
+        }
+    )
+
+    // 扇叶
+    event.replaceInput({output: 'create:propeller'}, 'create:andesite_alloy', 'create:precision_mechanism')
+
+    // 鼓风机
+    event.replaceInput({output: 'create:encased_fan'}, 'create:propeller', 'create_sa:fan_component')
 
     // 灌注室
-    event.remove({output:'ars_nouveau:imbuement_chamber'})
+    event.remove({output: 'ars_nouveau:imbuement_chamber'})
+    event.shaped(Item.of('ars_nouveau:imbuement_chamber', 1),
+        [
+            'PXP',
+            'X X',
+            'PPP'], {
+            X: '#forge:ingots/brass',
+            P: 'minecraft:smooth_stone'
+        }
+    )
+
+    // 魔源罐
+    event.remove({output: 'ars_nouveau:source_jar'})
+    event.shaped(Item.of('ars_nouveau:source_jar', 1),
+        [
+            'PXP',
+            'GGG',
+            'XPX'], {
+            X: '#forge:ingots/brass',
+            P: 'minecraft:smooth_stone',
+            G: '#forge:glass'
+        }
+    )
+
+    // 火山魔源通道
+    event.remove({output: 'ars_nouveau:volcanic_sourcelink'})
+    event.shaped(Item.of('ars_nouveau:volcanic_sourcelink', 1),
+        [
+            ' G ',
+            'XPX',
+            'XBX'], {
+            X: '#forge:ingots/brass',
+            P: 'create:blaze_cake',
+            G: 'ars_nouveau:source_gem',
+            B: 'ars_nouveau:source_gem_block'
+        }
+    )
+
+    // 魔源中继器
+    event.remove({output: 'ars_nouveau:relay'})
+    event.shaped(Item.of('ars_nouveau:relay', 1),
+        [
+            'X X',
+            'BGB',
+            'X X'], {
+            X: '#forge:ingots/brass',
+            G: 'ars_nouveau:source_gem_block',
+            B: '#forge:ingots/gold'
+        }
+    )
+
+    // 奥术基座
+    event.replaceInput({output: 'ars_nouveau:arcane_pedestal'}, 'minecraft:gold_nugget', '#forge:nuggets/brass')
+
+    // 附魔装置
+    event.replaceInput({output: 'ars_nouveau:enchanting_apparatus'}, 'minecraft:gold_nugget', '#forge:nuggets/brass')
+    event.replaceInput({output: 'ars_nouveau:enchanting_apparatus'}, 'minecraft:gold_ingot', '#forge:ingots/brass')
 
     // 魔源宝石
-    event.remove({output:'ars_nouveau:source_gem', type:'ars_nouveau:imbuement'})
-    event.remove({output:'ars_nouveau:source_gem_block', type:'ars_nouveau:imbuement'})
+    event.remove({output: 'ars_nouveau:source_gem', type: 'ars_nouveau:imbuement'})
+    event.remove({output: 'ars_nouveau:source_gem_block', type: 'ars_nouveau:imbuement'})
     event.custom({
         "type": "ars_nouveau:imbuement",
         "count": 1,
@@ -361,7 +469,194 @@ ServerEvents.recipes(event => {
         },
         "output": "ars_nouveau:source_gem",
         "pedestalItems": [],
-        "source": 100
+        "source": 500
+    })
+
+    // 熔岩水莲
+    event.remove({output: 'ars_nouveau:lava_lily'})
+
+    // 笔与墨
+    event.shapeless('spongefactory:scribing_tools', ['minecraft:black_dye', 'minecraft:glass_bottle', '#forge:feathers'])
+    // 抄写台
+    event.remove({output: 'ars_nouveau:scribes_table'})
+    event.shaped(Item.of('ars_nouveau:scribes_table', 1),
+        [
+            'B  ',
+            'AAA',
+            'CCC'], {
+            B: 'spongefactory:scribing_tools',
+            A: 'ars_nouveau:lava_lily',
+            C: 'ars_nouveau:archwood_slab'
+        }
+    )
+
+    // 气之精华
+    event.remove({output: 'ars_nouveau:air_essence'})
+    event.recipes.ars_nouveau.imbuement(
+        "#forge:gems/source",
+        "ars_nouveau:air_essence",
+        2000,
+        [
+            "minecraft:feather",
+            "ars_nouveau:wilden_wing",
+            'alexsmobs:stink_bottle',
+            'botania:ender_air_bottle',
+            'quark:bottled_cloud',
+            'naturesaura:bottle_two_the_rebottling',
+            'minecraft:dragon_breath',
+            'minecraft:glass_bottle'
+        ]
+    )
+
+    // 土之精华
+    event.remove({output: 'ars_nouveau:earth_essence'})
+    event.remove({output: 'minecraft:mud', type: 'create:mixing'})
+    event.recipes.ars_nouveau.imbuement(
+        "#forge:gems/source",
+        'ars_nouveau:earth_essence',
+        2000,
+        [
+            'minecraft:dirt',
+            'immersiveengineering:concrete',
+            'minecraft:soul_soil',
+            'minecraft:dirt_path',
+            'minecraft:podzol',
+            'minecraft:mycelium',
+            'minecraft:mud',
+            '#forge:concrete_powders'
+        ]
+    )
+
+    // 水之精华
+    event.remove({output: 'ars_nouveau:water_essence'})
+    event.recipes.ars_nouveau.imbuement(
+        "#forge:gems/source",
+        'ars_nouveau:water_essence',
+        2000,
+        [
+            'minecraft:wet_sponge',
+            'minecraft:water_bucket',
+            'minecraft:sea_lantern',
+            'minecraft:lily_pad',
+            'minecraft:sea_pickle',
+            'aquaculture:neptunium_ingot',
+            'minecraft:conduit',
+            'minecraft:blue_ice'
+        ]
+    )
+
+    // 火之精华
+    event.remove({output: 'ars_nouveau:fire_essence'})
+    event.recipes.ars_nouveau.imbuement(
+        "#forge:gems/source",
+        'ars_nouveau:fire_essence',
+        2000,
+        [
+            'minecraft:flint_and_steel',
+            'minecraft:fire_charge',
+            'reliquary:molten_core',
+            'minecraft:magma_block',
+            'minecraft:lava_bucket',
+            'spongefactory:high_temperature_resistant_lining',
+            'create:blaze_burner',
+            'create:blaze_cake'
+        ]
+    )
+
+    // 操纵之精华
+    event.remove({output: 'ars_nouveau:manipulation_essence'})
+    event.recipes.ars_nouveau.imbuement(
+        "#forge:gems/source",
+        'ars_nouveau:manipulation_essence',
+        2000,
+        [
+            "ars_nouveau:fire_essence",
+            "ars_nouveau:water_essence",
+            "ars_nouveau:earth_essence",
+            "ars_nouveau:air_essence",
+            "#forge:tools/wrench"
+        ]
+    )
+
+    // 法术书
+    event.remove({output: 'ars_nouveau:novice_spell_book', input: 'minecraft:book'})
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            "ars_nouveau:fire_essence",
+            "ars_nouveau:water_essence",
+            "ars_nouveau:earth_essence",
+            "ars_nouveau:air_essence",
+        ],
+        "minecraft:book",
+        "ars_nouveau:novice_spell_book",
+        3000,
+    );
+
+    // 精密构件
+    event.remove({output: 'create:precision_mechanism'})
+    const glyphCraft = 'ars_nouveau:glyph_craft'
+    event.recipes.create.sequenced_assembly('create:precision_mechanism', glyphCraft, [
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:brass_sheet']),
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:cogwheel']),
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:wrench']).keepHeldItem(),
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:large_cogwheel']),
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:wrench']).keepHeldItem(),
+        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'minecraft:iron_nugget']),
+    ]).transitionalItem(glyphCraft).loops(5)
+
+    // 砖窑
+    event.remove({output: 'immersiveengineering:alloybrick', not: {input: 'immersiveengineering:slab_alloybrick'}})
+
+    // 砖窑台阶
+    const input = 'minecraft:brick'
+    event.recipes.create.sequenced_assembly('immersiveengineering:slab_alloybrick', input, [
+        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball']),
+        event.recipes.createDeploying(input, [input, 'ars_nouveau:fire_essence']),
+        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball'])
+    ]).transitionalItem(input).loops(1)
+
+    // 青金石变海晶沙砾/碎片
+    event.remove({id: 'create:haunting/lapis_recycling'})
+    // 命名牌
+    event.remove({id: 'create_sa:book_and_quill_haunting'})
+
+    // 火焰弹做合金
+    event.remove({input: 'minecraft:fire_charge', output: '#forge:ingots'})
+
+    // 无序合成的合金粉
+    event.remove({output: '#forge:dusts/bronze', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/shellite', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/electrum', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/invar', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/constantan', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/rose_gold', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/soul_infused', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/twinite', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/dragonsteel', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/signalum', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/lumium', type: 'minecraft:crafting_shapeless'})
+    event.remove({output: '#forge:dusts/enderium', type: 'minecraft:crafting_shapeless'})
+
+    // 铁锭烧钢锭
+    event.remove({id: 'ad_astra:recipes/steel_ingot_from_blasting_iron_ingot'})
+    // 混合搅拌康铜/琥珀金
+    event.remove({id: 'createaddition:compat/immersiveengineering/constantan'})
+    event.remove({id: 'createaddition:mixing/electrum'})
+    // 多余的琥珀金粒到锭
+    event.remove({id: 'immersiveengineering:crafting/nugget_electrum_to_ingot_electrum'})
+
+    // 板通过剪线钳到线
+    event.remove({input: 'immersiveengineering:wirecutter', output: '#forge:wires'})
+
+    // 异界琥珀金
+    event.custom({
+        "type": "occultism:spirit_fire",
+        "ingredient": {
+            "item": 'thermal:electrum_ingot'
+        },
+        "result": {
+            "item": 'spongefactory:otherworld_electrum_ingot'
+        }
     })
 })
 
