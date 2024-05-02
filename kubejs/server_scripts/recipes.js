@@ -167,9 +167,15 @@ ServerEvents.recipes(event => {
     })
     // 抗应力构件
     event.custom({
-        "type": "lychee:item_burning",
-        "item_in": {"item": "spongefactory:stress_endurance_mechanism"},
-        "post": {"type": "drop_item", "item": "spongefactory:stress_resistance_mechanism"}
+        "type": "naturesaura:altar",
+        "input": {
+            "item": "spongefactory:stress_endurance_mechanism"
+        },
+        "output": {
+            "item": "spongefactory:stress_resistance_mechanism"
+        },
+        "aura": 15000,
+        "time": 80
     })
     // 顺压力构件
     event.shaped(Item.of('spongefactory:yielding_mechanism', 1), ['XXX', 'XAX', 'XXX'], {
@@ -594,7 +600,7 @@ ServerEvents.recipes(event => {
 
     // 精密构件
     event.remove({output: 'create:precision_mechanism'})
-    const glyphCraft = 'ars_nouveau:glyph_craft'
+    const glyphCraft = 'naturesaura:sky_ingot'
     event.recipes.create.sequenced_assembly('create:precision_mechanism', glyphCraft, [
         event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:brass_sheet']),
         event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:cogwheel']),
@@ -608,12 +614,12 @@ ServerEvents.recipes(event => {
     event.remove({output: 'immersiveengineering:alloybrick', not: {input: 'immersiveengineering:slab_alloybrick'}})
 
     // 砖窑台阶
-    const input = 'minecraft:brick'
-    event.recipes.create.sequenced_assembly('immersiveengineering:slab_alloybrick', input, [
-        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball']),
-        event.recipes.createDeploying(input, [input, 'ars_nouveau:fire_essence']),
-        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball'])
-    ]).transitionalItem(input).loops(1)
+    const brick = 'minecraft:brick'
+    event.recipes.create.sequenced_assembly('immersiveengineering:slab_alloybrick', brick, [
+        event.recipes.createDeploying(brick, [brick, 'minecraft:clay_ball']),
+        event.recipes.createDeploying(brick, [brick, 'spongefactory:high_temperature_resistant_lining']),
+        event.recipes.createDeploying(brick, [brick, 'occultism:crushed_end_stone'])
+    ]).transitionalItem(brick).loops(1)
 
     // 青金石变海晶沙砾/碎片
     event.remove({id: 'create:haunting/lapis_recycling'})
@@ -658,6 +664,483 @@ ServerEvents.recipes(event => {
             "item": 'spongefactory:otherworld_electrum_ingot'
         }
     })
+
+    // 金纤维
+    event.replaceInput({output: 'naturesaura:gold_fiber'}, 'minecraft:gold_nugget', 'minecraft:golden_apple')
+
+    // 屠刀
+    event.remove({output: 'occultism:butcher_knife'})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_sword'
+            },
+            {
+                "item": "minecraft:iron_ingot"
+            },
+            {
+                "tag": 'forge:rods/wooden'
+            },
+            {
+                "tag": 'forge:rods/wooden'
+            },
+            {
+                "tag": 'forge:rods/wooden'
+            },
+            {
+                "item": "minecraft:iron_ingot"
+            }
+        ],
+        "sapling": {
+            "item": "minecraft:oak_sapling"
+        },
+        "output": {
+            "item": "occultism:butcher_knife",
+            "count": 1
+        },
+        "time": 200
+    })
+
+    // 自然祭坛
+    event.remove({output: 'naturesaura:nature_altar'})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "item": 'minecraft:stone'
+            },
+            {
+                "item": 'minecraft:stone'
+            },
+            {
+                "item": 'minecraft:stone'
+            },
+            {
+                "item": "naturesaura:gold_leaf"
+            },
+            {
+                "item": 'naturesaura:token_fear'
+            },
+            {
+                "item": "naturesaura:token_joy"
+            },
+            {
+                "item": 'minecraft:glistering_melon_slice'
+            },
+            {
+                "item": 'minecraft:gold_block'
+            }
+        ],
+        "sapling": {
+            "item": 'minecraft:jungle_sapling'
+        },
+        "output": {
+            "item": 'naturesaura:nature_altar',
+            "count": 1
+        },
+        "time": 200
+    })
+
+    // 愉悦印记
+    event.remove({output: "naturesaura:token_joy"})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "count": 1,
+                "nbt": "{stored_type:\"naturesaura:overworld\"}"
+            },
+            {
+                "item": "naturesaura:gold_leaf"
+            },
+            {
+                "item": 'minecraft:enchanted_golden_apple'
+            },
+            {
+                "item": 'minecraft:soul_torch'
+            },
+            {
+                "tag": 'forge:plates/iron'
+            },
+            {
+                "item": 'minecraft:chorus_fruit'
+            }
+        ],
+        "sapling": {
+            "item": 'minecraft:acacia_sapling'
+        },
+        "output": {
+            "item": "naturesaura:token_joy",
+            "count": 2
+        },
+        "time": 200
+    })
+
+    // 恐惧印记
+    event.remove({output: 'naturesaura:token_fear'})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "count": 1,
+                "nbt": "{stored_type:\"naturesaura:nether\"}"
+            },
+            {
+                "item": "naturesaura:gold_leaf"
+            },
+            {
+                "item": "minecraft:rotten_flesh"
+            },
+            {
+                "item": 'alexsmobs:roadrunner_feather'
+            },
+            {
+                "item": 'minecraft:wither_skeleton_skull'
+            },
+            {
+                "item": 'minecraft:soul_sand'
+            }
+        ],
+        "sapling": {
+            "item": 'minecraft:acacia_sapling'
+        },
+        "output": {
+            "item": "naturesaura:token_fear",
+            "count": 2
+        },
+        "time": 200
+    })
+
+    // 灌注黄铜
+    event.recipes.create.mixing(['spongefactory:infused_brass', 'minecraft:iron_ingot'], [
+        'naturesaura:infused_iron',
+        '#forge:ingots/brass'
+    ]).superheated()
+    event.recipes.thermal.smelter(['spongefactory:infused_brass', 'minecraft:iron_ingot'], ['naturesaura:infused_iron', '#forge:ingots/brass'])
+
+    // 祭祀台
+    event.replaceInput({output: 'naturesaura:offering_table'}, 'naturesaura:infused_iron', 'spongefactory:infused_brass')
+    event.replaceInput({output: 'naturesaura:offering_table'}, 'naturesaura:token_fear', "naturesaura:token_anger")
+
+    // 愤怒印记
+    event.remove({output: "naturesaura:token_anger"})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "count": 1,
+                "nbt": "{stored_type:\"naturesaura:nether\"}"
+            },
+            {
+                "item": "naturesaura:gold_leaf"
+            },
+            {
+                "item": "minecraft:magma_block"
+            },
+            {
+                "item": 'minecraft:echo_shard'
+            },
+            {
+                "item": "minecraft:gunpowder"
+            },
+            {
+                "item": "minecraft:ender_pearl"
+            },
+            {
+                "item": "naturesaura:token_fear"
+            },
+            {
+                "item": "naturesaura:token_joy"
+            }
+        ],
+        "sapling": {
+            "item": 'quark:ancient_sapling'
+        },
+        "output": {
+            "item": "naturesaura:token_anger",
+            "count": 1
+        },
+        "time": 200
+    })
+
+    // 忧伤印记
+    event.remove({output: 'naturesaura:token_sorrow'})
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "count": 1,
+                "nbt": "{stored_type:\"naturesaura:overworld\"}"
+            },
+            {
+                "item": "naturesaura:gold_leaf"
+            },
+            {
+                "item": "minecraft:ghast_tear"
+            },
+            [
+                {
+                    "item": "minecraft:beef"
+                },
+                {
+                    "item": "minecraft:mutton"
+                },
+                {
+                    "item": "minecraft:chicken"
+                },
+                {
+                    "item": "minecraft:porkchop"
+                }
+            ],
+            {
+                "item": 'minecraft:tinted_glass'
+            },
+            {
+                "tag": "minecraft:fishes"
+            },
+            {
+                "item": "naturesaura:token_fear"
+            },
+            {
+                "item": "naturesaura:token_joy"
+            }
+        ],
+        "sapling": {
+            "item": 'quark:ancient_sapling'
+        },
+        "output": {
+            "item": "naturesaura:token_sorrow",
+            "count": 1
+        },
+        "time": 200
+    })
+
+    // 苍穹锭
+    event.remove({output: 'naturesaura:sky_ingot'})
+    event.custom({
+        "type": "naturesaura:offering",
+        "input": {
+            "item": 'spongefactory:infused_brass'
+        },
+        "start_item": {
+            "item": "naturesaura:calling_spirit"
+        },
+        "output": {
+            "item": "naturesaura:sky_ingot"
+        }
+    })
+
+    // 呼唤之魂
+    event.remove({output: 'naturesaura:calling_spirit'})
+    event.custom({
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+            " O ",
+            "GDH",
+            " N "
+        ],
+        "key": {
+            "G": {
+                "item": 'spongefactory:infused_brass'
+            },
+            "H": {
+                "item": "naturesaura:tainted_gold"
+            },
+            "O": {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "nbt": {
+                    "stored_type": "naturesaura:end"
+                }
+            },
+            "N": {
+                "type": "forge:nbt",
+                "item": "naturesaura:aura_bottle",
+                "nbt": {
+                    "stored_type": "naturesaura:nether"
+                }
+            },
+            "D": {
+                "item": "minecraft:diamond"
+            }
+        },
+        "result": {
+            "item": "naturesaura:calling_spirit",
+            "count": 2
+        }
+    })
+
+    // 马桶
+    event.remove({output: 'pfm:basic_toilet'})
+    event.shaped('pfm:basic_toilet',
+        [
+            'B  ',
+            'AAA',
+            'CMA'], {
+            B: 'quark:iron_button',
+            A: 'minecraft:quartz_block',
+            C: 'naturesaura:eye',
+            M: 'create:precision_mechanism'
+        }
+    )
+
+    // 肥料
+    event.custom({
+        "type": "naturesaura:offering",
+        "input": {
+            "item": 'pamhc2foodextended:epicbltitem'
+        },
+        "start_item": {
+            "item": "pfm:basic_toilet"
+        },
+        "output": {
+            "item": 'spongefactory:holy_shit',
+            "count": 16
+        }
+    })
+
+    // 黑巧克力
+    event.remove({input: 'create_confectionery:cocoa_butter'})
+    event.custom({
+        "group": "create_confectionery",
+        "type": "create:mixing",
+        "ingredients": [
+            {
+                "item": "minecraft:sugar"
+            },
+            {
+                "item": 'spongefactory:holy_shit'
+            },
+            {
+                "fluidTag": "forge:milk",
+                "amount": 250
+            }
+        ],
+        "results": [
+            {
+                "fluid": "create_confectionery:black_chocolate",
+                "amount": 250
+            }
+        ],
+        "heatRequirement": "heated"
+    })
+    // 白巧克力
+    event.custom({
+        "group": "create_confectionery",
+        "type": "create:mixing",
+        "ingredients": [
+            {
+                "item": "minecraft:sugar"
+            },
+            {
+                "item": "create_confectionery:cocoa_butter"
+            },
+            {
+                "fluidTag": "forge:milk",
+                "amount": 250
+            }
+        ],
+        "results": [
+            {
+                "fluid": "create_confectionery:white_chocolate",
+                "amount": 250
+            }
+        ],
+        "heatRequirement": "heated"
+    })
+
+    // 巧克力到蛋糕
+    event.custom({
+        "type": "create:filling",
+        "ingredients": [
+            {
+                "item": 'create:dough'
+            },
+            {
+                "fluid": "create_confectionery:black_chocolate",
+                "nbt": {},
+                "amount": 1000
+            }
+        ],
+        "results": [
+            {
+                "item": "minecraft:cake"
+            }
+        ]
+    })
+
+    // 粉碎末地石
+    event.custom({
+        "type": "create:haunting",
+        "ingredients": [
+            {
+                "item": 'minecraft:end_stone'
+            }
+        ],
+        "results": [
+            {
+                "item": 'occultism:crushed_end_stone'
+            }
+        ]
+    })
+
+    // Create种子油
+    event.remove({id: 'createaddition:compacting/seed_oil'})
+
+    // 焦炉内衬
+    const input = 'spongefactory:high_temperature_resistant_lining'
+    event.recipes.create.sequenced_assembly('spongefactory:coke_oven_lining', input, [
+        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball']),
+        event.recipes.createFilling(input, [Fluid.water(1000), input]),
+        event.recipes.createDeploying(input, [input, 'thermal_extra:amethyst_dust']),
+        event.recipes.createDeploying(input, [input, 'spongefactory:otherworld_electrum_ingot']),
+        event.recipes.createPressing(input, input)
+    ]).transitionalItem(input).loops(10)
+
+    // 紫水晶粉
+    event.custom({
+        "type": "create:crushing",
+        "ingredients": [
+            {
+                "item": 'minecraft:amethyst_shard'
+            }
+        ],
+        "processingTime": 300,
+        "results": [
+            {
+                "chance": 0.1,
+                "item": 'thermal_extra:amethyst_dust'
+            }
+        ]
+    })
+
+    // 粉碎轮琥珀金粉
+    event.custom({
+        "type": "create:crushing",
+        "ingredients": [
+            {
+                "item": 'thermal:electrum_ingot'
+            }
+        ],
+        "processingTime": 150,
+        "results": [
+            {
+                "item": 'thermal:electrum_dust'
+            }
+        ]
+    })
+
+    // 焦炉砖
+    event.replaceInput({output: 'immersiveengineering:cokebrick'}, '#forge:sandstone', 'spongefactory:coke_oven_lining')
 })
 
 function replaceRecipes(event, match, wis) {
