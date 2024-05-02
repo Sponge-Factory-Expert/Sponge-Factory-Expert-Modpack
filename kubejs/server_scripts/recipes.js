@@ -31,6 +31,23 @@ ServerEvents.recipes(event => {
     addOreGroundRecipes(event, "silver")
     addCharcoalDustMixture(event, "silver")
     event.smelting("thermal:raw_" + "silver", "spongefactory:charcoal_" + "silver" + "_ore_mixture")
+    // 锇
+    addOreWashingRecipes(event, "osmium")
+    addOreGroundRecipes(event, "osmium")
+    // TODO: 后续加上用氢气还原镍
+    // 锡
+    addOreWashingRecipes(event, "tin")
+    addOreGroundRecipes(event, "tin")
+    addCharcoalDustMixture(event, "tin")
+    event.smelting("thermal:raw_" + "tin", "spongefactory:charcoal_" + "tin" + "_ore_mixture")
+    // 镍
+    addOreWashingRecipes(event, "nickel")
+    addOreGroundRecipes(event, "nickel")
+    // TODO: 后续加上用化学方法冶炼镍
+    // 铝
+    addOreWashingRecipes(event, "aluminum")
+    addOreGroundRecipes(event, "aluminum")
+    // TODO: 后续加上电解冶炼铝
 
     // 生石灰
     event.custom({
@@ -1141,6 +1158,88 @@ ServerEvents.recipes(event => {
 
     // 焦炉砖
     event.replaceInput({output: 'immersiveengineering:cokebrick'}, '#forge:sandstone', 'spongefactory:coke_oven_lining')
+
+    // 血液提取器
+    event.remove({output: 'evilcraft:blood_extractor'})
+    event.custom({
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+            "SAS",
+            " G ",
+            " D "
+        ],
+        "key": {
+            "S": {
+                "item": "evilcraft:dark_spike"
+            },
+            "G": {
+                "item": 'pneumaticcraft:small_tank'
+            },
+            "D": {
+                "item": "evilcraft:dark_gem"
+            },
+            "A": {
+                "item": 'thermal:servo_attachment'
+            }
+        },
+        "result": {
+            "item": "evilcraft:blood_extractor"
+        }
+    })
+    // 连接件伺服器
+    event.remove({output: 'thermal:servo_attachment'})
+    event.shaped('2x thermal:servo_attachment',
+        [
+            ' X ',
+            'BCB',
+            'DND'], {
+            X: 'pneumaticcraft:omnidirectional_hopper',
+            C: 'thermal:fluid_duct',
+            N: 'minecraft:redstone',
+            D: 'minecraft:iron_ingot',
+            B: '#forge:nuggets/tin'
+        }
+    )
+    // (涡轮)
+    event.replaceInput({output: 'thermal:turbo_servo_attachment'}, '#forge:glass', 'thermal:servo_attachment')
+    // 移除硬化玻璃的shapeless配方
+    event.remove({output: '#thermal:glass/hardened', type: 'minecraft:crafting_shapeless', mod: 'thermal'})
+    // 流体管道
+    event.replaceInput({output: 'thermal:fluid_duct'}, '#forge:ingots/lead', 'pneumaticcraft:liquid_hopper')
+    // 流体管道（视窗）
+    event.remove({output: 'thermal:fluid_duct_windowed'})
+    event.shaped('4x thermal:fluid_duct_windowed',
+        [
+            '   ',
+            'BCB',
+            '   '], {
+            C: 'thermal:fluid_duct',
+            B: '#thermal:glass/hardened'
+        }
+    )
+    // 小型储罐
+    event.replaceInput({output: 'pneumaticcraft:small_tank'}, '#forge:glass', 'create:fluid_tank')
+
+    // 红色地狱砖
+    event.remove({id: 'quark:building/crafting/red_nether_bricks_util'})
+    event.remove({id: 'minecraft:red_nether_bricks'})
+    event.recipes.create.mixing('minecraft:red_nether_bricks', [
+        'evilcraft:hardened_blood',
+        'minecraft:cracked_nether_bricks',
+        Fluid.of('evilcraft:blood', 250)
+    ]).heated()
+    // 高炉砖
+    event.remove({id: 'immersiveengineering:crafting/blastbrick'})
+    event.shaped('4x immersiveengineering:blastbrick',
+        [
+            'XAX',
+            'ACA',
+            'XAX'], {
+            X: 'minecraft:red_nether_bricks',
+            A: '#forge:ingots/brick',
+            C: 'spongefactory:otherworld_electrum_ingot'
+        }
+    )
 })
 
 function replaceRecipes(event, match, wis) {

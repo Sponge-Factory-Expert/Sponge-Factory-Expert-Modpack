@@ -39,6 +39,16 @@ ServerEvents.blockLootTables(event => {
     // 铝
     aluminumOreLootTable(event, 'immersiveengineering:ore_aluminum')
     aluminumOreLootTable(event, 'immersiveengineering:deepslate_ore_aluminum')
+
+    // 锡
+    tinOreLootTable(event, 'mekanism:tin_ore')
+    tinOreLootTable(event, 'mekanism:deepslate_tin_ore')
+    tinOreLootTable(event, 'thermal:tin_ore')
+    tinOreLootTable(event, 'thermal:deepslate_tin_ore')
+
+    // 锇
+    osmiumOreLootTable(event, 'mekanism:deepslate_osmium_ore')
+    osmiumOreLootTable(event, 'mekanism:osmium_ore')
 })
 
 function copperOreLootTable(event, ore) {
@@ -386,6 +396,88 @@ function aluminumOreLootTable(event, ore) {
                     "name": 'spongefactory:impure_crushed_aluminum_ore'
                 }]
             }],
+            "rolls": 1.0
+        }]
+    })
+}
+
+function tinOreLootTable(event, ore) {
+    event.addJson(ore, {
+        "type": "minecraft:block",
+        "pools": [
+            {
+                "bonus_rolls": 0.0,
+                "entries": [
+                    {
+                        "type": "minecraft:alternatives",
+                        "children": [
+                            {
+                                "type": "minecraft:item",
+                                "conditions": [
+                                    {
+                                        "condition": "minecraft:match_tool",
+                                        "predicate": {
+                                            "enchantments": [
+                                                {
+                                                    "enchantment": "minecraft:silk_touch",
+                                                    "levels": {
+                                                        "min": 1
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "name": ore
+                            },
+                            {
+                                "type": "minecraft:item",
+                                "functions": [
+                                    {
+                                        "enchantment": "minecraft:fortune",
+                                        "formula": "minecraft:ore_drops",
+                                        "function": "minecraft:apply_bonus"
+                                    },
+                                    {
+                                        "function": "minecraft:explosion_decay"
+                                    }
+                                ],
+                                "name": 'spongefactory:impure_crushed_tin_ore'
+                            }
+                        ]
+                    }
+                ],
+                "rolls": 1.0
+            }
+        ]
+    })
+}
+
+function osmiumOreLootTable(event, ore) {
+    event.addJson(ore, {
+        "type": "minecraft:block",
+        "pools": [{
+            "bonus_rolls": 0.0,
+            "entries": [{
+                "type": "minecraft:alternatives",
+                "children": [{
+                    "type": "minecraft:item",
+                    "conditions": [{
+                        "condition": "minecraft:match_tool",
+                        "predicate": {"enchantments": [{"enchantment": "minecraft:silk_touch", "levels": {"min": 1}}]}
+                    }],
+                    "name": ore
+                }, {
+                    "type": "minecraft:item",
+                    "functions": [{
+                        "enchantment": "minecraft:fortune",
+                        "formula": "minecraft:ore_drops",
+                        "function": "minecraft:apply_bonus"
+                    }, {"function": "minecraft:explosion_decay"}],
+                    "name": 'spongefactory:impure_crushed_osmium_ore'
+                }]
+            }],
+            "name": "main",
             "rolls": 1.0
         }]
     })

@@ -107,7 +107,7 @@
 				item: "immersiveengineering:coal_coke"
 				type: "item"
 			}]
-			x: 1.5d
+			x: 4.5d
 			y: -4.5d
 		}
 		{
@@ -119,6 +119,106 @@
 				type: "item"
 			}]
 			x: -6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["5E0961842C69972E"]
+			id: "1025D0D97579E7AB"
+			tasks: [{
+				id: "74BDBBA2E06986B7"
+				item: "thermal:fluid_duct"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1025D0D97579E7AB"]
+			id: "308B0F75B2ECC417"
+			tasks: [{
+				id: "1905577D6FE3D11E"
+				item: "thermal:servo_attachment"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["308B0F75B2ECC417"]
+			id: "6B30B27364AE63ED"
+			tasks: [{
+				id: "26427877BADB3910"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Amount: 0
+							FluidName: "minecraft:empty"
+							capacity: 5000
+						}
+					}
+					id: "evilcraft:blood_extractor"
+					tag: {
+						Fluid: {
+							Amount: 0
+							FluidName: "minecraft:empty"
+						}
+						capacity: 5000
+					}
+				}
+				match_nbt: false
+				type: "item"
+				weak_nbt_match: true
+			}]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6B30B27364AE63ED"]
+			id: "3695284A00C78EF0"
+			tasks: [{
+				id: "109F18A37FE1E655"
+				item: "evilcraft:hardened_blood"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3695284A00C78EF0"]
+			id: "3520506B33E0F7AF"
+			tasks: [{
+				id: "18ACBEFE00A26E8A"
+				item: "minecraft:red_nether_bricks"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3520506B33E0F7AF"]
+			id: "26E7EB6672AACC22"
+			tasks: [{
+				count: 27L
+				id: "3B71F834A474AC14"
+				item: "immersiveengineering:blastbrick"
+				type: "item"
+			}]
+			x: 3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"26E7EB6672AACC22"
+				"3BAB9A02195C2EDB"
+			]
+			id: "2278B7B8E02538AD"
+			tasks: [{
+				id: "55EDF58BF7346D17"
+				item: "thermal:steel_ingot"
+				type: "item"
+			}]
+			x: 4.5d
 			y: -3.0d
 		}
 	]
