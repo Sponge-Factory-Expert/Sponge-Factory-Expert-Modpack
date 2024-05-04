@@ -28,4 +28,13 @@ ServerEvents.tags('item', event => {
     // 锤子
     event.add('spongefactory:hammer', 'immersiveengineering:hammer')
     event.add('spongefactory:hammer', 'spongefactory:stone_hammer')
+
+    // 升级矩阵
+    event.remove('pneumaticcraft:upgrade_components', 'minecraft:lapis_lazuli')
+})
+
+ServerEvents.tags('block', event => {
+    // 乙醇
+    event.add('spongefactory:ethanol','immersiveengineering:ethanol_fluid_block')
+    event.add('spongefactory:ethanol','pneumaticcraft:ethanol')
 })

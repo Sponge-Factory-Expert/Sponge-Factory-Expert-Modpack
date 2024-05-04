@@ -48,6 +48,15 @@ ServerEvents.recipes(event => {
     addOreWashingRecipes(event, "aluminum")
     addOreGroundRecipes(event, "aluminum")
     // TODO: 后续加上电解冶炼铝
+    // 铅
+    addOreWashingRecipes(event, "lead")
+    addOreGroundRecipes(event, "lead")
+    addCharcoalDustMixture(event, "lead")
+    event.smelting("thermal:raw_" + "lead", "spongefactory:charcoal_" + "lead" + "_ore_mixture")
+    // 铀
+    addOreWashingRecipes(event, "uranium")
+    addOreGroundRecipes(event, "uranium")
+    // TODO: 后续加上萃取炼铀
 
     // 生石灰
     event.custom({
@@ -1114,14 +1123,14 @@ ServerEvents.recipes(event => {
     event.remove({id: 'createaddition:compacting/seed_oil'})
 
     // 焦炉内衬
-    const input = 'spongefactory:high_temperature_resistant_lining'
-    event.recipes.create.sequenced_assembly('spongefactory:coke_oven_lining', input, [
-        event.recipes.createDeploying(input, [input, 'minecraft:clay_ball']),
-        event.recipes.createFilling(input, [Fluid.water(1000), input]),
-        event.recipes.createDeploying(input, [input, 'thermal_extra:amethyst_dust']),
-        event.recipes.createDeploying(input, [input, 'spongefactory:otherworld_electrum_ingot']),
-        event.recipes.createPressing(input, input)
-    ]).transitionalItem(input).loops(10)
+    const hTRLining = 'spongefactory:high_temperature_resistant_lining'
+    event.recipes.create.sequenced_assembly('spongefactory:coke_oven_lining', hTRLining, [
+        event.recipes.createDeploying(hTRLining, [hTRLining, 'minecraft:clay_ball']),
+        event.recipes.createFilling(hTRLining, [Fluid.water(1000), hTRLining]),
+        event.recipes.createDeploying(hTRLining, [hTRLining, 'thermal_extra:amethyst_dust']),
+        event.recipes.createDeploying(hTRLining, [hTRLining, 'spongefactory:otherworld_electrum_ingot']),
+        event.recipes.createPressing(hTRLining, hTRLining)
+    ]).transitionalItem(hTRLining).loops(10)
 
     // 紫水晶粉
     event.custom({
@@ -1238,6 +1247,204 @@ ServerEvents.recipes(event => {
             X: 'minecraft:red_nether_bricks',
             A: '#forge:ingots/brick',
             C: 'spongefactory:otherworld_electrum_ingot'
+        }
+    )
+
+    // 压力管道
+    event.remove({output: 'pneumaticcraft:pressure_tube'})
+    const input = 'thermal:fluid_duct'
+    event.recipes.create.sequenced_assembly('pneumaticcraft:pressure_tube', input, [
+        event.recipes.createDeploying(input, [input, 'thermal:steel_plate']),
+        event.recipes.createPressing(input, input),
+        event.recipes.createPressing(input, input),
+    ]).transitionalItem(input).loops(4)
+    // 压力表
+    event.replaceInput({output: 'pneumaticcraft:pressure_gauge'}, 'minecraft:gold_ingot', '#forge:ingots/electrum')
+
+    // 压力室墙壁
+    event.remove({output: 'pneumaticcraft:pressure_chamber_wall'})
+    event.custom({
+        "type": "lychee:item_inside",
+        "item_in": {
+            "item": 'pneumaticcraft:reinforced_bricks'
+        },
+        "block_in": {
+            "tag": "spongefactory:ethanol"
+        },
+        "post": [
+            {
+                "type": "drop_item",
+                "item": "pneumaticcraft:pressure_chamber_wall"
+            },
+            {
+                "type": "place",
+                "block": "air"
+            }
+        ]
+    })
+
+    // 空气压缩机
+    event.remove({output: 'pneumaticcraft:air_compressor'})
+    event.shaped('pneumaticcraft:air_compressor',
+        [
+            'XXX',
+            'XBC',
+            'XAX'], {
+            X: 'pneumaticcraft:pressure_chamber_wall',
+            A: 'minecraft:furnace',
+            C: 'pneumaticcraft:pressure_tube',
+            B: 'create:encased_fan'
+        }
+    )
+
+    // 绝缘覆层
+    event.remove({output: 'powah:dielectric_paste'})
+    event.shapeless('16x powah:dielectric_paste', ['immersiveengineering:coal_coke', 'immersiveengineering:coal_coke', 'minecraft:lava_bucket', 'minecraft:clay_ball'])
+
+    // 惰性耐应力构件
+    event.custom({
+        "type": "create:mixing",
+        "ingredients": [
+            {
+                "item": "spongefactory:stress_endurance_mechanism"
+            },
+            {
+                "tag": "forge:ingots/compressed_iron"
+            },
+            {
+                "fluidTag": "forge:plantoil",
+                "amount": 250
+            }
+        ],
+        "results": [
+            {
+                "item": 'spongefactory:inert_stress_endurance_mechanism',
+                "count": 1
+            }
+        ],
+        "heatRequirement": "superheated"
+    })
+    event.custom({
+        "type": "thermal:bottler",
+        "ingredients": [
+            {
+                "item": 'spongefactory:stress_endurance_mechanism'
+            },
+            {
+                "fluid_tag": 'forge:plantoil',
+                "amount": 250
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:inert_stress_endurance_mechanism'
+            }
+        ]
+    })
+
+    // 轮机转子
+    event.replaceInput({output: 'pneumaticcraft:turbine_rotor'}, 'pneumaticcraft:ingot_iron_compressed', 'spongefactory:inert_stress_endurance_mechanism')
+
+    // 气动工艺：速度升级
+    event.remove({id: 'pneumaticcraft:speed_upgrade'})
+
+    // 导热框架
+    event.replaceInput({output: 'pneumaticcraft:heat_frame'}, 'pneumaticcraft:ingot_iron_compressed', 'pneumaticcraft:compressed_iron_block')
+
+    // 涡流炮
+    event.remove({output: 'pneumaticcraft:vortex_cannon'})
+    event.custom({
+        "type": "pneumaticcraft:crafting_shaped_pressurizable",
+        "key": {
+            "S": {
+                "item": 'pneumaticcraft:air_canister'
+            },
+            "P": {
+                "item": 'pneumaticcraft:ingot_iron_compressed'
+            },
+            "D": {
+                "item": 'create:brass_ingot'
+            },
+            "A": {
+                "item": 'pneumaticcraft:pressure_tube'
+            }
+        },
+        "pattern": [
+            "PDP",
+            "PA ",
+            "SPP"
+        ],
+        "result": {
+            "item": "pneumaticcraft:vortex_cannon"
+        }
+    })
+
+    // 涡流管
+    event.remove({output: 'pneumaticcraft:vortex_tube'})
+    event.shaped('pneumaticcraft:vortex_tube',
+        [
+            'XXX',
+            'ADP',
+            'XXX'], {
+
+            X: 'pneumaticcraft:ingot_iron_compressed',
+            A: 'pneumaticcraft:vortex_cannon',
+            D: 'pneumaticcraft:pressure_tube',
+            P: 'pneumaticcraft:drill_bit_compressed_iron'
+        }
+    )
+
+    // 塑料格栅
+    event.shaped('spongefactory:plastic_lattice',
+        [
+            'X X',
+            ' X ',
+            'X X'], {
+
+            X: 'pneumaticcraft:plastic'
+        }
+    )
+    // 蒸馏填料
+    event.shaped('spongefactory:distillation_filler',
+        [
+            'XXX',
+            'XXX',
+            'XXX'
+        ], {
+            X: 'spongefactory:plastic_lattice'
+        }
+    )
+
+    // 隔热板
+    event.replaceInput({output: 'pneumaticcraft:thermal_lagging'}, '#minecraft:wool', '#thermal:rockwool')
+
+    // 精炼厂
+    // 控制器
+    event.remove({output: 'pneumaticcraft:refinery'})
+    event.shaped('pneumaticcraft:refinery',
+        [
+            'XVX',
+            'ASA',
+            'XXX'
+        ], {
+            X: 'pneumaticcraft:reinforced_stone_slab',
+            S: 'pneumaticcraft:small_tank',
+            V: 'spongefactory:distillation_filler',
+            A: 'pneumaticcraft:thermal_lagging'
+        }
+    )
+    // 输出端
+    event.remove({output: 'pneumaticcraft:refinery_output'})
+    event.shaped( 'pneumaticcraft:refinery_output',
+        [
+            'XVX',
+            'ASA',
+            'XVX'
+        ], {
+            X: 'pneumaticcraft:reinforced_stone_slab',
+            S: 'pneumaticcraft:small_tank',
+            V: 'spongefactory:distillation_filler',
+            A:'pneumaticcraft:ingot_iron_compressed'
         }
     )
 })
