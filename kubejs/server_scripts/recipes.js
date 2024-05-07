@@ -1252,12 +1252,12 @@ ServerEvents.recipes(event => {
 
     // 压力管道
     event.remove({output: 'pneumaticcraft:pressure_tube'})
-    const input = 'thermal:fluid_duct'
-    event.recipes.create.sequenced_assembly('pneumaticcraft:pressure_tube', input, [
-        event.recipes.createDeploying(input, [input, 'thermal:steel_plate']),
-        event.recipes.createPressing(input, input),
-        event.recipes.createPressing(input, input),
-    ]).transitionalItem(input).loops(4)
+    const duct = 'thermal:fluid_duct'
+    event.recipes.create.sequenced_assembly('pneumaticcraft:pressure_tube', duct, [
+        event.recipes.createDeploying(duct, [duct, 'thermal:steel_plate']),
+        event.recipes.createPressing(duct, duct),
+        event.recipes.createPressing(duct, duct),
+    ]).transitionalItem(duct).loops(4)
     // 压力表
     event.replaceInput({output: 'pneumaticcraft:pressure_gauge'}, 'minecraft:gold_ingot', '#forge:ingots/electrum')
 
@@ -1435,7 +1435,7 @@ ServerEvents.recipes(event => {
     )
     // 输出端
     event.remove({output: 'pneumaticcraft:refinery_output'})
-    event.shaped( 'pneumaticcraft:refinery_output',
+    event.shaped('pneumaticcraft:refinery_output',
         [
             'XVX',
             'ASA',
@@ -1444,9 +1444,433 @@ ServerEvents.recipes(event => {
             X: 'pneumaticcraft:reinforced_stone_slab',
             S: 'pneumaticcraft:small_tank',
             V: 'spongefactory:distillation_filler',
-            A:'pneumaticcraft:ingot_iron_compressed'
+            A: 'pneumaticcraft:ingot_iron_compressed'
         }
     )
+
+    // 给线圈用上线轴
+    event.replaceInput({output: '#immersiveengineering:toolbox/wiring'}, '#forge:rods/wooden', 'createaddition:spool')
+
+    // 树液提取器
+    event.remove({output: 'thermal:device_tree_extractor'})
+    event.shaped('thermal:device_tree_extractor',
+        [
+            'XVX',
+            'ASA',
+            'XXX'
+        ], {
+            X: '#minecraft:planks',
+            S: 'pneumaticcraft:liquid_hopper',
+            V: 'pneumaticcraft:small_tank',
+            A: 'thermal:lead_plate'
+        }
+    )
+
+    // 初级线圈
+    const primarySpool = 'createaddition:spool'
+    event.recipes.create.sequenced_assembly('spongefactory:primary_coil', primarySpool, [
+        event.recipes.createDeploying(primarySpool, [primarySpool, '#forge:wires/copper']),
+        event.recipes.createFilling(primarySpool, [Fluid.of('thermal:resin', 125), primarySpool]),
+    ]).transitionalItem(primarySpool).loops(1)
+
+    // 次级线圈
+    const input = 'createaddition:spool'
+    event.recipes.create.sequenced_assembly('spongefactory:secondary_coil', input, [
+        event.recipes.createDeploying(input, [input, '#forge:wires/copper']),
+        event.recipes.createDeploying(input, [input, '#forge:wires/copper']),
+        event.recipes.createFilling(input, [Fluid.of('thermal:resin', 250), input]),
+    ]).transitionalItem(input).loops(1)
+
+    // 放电线圈
+    event.shapeless('2x spongefactory:ignition_coil', ['spongefactory:primary_coil', 'spongefactory:secondary_coil'])
+
+    // 火花塞
+    event.shaped('spongefactory:spark_plug',
+        [
+            ' A ',
+            'DUD',
+            ' X '
+        ], {
+            A: 'minecraft:iron_ingot',
+            D: '#spongefactory:ferromagnetic_materials',
+            U: 'spongefactory:ignition_coil',
+            X: '#forge:rods/iron'
+        }
+    )
+
+    // 气缸
+    event.custom({
+        "type": "create:mechanical_crafting",
+        "acceptMirrored": true,
+        "key": {
+            "X": {
+                "tag": 'forge:ingots/silver'
+            },
+            "P": {
+                "item": 'minecraft:piston'
+            },
+            "O": {
+                "item": 'pneumaticcraft:reinforced_pressure_tube'
+            },
+            "I": {
+                "item": 'spongefactory:spark_plug'
+            }
+        },
+        "pattern": [
+            " P ",
+            "XIX",
+            "X O",
+            "XXX"
+        ],
+        "result": {
+            "count": 1,
+            "item": 'spongefactory:engine_block'
+        }
+    })
+
+    // 内燃机
+    event.shaped('spongefactory:internal_combustion_engine',
+        [
+            ' X ',
+            'XAX',
+            ' X '
+        ], {
+            X: 'spongefactory:engine_block',
+            A: '#forge:rods/iron'
+        }
+    )
+
+    // 液体压缩机
+    event.remove({output: 'pneumaticcraft:liquid_compressor'})
+    event.custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "B": {
+                "type": "forge:nbt",
+                "count": 1,
+                "item": "pneumaticcraft:small_tank"
+            },
+            "C": {
+                "item": "pneumaticcraft:air_compressor"
+            },
+            "L": {
+                "tag": "forge:leather"
+            },
+            "P": {
+                "item": "pneumaticcraft:pressure_tube"
+            },
+            "O": {
+                "item": 'spongefactory:internal_combustion_engine'
+            }
+        },
+        "pattern": [
+            " B ",
+            "PCP",
+            "LOL"
+        ],
+        "result": {
+            "item": "pneumaticcraft:liquid_compressor"
+        }
+    })
+
+    // 高级液体压缩机
+    event.remove({output: 'pneumaticcraft:advanced_liquid_compressor'})
+    event.custom({
+        "type": "pneumaticcraft:compressor_upgrade_crafting",
+        "key": {
+            "C": {
+                "item": "pneumaticcraft:liquid_compressor"
+            },
+            "I": {
+                "tag": "forge:ingots/compressed_iron"
+            },
+            "T": {
+                "item": 'pneumaticcraft:reinforced_pressure_tube'
+            },
+            "P": {
+                "item": 'pneumaticcraft:security_upgrade'
+            },
+            "A": {
+                "item": 'spongefactory:internal_combustion_engine'
+            }
+        },
+        "pattern": [
+            "IPI",
+            "IAT",
+            "ICI"
+        ],
+        "result": {
+            "item": "pneumaticcraft:advanced_liquid_compressor"
+        }
+    })
+
+    // 高级空气压缩机
+    event.remove({output: 'pneumaticcraft:advanced_air_compressor'})
+    event.custom({
+        "type": "pneumaticcraft:compressor_upgrade_crafting",
+        "key": {
+            "C": {
+                "item": "pneumaticcraft:air_compressor"
+            },
+            "I": {
+                "tag": "forge:ingots/compressed_iron"
+            },
+            "T": {
+                "item": "pneumaticcraft:advanced_pressure_tube"
+            },
+            "P": {
+                "item": 'pneumaticcraft:security_upgrade'
+            },
+            "S": {
+                "item": 'thermal:machine_furnace'
+            }
+        },
+        "pattern": [
+            "IPI",
+            "IST",
+            "ICI"
+        ],
+        "result": {
+            "item": "pneumaticcraft:advanced_air_compressor"
+        }
+    })
+
+    // 白色粉笔
+    event.remove({output: 'occultism:chalk_white'})
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 1000,
+            "tag": 'forge:ethanol'
+        },
+        "item_input": {
+            "item": 'occultism:chalk_white_impure'
+        },
+        "item_output": {
+            "item": 'occultism:chalk_white'
+        },
+        "pressure": 9.5,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 373
+        }
+    })
+
+    // 硅
+    event.remove({id: 'ae2:smelting/silicon_from_certus_quartz_dust'})
+    event.remove({id: 'ae2:blasting/silicon_from_certus_quartz_dust'})
+    event.shaped('8x ae2:silicon',
+        [
+            "XXX"
+        ], {
+            X: 'mysticalagriculture:silicon_essence'
+        }
+    )
+    event.custom({
+        "type": "occultism:spirit_fire",
+        "ingredient": {
+            "item": 'ae2:certus_quartz_dust'
+        },
+        "result": {
+            "item": 'ae2:silicon'
+        }
+    })
+
+    // 无暇的赛特斯石英母岩
+    event.custom({
+        "type": "naturesaura:tree_ritual",
+        "ingredients": [
+            {
+                "item": 'ae2:quartz_block'
+            },
+            {
+                "item": 'ae2:damaged_budding_quartz'
+            },
+            {
+                "item": 'ae2:chipped_budding_quartz'
+            },
+            {
+                "item": 'ae2:flawed_budding_quartz'
+            },
+            {
+                "item": 'naturesaura:gold_leaf'
+            },
+            {
+                "item": 'minecraft:anvil'
+            }
+        ],
+        "sapling": {
+            "item": 'occultism:otherworld_sapling'
+        },
+        "output": {
+            "item": 'ae2:flawless_budding_quartz',
+            "count": 1
+        },
+        "time": 200
+    })
+
+    // 真空泵
+    event.remove({output: 'pneumaticcraft:vacuum_pump'})
+    event.custom({
+        "type": "occultism:ritual",
+        "ritual_type": "occultism:craft",
+        "activation_item": {
+            "item": 'create:encased_fan'
+        },
+        "pentacle_id": "occultism:summon_foliot",
+        "duration": 60,
+        "spirit_max_age": -1,
+        "ritual_dummy": {
+            "item": 'minecraft:air'
+        },
+        "ingredients": [
+            {
+                "item": 'pneumaticcraft:reinforced_stone_slab'
+            },
+            {
+                "item": 'pneumaticcraft:reinforced_stone_slab'
+            },
+            {
+                "item": 'pneumaticcraft:reinforced_stone_slab'
+            },
+            {
+                "item": 'pneumaticcraft:pressure_gauge'
+            },
+            {
+                "item": 'pneumaticcraft:pressure_gauge'
+            },
+            {
+                "item": 'pneumaticcraft:turbine_rotor'
+            },
+            {
+                "item": 'pneumaticcraft:pressure_tube'
+            },
+            {
+                "item": 'pneumaticcraft:pressure_tube'
+            },
+            {
+                "item": 'pneumaticcraft:ingot_iron_compressed'
+            },
+            {
+                "item": 'pneumaticcraft:ingot_iron_compressed'
+            }
+        ],
+        "result": {
+            "item": 'pneumaticcraft:vacuum_pump'
+        }
+    }).id('spongefactory:craft_vacuum_pump')
+
+    // 真空管
+    event.remove({output: 'immersiveengineering:electron_tube'})
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 500,
+            "fluid": 'thermal:resin'
+        },
+        "item_input": {
+            "item": 'create:electron_tube'
+        },
+        "item_output": {
+            "item": 'immersiveengineering:electron_tube'
+        },
+        "pressure": -0.6,
+        "speed": 0.1
+    })
+
+    // 献祭之碗
+    event.remove({output: 'occultism:sacrificial_bowl'})
+    event.custom({
+        "type": "create:haunting",
+        "ingredients": [
+            {
+                "item": 'evilcraft:bowl_of_promises_empty'
+            }
+        ],
+        "results": [
+            {
+                "item": 'occultism:sacrificial_bowl'
+            }
+        ]
+    })
+
+    // 黄金献祭之碗
+    event.remove({output: 'occultism:golden_sacrificial_bowl'})
+    event.custom({
+        "type": "naturesaura:offering",
+        "input": {
+            "item": 'occultism:sacrificial_bowl'
+        },
+        "start_item": {
+            "item": 'naturesaura:tainted_gold_block'
+        },
+        "output": {
+            "item": 'occultism:golden_sacrificial_bowl',
+            "count": 1
+        }
+    })
+
+    // 电容
+    event.remove({id: 'pneumaticcraft:pressure_chamber/capacitor'})
+    event.custom({
+        "type": "pneumaticcraft:pressure_chamber",
+        "inputs": [
+            {
+                "type": "pneumaticcraft:stacked_item",
+                "count": 2,
+                "tag": 'forge:plates/copper'
+            },
+            {
+                "item": 'immersiveengineering:electron_tube'
+            },
+            {
+                "item": 'pneumaticcraft:plastic'
+            },
+            {
+                "item": 'ae2:silicon'
+            }
+        ],
+        "pressure": -0.8,
+        "results": [
+            {
+                "item": "pneumaticcraft:capacitor"
+            }
+        ]
+    })
+
+    // 晶体管
+    event.remove({id: 'pneumaticcraft:pressure_chamber/transistor'})
+    event.custom({
+        "type": "pneumaticcraft:pressure_chamber",
+        "inputs": [
+            {
+                "item": 'immersiveengineering:electron_tube'
+            },
+            {
+                "item": 'pneumaticcraft:plastic'
+            },
+            {
+                "type": "pneumaticcraft:stacked_item",
+                "count": 2,
+                "item": 'ae2:silicon'
+            },
+            {
+                "item": 'redstonepen:control_box'
+            }
+        ],
+        "pressure": -0.6,
+        "results": [
+            {
+                "item": 'pneumaticcraft:transistor'
+            }
+        ]
+    })
 })
 
 function replaceRecipes(event, match, wis) {

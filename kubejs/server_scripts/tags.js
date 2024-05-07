@@ -31,6 +31,9 @@ ServerEvents.tags('item', event => {
 
     // 升级矩阵
     event.remove('pneumaticcraft:upgrade_components', 'minecraft:lapis_lazuli')
+
+    // 铁磁材料
+    event.add('spongefactory:ferromagnetic_materials', 'minecraft:lodestone')
 })
 
 ServerEvents.tags('block', event => {

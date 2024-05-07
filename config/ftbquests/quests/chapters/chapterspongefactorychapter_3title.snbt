@@ -1,0 +1,323 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "chapterspongefactorychapter_3title"
+	group: "0460A39D8CE5799E"
+	id: "15B8C69D2973C252"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			id: "12E852BD0BF40290"
+			tasks: [{
+				id: "578B9684F9963562"
+				title: "Center"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["01FB02BFF03335B1"]
+			id: "23D4299305D8F8CE"
+			tasks: [{
+				id: "7DCD1DB6C0EEED7F"
+				item: "thermal:device_tree_extractor"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["23D4299305D8F8CE"]
+			id: "7293074EA09FB793"
+			rewards: [{
+				id: "211D2FB2529DA819"
+				item: "thermal:resin_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6753BD8A6182B9C7"
+				item: "thermal:resin_bucket"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7293074EA09FB793"]
+			id: "07E0FD7E823E22E7"
+			tasks: [{
+				id: "07E53E9B19A44C46"
+				item: "spongefactory:primary_coil"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7293074EA09FB793"]
+			id: "7A0251A688C82E2F"
+			tasks: [{
+				id: "770EB4E61E9A4706"
+				item: "spongefactory:secondary_coil"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"07E0FD7E823E22E7"
+				"7A0251A688C82E2F"
+			]
+			id: "03EDC286B6267441"
+			tasks: [{
+				id: "62B1C0B01E1CEC47"
+				item: "spongefactory:ignition_coil"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["03EDC286B6267441"]
+			id: "7650D5AD45AF33BD"
+			tasks: [{
+				id: "1B1CD507CF6E3832"
+				item: "spongefactory:spark_plug"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"7650D5AD45AF33BD"
+				"0B35EC003867B08B"
+			]
+			id: "3E596DF1CAFDE63F"
+			tasks: [{
+				id: "1A65047CB336C2B8"
+				item: "spongefactory:engine_block"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0BF7457DBF64BA0C"]
+			id: "0B35EC003867B08B"
+			tasks: [{
+				id: "00F908FEE25D6A61"
+				item: "pneumaticcraft:reinforced_pressure_tube"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["3E596DF1CAFDE63F"]
+			id: "4A585313F74A2207"
+			tasks: [{
+				id: "51FBA49296ACF271"
+				item: "spongefactory:internal_combustion_engine"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4A585313F74A2207"]
+			id: "3FBF89FD6DBE0897"
+			tasks: [{
+				id: "6BB1814767094688"
+				item: "pneumaticcraft:liquid_compressor"
+				type: "item"
+			}]
+			x: 10.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3FBF89FD6DBE0897"]
+			id: "4D4D708177FED4B0"
+			tasks: [{
+				id: "5559CC56CDD4AD8B"
+				item: "pneumaticcraft:advanced_liquid_compressor"
+				type: "item"
+			}]
+			x: 12.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4D4D708177FED4B0"]
+			id: "1474AC79C07F4FF8"
+			tasks: [{
+				id: "16D84938354C5FC5"
+				item: "occultism:chalk_white_impure"
+				type: "item"
+			}]
+			x: 15.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1474AC79C07F4FF8"]
+			id: "31F0F5F1CB7DCC0D"
+			tasks: [{
+				id: "64E2B4E3B82A894C"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_white"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 18.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"31F0F5F1CB7DCC0D"
+				"5310354009C0D384"
+			]
+			id: "0D0E95564AC94FC9"
+			tasks: [{
+				id: "69BBD68C96A4A138"
+				item: "pneumaticcraft:vacuum_pump"
+				type: "item"
+			}]
+			x: 23.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0D0E95564AC94FC9"]
+			id: "5BE912A45440763C"
+			tasks: [{
+				id: "0C9676A362D6A5D3"
+				item: "immersiveengineering:electron_tube"
+				type: "item"
+			}]
+			x: 25.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["01FB02BFF03335B1"]
+			id: "3BC1150CDC377539"
+			optional: true
+			tasks: [{
+				id: "5A3BF57941BC1D74"
+				item: "evilcraft:hardened_blood_shard"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["01FB02BFF03335B1"]
+			id: "07F982EC8E9382B7"
+			tasks: [{
+				id: "18A68431DE9DBF3B"
+				item: "evilcraft:dark_power_gem"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"3BC1150CDC377539"
+				"07F982EC8E9382B7"
+			]
+			id: "527FC3C35355B428"
+			optional: true
+			tasks: [{
+				id: "26D6714260615DB0"
+				item: "evilcraft:blood_infusion_core"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["527FC3C35355B428"]
+			id: "352A8F3B55DF0900"
+			optional: true
+			tasks: [{
+				id: "54B4F36D4C66BFBC"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Amount: 0
+							FluidName: "minecraft:empty"
+							capacity: 10000
+						}
+					}
+					id: "evilcraft:blood_infuser"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 18.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["07F982EC8E9382B7"]
+			id: "440D7492E84B6827"
+			tasks: [{
+				id: "2C232A0FA7616B7B"
+				item: "evilcraft:bowl_of_promises_empty"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["440D7492E84B6827"]
+			id: "11F68B213C0B504E"
+			tasks: [{
+				id: "2619F454786B7E8B"
+				item: "occultism:sacrificial_bowl"
+				type: "item"
+			}]
+			x: 18.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["11F68B213C0B504E"]
+			id: "5310354009C0D384"
+			tasks: [{
+				id: "48F18B5926DDF686"
+				item: "occultism:golden_sacrificial_bowl"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5BE912A45440763C"]
+			id: "42D2C24E61C6BD58"
+			tasks: [{
+				id: "47E1669297AF1925"
+				item: "pneumaticcraft:capacitor"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["5BE912A45440763C"]
+			id: "158671C852A33329"
+			tasks: [{
+				id: "4C3694D98F24B57F"
+				item: "pneumaticcraft:transistor"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -0.5d
+		}
+	]
+	title: "{chapter.spongefactory.chapter_3.title}"
+}
