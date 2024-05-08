@@ -9,6 +9,7 @@
 	quest_links: [ ]
 	quests: [
 		{
+			dependencies: ["446788A0401FB4B9"]
 			description: [""]
 			id: "550B735563808CDD"
 			progression_mode: "flexible"
@@ -32,7 +33,7 @@
 				type: "item"
 			}]
 			title: "{chapter.spongefactory.chapter_1.cut_logs_first.title}"
-			x: -21.5d
+			x: -22.5d
 			y: -2.5d
 		}
 		{
@@ -43,7 +44,7 @@
 				item: "minecraft:crafting_table"
 				type: "item"
 			}]
-			x: -20.0d
+			x: -21.0d
 			y: -2.5d
 		}
 		{
@@ -60,7 +61,7 @@
 				}
 				type: "item"
 			}]
-			x: -18.5d
+			x: -19.5d
 			y: -3.5d
 		}
 		{
@@ -71,7 +72,7 @@
 				item: "minecraft:cobblestone"
 				type: "item"
 			}]
-			x: -17.0d
+			x: -18.0d
 			y: -3.5d
 		}
 		{
@@ -89,7 +90,7 @@
 				title: "Any #forge:limestone"
 				type: "item"
 			}]
-			x: -17.0d
+			x: -17.5d
 			y: -5.0d
 		}
 		{
@@ -100,7 +101,7 @@
 				item: "spongefactory:quicklime"
 				type: "item"
 			}]
-			x: -15.5d
+			x: -16.0d
 			y: -5.0d
 		}
 		{
@@ -111,7 +112,7 @@
 				item: "spongefactory:furnace_lining"
 				type: "item"
 			}]
-			x: -13.5d
+			x: -14.5d
 			y: -5.0d
 		}
 		{
@@ -122,7 +123,7 @@
 				item: "minecraft:furnace"
 				type: "item"
 			}]
-			x: -11.0d
+			x: -13.0d
 			y: -5.0d
 		}
 		{
@@ -139,8 +140,8 @@
 				}
 				type: "item"
 			}]
-			x: -17.0d
-			y: -2.0d
+			x: -17.5d
+			y: 0.0d
 		}
 		{
 			dependencies: ["40576616C7D1A80B"]
@@ -167,7 +168,7 @@
 				item: "minecraft:charcoal"
 				type: "item"
 			}]
-			x: -11.0d
+			x: -12.5d
 			y: -3.5d
 		}
 		{
@@ -181,8 +182,8 @@
 				item: "mekanism:dust_charcoal"
 				type: "item"
 			}]
-			x: -11.0d
-			y: -1.5d
+			x: -12.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["151DD7719DA65D05"]
@@ -192,8 +193,8 @@
 				item: "spongefactory:impure_crushed_copper_ore"
 				type: "item"
 			}]
-			x: -17.0d
-			y: -0.5d
+			x: -15.5d
+			y: 1.0d
 		}
 		{
 			dependencies: ["151DD7719DA65D05"]
@@ -214,7 +215,7 @@
 				item: "spongefactory:crushed_copper_ore"
 				type: "item"
 			}]
-			x: -17.0d
+			x: -14.0d
 			y: 1.0d
 		}
 		{
@@ -802,7 +803,7 @@
 				item: "spongefactory:negative_enthalpy_change_cycle_catalyst"
 				type: "item"
 			}]
-			x: 44.0d
+			x: 46.0d
 			y: -3.5d
 		}
 		{
@@ -816,8 +817,8 @@
 				item: "spongefactory:polished_black_corundum"
 				type: "item"
 			}]
-			x: 46.0d
-			y: -3.5d
+			x: 42.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -830,8 +831,8 @@
 				item: "spongefactory:polished_blue_corundum"
 				type: "item"
 			}]
-			x: 46.5d
-			y: -4.0d
+			x: 42.5d
+			y: -1.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -844,8 +845,8 @@
 				item: "spongefactory:polished_green_corundum"
 				type: "item"
 			}]
-			x: 47.0d
-			y: -4.5d
+			x: 43.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -858,8 +859,8 @@
 				item: "spongefactory:polished_indigo_corundum"
 				type: "item"
 			}]
-			x: 46.5d
-			y: -3.0d
+			x: 42.5d
+			y: -0.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -872,8 +873,8 @@
 				item: "spongefactory:polished_orange_corundum"
 				type: "item"
 			}]
-			x: 47.0d
-			y: -3.5d
+			x: 43.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -886,8 +887,8 @@
 				item: "spongefactory:polished_red_corundum"
 				type: "item"
 			}]
-			x: 47.5d
-			y: -4.0d
+			x: 43.5d
+			y: -1.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -900,8 +901,8 @@
 				item: "spongefactory:polished_violet_corundum"
 				type: "item"
 			}]
-			x: 47.0d
-			y: -2.5d
+			x: 43.0d
+			y: 0.0d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -914,8 +915,8 @@
 				item: "spongefactory:polished_white_corundum"
 				type: "item"
 			}]
-			x: 47.5d
-			y: -3.0d
+			x: 43.5d
+			y: -0.5d
 		}
 		{
 			dependencies: ["0CB81E584FA052D4"]
@@ -928,8 +929,8 @@
 				item: "spongefactory:polished_yellow_corundum"
 				type: "item"
 			}]
-			x: 48.0d
-			y: -3.5d
+			x: 44.0d
+			y: -1.0d
 		}
 		{
 			dependencies: ["3ACCB6D423DD9745"]
@@ -939,7 +940,7 @@
 				item: "spongefactory:mysterium_lining"
 				type: "item"
 			}]
-			x: 44.0d
+			x: 46.0d
 			y: -2.0d
 		}
 		{
@@ -968,7 +969,7 @@
 					type: "item"
 				}
 			]
-			x: 44.0d
+			x: 46.0d
 			y: -0.5d
 		}
 		{

@@ -1474,12 +1474,12 @@ ServerEvents.recipes(event => {
     ]).transitionalItem(primarySpool).loops(1)
 
     // 次级线圈
-    const input = 'createaddition:spool'
-    event.recipes.create.sequenced_assembly('spongefactory:secondary_coil', input, [
-        event.recipes.createDeploying(input, [input, '#forge:wires/copper']),
-        event.recipes.createDeploying(input, [input, '#forge:wires/copper']),
-        event.recipes.createFilling(input, [Fluid.of('thermal:resin', 250), input]),
-    ]).transitionalItem(input).loops(1)
+    const secondarySpool = 'createaddition:spool'
+    event.recipes.create.sequenced_assembly('spongefactory:secondary_coil', secondarySpool, [
+        event.recipes.createDeploying(secondarySpool, [secondarySpool, '#forge:wires/copper']),
+        event.recipes.createDeploying(secondarySpool, [secondarySpool, '#forge:wires/copper']),
+        event.recipes.createFilling(secondarySpool, [Fluid.of('thermal:resin', 250), secondarySpool]),
+    ]).transitionalItem(secondarySpool).loops(1)
 
     // 放电线圈
     event.shapeless('2x spongefactory:ignition_coil', ['spongefactory:primary_coil', 'spongefactory:secondary_coil'])
@@ -1720,7 +1720,7 @@ ServerEvents.recipes(event => {
         "activation_item": {
             "item": 'create:encased_fan'
         },
-        "pentacle_id": "occultism:summon_foliot",
+        "pentacle_id": "occultism:possess_foliot",
         "duration": 60,
         "spirit_max_age": -1,
         "ritual_dummy": {
@@ -1871,6 +1871,170 @@ ServerEvents.recipes(event => {
             }
         ]
     })
+
+    // 空印刷电路板
+    event.remove({id: 'pneumaticcraft:pressure_chamber/empty_pcb'})
+    const input = 'ae2:silicon'
+    event.recipes.create.sequenced_assembly('pneumaticcraft:empty_pcb', input, [
+        event.recipes.createPressing(input, input),
+        event.recipes.createDeploying(input, [input, '#forge:plates/gold']),
+        event.recipes.createFilling(input, [Fluid.of('thermal:resin', 250), input]),
+    ]).transitionalItem(input).loops(1)
+
+
+    // 亚玛龙平板
+    event.remove({output: 'pneumaticcraft:amadron_tablet'})
+    event.custom({
+        "type": "create:mechanical_crafting",
+        "acceptMirrored": true,
+        "key": {
+            "P": {
+                "tag": 'pneumaticcraft:plastic_sheets'
+            },
+            "O": {
+                "tag": 'forge:glass_panes/lime'
+            },
+            "X": {
+                "item": 'pneumaticcraft:gps_tool'
+            },
+            "V": {
+                "item": 'pneumaticcraft:air_canister'
+            },
+            "M": {
+                "item": 'create_sa:drone_controller'
+            },
+            "S": {
+                "item": 'pneumaticcraft:capacitor'
+            },
+            "J": {
+                "item": 'pneumaticcraft:transistor'
+            },
+            "^": {
+                "item": 'pneumaticcraft:empty_pcb'
+            }
+        },
+        "pattern": [
+            "PPPPP",
+            "PJXSP",
+            "PJOSP",
+            "PJVMP",
+            "P^^^P"
+        ],
+        "result": {
+            "count": 1,
+            "item": 'pneumaticcraft:amadron_tablet'
+        }
+    })
+
+    // 蚀刻酸
+    event.remove({id: 'pneumaticcraft:pressure_chamber/etching_acid'})
+    event.recipes.create.mixing(Fluid.of('pneumaticcraft:etching_acid', 1000), [
+        Fluid.water(1000),
+        'mekanism:block_salt',
+        '3x mekanism:fluorite_gem',
+        'minecraft:iron_ingot',
+        '4x thermal:niter'
+    ])
+
+    // 蚀刻器
+    event.remove({id: 'pneumaticcraft:etching_tank'})
+    event.shaped('pneumaticcraft:etching_tank',
+        [
+            ' A ',
+            'XJX',
+            'CCC'
+        ], {
+            C: 'pneumaticcraft:reinforced_brick_slab',
+            X: 'pneumaticcraft:reinforced_brick_wall',
+            J: 'pneumaticcraft:small_tank',
+            A: 'pneumaticcraft:vacuum_pump'
+        }
+    )
+
+    // 金色粉笔
+    event.remove({output: 'occultism:chalk_gold_impure'})
+    event.custom({
+        "type": "pneumaticcraft:amadron",
+        "input": {
+            "type": "ITEM",
+            "amount": 48,
+            "id": "minecraft:emerald"
+        },
+        "level": 0,
+        "output": {
+            "type": "ITEM",
+            "amount": 1,
+            "id": 'occultism:chalk_gold_impure'
+        },
+        "static": true
+    })
+    event.remove({output: 'occultism:chalk_gold_impure'})
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 1000,
+            "tag": 'forge:ethanol'
+        },
+        "item_input": {
+            "item": 'occultism:chalk_gold_impure'
+        },
+        "item_output": {
+            "item": 'occultism:chalk_gold'
+        },
+        "pressure": 9.5,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 373
+        }
+    })
+
+    // finishedPCB
+    event.remove({output: 'pneumaticcraft:printed_circuit_board'})
+    event.custom({
+        "type": "occultism:ritual",
+        "ritual_type": "occultism:craft",
+        "activation_item": {
+            "item": 'pneumaticcraft:unassembled_pcb'
+        },
+        "pentacle_id": "occultism:possess_foliot",
+        "spirit_max_age": -1,
+        "duration": 1,
+        "ritual_dummy": {
+            "item": "minecraft:air"
+        },
+        "ingredients": [
+            {
+                "item": 'pneumaticcraft:transistor'
+            },
+            {
+                "item": 'pneumaticcraft:transistor'
+            },
+            {
+                "item": 'pneumaticcraft:transistor'
+            },
+            {
+                "item": 'pneumaticcraft:transistor'
+            },
+            {
+                "item": 'pneumaticcraft:capacitor'
+            },
+            {
+                "item": 'pneumaticcraft:capacitor'
+            },
+            {
+                "item": 'pneumaticcraft:capacitor'
+            },
+            {
+                "item": 'pneumaticcraft:capacitor'
+            }
+        ],
+        "result": {
+            "item": 'pneumaticcraft:printed_circuit_board'
+        }
+    }).id('spongefactory:craft_printed_circuit_board')
 })
 
 function replaceRecipes(event, match, wis) {

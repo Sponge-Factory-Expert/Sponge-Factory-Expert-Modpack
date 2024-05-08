@@ -318,6 +318,164 @@
 			x: 28.0d
 			y: -0.5d
 		}
+		{
+			dependencies: [
+				"158671C852A33329"
+				"42D2C24E61C6BD58"
+				"59AC6CA2082C943E"
+				"2A2E9A96EBD848FF"
+			]
+			id: "7F66937DB97FAA4C"
+			tasks: [{
+				id: "4EF536E42D66C6B5"
+				item: "pneumaticcraft:amadron_tablet"
+				type: "item"
+			}]
+			x: 30.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5BE912A45440763C"]
+			hide_dependency_lines: true
+			id: "59AC6CA2082C943E"
+			tasks: [{
+				id: "768BDB8974DB8B38"
+				item: "pneumaticcraft:empty_pcb"
+				type: "item"
+			}]
+			x: 28.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7F66937DB97FAA4C"]
+			id: "5CF12D9614D00D17"
+			tasks: [{
+				id: "6B8F4CEAC5C57140"
+				item: "pneumaticcraft:pcb_blueprint"
+				type: "item"
+			}]
+			x: 33.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5CF12D9614D00D17"]
+			id: "2159F31E9DD7B1BE"
+			tasks: [{
+				id: "6E262F76F8E85294"
+				item: "pneumaticcraft:uv_light_box"
+				type: "item"
+			}]
+			x: 35.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2159F31E9DD7B1BE"]
+			id: "23F74D80AEDDD638"
+			tasks: [{
+				id: "4C0E5BF281E55271"
+				item: {
+					Count: 1b
+					id: "pneumaticcraft:empty_pcb"
+					tag: {
+						"pneumaticcraft:uv_exposure": 100
+					}
+				}
+				match_nbt: false
+				type: "item"
+			}]
+			x: 38.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["23F74D80AEDDD638"]
+			id: "45288DBC4EB615C6"
+			tasks: [{
+				id: "2694A9F3CD2FF27E"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			x: 40.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["23F74D80AEDDD638"]
+			id: "4FE1D2C7DD39321B"
+			tasks: [{
+				id: "1DC0438D76E6CCD6"
+				item: "pneumaticcraft:etching_acid_bucket"
+				type: "item"
+			}]
+			x: 40.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"45288DBC4EB615C6"
+				"4FE1D2C7DD39321B"
+			]
+			id: "684A782C86A397F7"
+			tasks: [{
+				id: "57E2356723D9E310"
+				item: "pneumaticcraft:unassembled_pcb"
+				type: "item"
+			}]
+			x: 43.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7F66937DB97FAA4C"]
+			id: "1B33C710BCA2F81E"
+			tasks: [{
+				id: "1016DC4F8EF2BAD1"
+				item: "occultism:chalk_gold_impure"
+				type: "item"
+			}]
+			x: 33.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["1B33C710BCA2F81E"]
+			id: "2FD592BFD14D57ED"
+			tasks: [{
+				id: "3FF46B172195DFE5"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_gold"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 35.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["5BE912A45440763C"]
+			hide_dependency_lines: true
+			id: "2A2E9A96EBD848FF"
+			tasks: [{
+				id: "46F03D36812310D0"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			x: 28.5d
+			y: -5.0d
+		}
+		{
+			dependencies: [
+				"2FD592BFD14D57ED"
+				"684A782C86A397F7"
+			]
+			id: "6D8DFD9B4378A0F2"
+			tasks: [{
+				id: "31BBC48613681956"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			x: 47.0d
+			y: -4.5d
+		}
 	]
 	title: "{chapter.spongefactory.chapter_3.title}"
 }
