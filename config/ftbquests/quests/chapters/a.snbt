@@ -19,7 +19,7 @@
 				item: "minecraft:oak_log"
 				type: "item"
 			}]
-			subtitle: "{chapter.spongefactory.chapter_1.cut_logs_first.subtitle}"
+			subtitle: "{getting_start.chapter.spongefactory.chapter_1.cut_logs_first.subtitle}"
 			tasks: [{
 				id: "016C108813C0E554"
 				item: {
@@ -32,7 +32,7 @@
 				title: "Any #minecraft:logs"
 				type: "item"
 			}]
-			title: "{chapter.spongefactory.chapter_1.cut_logs_first.title}"
+			title: "{getting_start.chapter.spongefactory.chapter_1.cut_logs_first.title}"
 			x: -22.5d
 			y: -2.5d
 		}
@@ -1179,5 +1179,5 @@
 			y: -9.5d
 		}
 	]
-	title: "{chapter.spongefactory.chapter_1.title}"
+	title: "{getting_start.chapter.spongefactory.chapter_1.title}"
 }

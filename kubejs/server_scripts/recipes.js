@@ -1644,7 +1644,7 @@ ServerEvents.recipes(event => {
         "fluid_input": {
             "type": "pneumaticcraft:fluid",
             "amount": 1000,
-            "tag": 'forge:ethanol'
+            "tag": 'forge:lpg'
         },
         "item_input": {
             "item": 'occultism:chalk_white_impure'
@@ -2035,6 +2035,187 @@ ServerEvents.recipes(event => {
             "item": 'pneumaticcraft:printed_circuit_board'
         }
     }).id('spongefactory:craft_printed_circuit_board')
+
+    // 血能注入器
+    event.replaceInput({output: 'evilcraft:blood_infuser'}, '#forge:cobblestone', 'occultism:otherstone')
+
+    // 血能注入之星
+    event.remove({output: 'evilcraft:blood_infusion_core'})
+    event.custom({
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+            "SRS",
+            "RGR",
+            "SRS"
+        ],
+        "key": {
+            "S": {
+                "item": "evilcraft:hardened_blood_shard"
+            },
+            "R": {
+                "item": "evilcraft:dark_power_gem"
+            },
+            "G": {
+                "item": 'minecraft:nether_star'
+            }
+        },
+        "result": {
+            "item": "evilcraft:blood_infusion_core"
+        }
+    })
+
+    // 漆包线
+    event.custom({
+        "type": "pneumaticcraft:assembly_laser",
+        "input": {
+            "item": 'spongefactory:ignition_coil'
+        },
+        "program": "laser",
+        "result": {
+            "item": 'spongefactory:magnet_wire'
+        }
+    })
+
+    // 转子
+    event.shaped('spongefactory:rotor',
+        [
+            'XVX',
+            'VJV',
+            'XVX'
+        ], {
+            J: 'spongefactory:ferromagnetic_material',
+            V: 'spongefactory:magnet_wire',
+            X: 'create:andesite_alloy'
+        }
+    )
+
+    // 定子
+    event.shaped('spongefactory:stator',
+        [
+            'XXX',
+            'XCX',
+            'XXX'
+        ], {
+            X: 'spongefactory:magnet_wire',
+            C: 'spongefactory:ferromagnetic_material'
+        }
+    )
+
+    // 铁磁材料
+    event.shapeless('2x spongefactory:ferromagnetic_material', ['minecraft:lodestone', '#spongefactory:magnetizable'])
+
+    // 动能发电机
+    event.remove({output: 'immersiveengineering:dynamo'})
+    event.shaped('immersiveengineering:dynamo',
+        [
+            ' M ',
+            'SDS',
+            'AXA'
+        ], {
+            X: 'immersiveengineering:coil_lv',
+            A: 'immersiveengineering:component_iron',
+            M: 'spongefactory:stator',
+            D: 'spongefactory:rotor',
+            S: 'minecraft:redstone'
+        }
+    )
+
+    // 仅保留水平花纹的防腐木板
+    event.remove({id: 'immersiveengineering:crafting/treated_wood_horizontal_from_packaged'})
+    event.remove({output: 'immersiveengineering:treated_wood_packaged'})
+    event.remove({output: 'immersiveengineering:treated_wood_vertical'})
+    event.replaceInput({}, '#forge:treated_wood', 'immersiveengineering:treated_wood_horizontal')
+
+    // 移除其他发电机
+    event.remove({output: 'immersiveengineering:thermoelectric_generator'})
+    event.remove({output: 'ad_astra:coal_generator'})
+    event.remove({output: 'immersiveengineering:generator'})
+    event.remove({output: 'immersivepetroleum:gas_generator'})
+    event.remove({output: 'productivebees:honey_generator'})
+    event.remove({output: 'pneumaticcraft:pneumatic_dynamo'})
+    event.remove({output: 'ae2:vibration_chamber'})
+
+    // 交流发电机
+    event.replaceInput({output: 'createaddition:alternator'}, '#forge:rods/iron', 'immersiveengineering:dynamo')
+
+    // 压缩机
+    event.remove({output: 'ad_astra:compressor'})
+    event.shaped('ad_astra:compressor',
+        [
+            'XDX',
+            'X X',
+            'XSX'
+        ], {
+            X: '#forge:plates/iron',
+            D: 'create:mechanical_press',
+            S: 'create:depot'
+        }
+    )
+
+    // 绝缘覆层片
+    event.custom({
+        "type": "ad_astra:compressing",
+        "input": {
+            "item": 'powah:dielectric_paste'
+        },
+        "output": {
+            "id": 'spongefactory:dielectric_paste_sheet',
+            "count": 1
+        },
+        "cookTime": 200
+    })
+    event.recipes.thermal.press('spongefactory:dielectric_paste_sheet', 'powah:dielectric_paste')
+
+    // 能量管道
+    event.remove({output: 'pipez:energy_pipe'})
+    event.shaped('16x pipez:energy_pipe',
+        [
+            'XXX',
+            'SSS',
+            'XXX'
+        ], {
+            X: 'spongefactory:dielectric_paste_sheet',
+            S: 'immersiveengineering:coil_lv'
+        }
+    )
+
+    // 工程块
+    event.remove({output: 'immersiveengineering:rs_engineering'})
+    event.shaped('4x immersiveengineering:rs_engineering',
+        [
+            'AVA',
+            'VDV',
+            'AVA'
+        ], {
+            A: 'immersiveengineering:sheetmetal_iron',
+            V: 'spongefactory:dielectric_paste_sheet',
+            D: 'minecraft:redstone_block'
+        }
+    )
+    event.remove({output: 'immersiveengineering:light_engineering'})
+    event.shaped('4x immersiveengineering:light_engineering',
+        [
+            'AVA',
+            'VDV',
+            'AVA'
+        ], {
+            A: 'immersiveengineering:sheetmetal_iron',
+            V: 'immersiveengineering:component_iron',
+            D: 'immersiveengineering:rs_engineering'
+        }
+    )
+    event.remove({output: 'immersiveengineering:heavy_engineering'})
+    event.shaped('4x immersiveengineering:heavy_engineering',
+        [
+            'AVA',
+            'VDV',
+            'AVA'
+        ], {
+            A: 'immersiveengineering:sheetmetal_steel',
+            V: 'immersiveengineering:component_steel',
+            D: 'immersiveengineering:light_engineering'
+        }
+    )
 })
 
 function replaceRecipes(event, match, wis) {

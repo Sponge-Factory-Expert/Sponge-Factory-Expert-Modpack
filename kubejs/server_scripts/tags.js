@@ -33,7 +33,12 @@ ServerEvents.tags('item', event => {
     event.remove('pneumaticcraft:upgrade_components', 'minecraft:lapis_lazuli')
 
     // 铁磁材料
-    event.add('spongefactory:ferromagnetic_materials', 'minecraft:lodestone')
+    event.add('spongefactory:ferromagnetic_materials', 'spongefactory:ferromagnetic_material')
+
+    // 可磁化的
+    event.add('spongefactory:magnetizable', 'minecraft:iron_ingot')
+    event.add('spongefactory:magnetizable', 'thermal:steel_ingot')
+    event.add('spongefactory:magnetizable', 'thermal:nickel_ingot')
 })
 
 ServerEvents.tags('block', event => {

@@ -1,0 +1,105 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "electric_agechapterspongefactorychapter_5title"
+	group: "101DBDEF848F1E88"
+	id: "77300B1246DE0E0A"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "20952958D0E973C4"
+			tasks: [{
+				id: "07366521343D4475"
+				title: "Center"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["16AE3FF1EAAA3F74"]
+			id: "54E8AC36717A615A"
+			tasks: [{
+				id: "00B90638F82E284E"
+				item: "ad_astra:compressor"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3BAB9A02195C2EDB"]
+			id: "11DA6BA4CDD94DCF"
+			tasks: [{
+				id: "1B52E08C4916E3CE"
+				item: "powah:dielectric_paste"
+				type: "item"
+			}]
+			x: -9.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"54E8AC36717A615A"
+				"11DA6BA4CDD94DCF"
+			]
+			id: "100A611AE35855F6"
+			tasks: [{
+				id: "568D9C453090C84C"
+				item: "spongefactory:dielectric_paste_sheet"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["100A611AE35855F6"]
+			id: "71ACE627F98413C3"
+			optional: true
+			tasks: [{
+				id: "23E98491FB7DFBFD"
+				item: "pipez:energy_pipe"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["100A611AE35855F6"]
+			id: "6754D7CA1EDB270A"
+			tasks: [
+				{
+					id: "2EEEE2F86E35FA1B"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					id: "50B300A630830F11"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					id: "37F3491215E017B1"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+			]
+			x: -5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6754D7CA1EDB270A"]
+			id: "44C1AAAC35941E07"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_metalpress"
+				criterion: ""
+				id: "49AA34C7EACAA925"
+				type: "advancement"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+	]
+	title: "{electric_age.chapter.spongefactory.chapter_5.title}"
+}

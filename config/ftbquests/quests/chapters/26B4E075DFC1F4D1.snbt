@@ -91,14 +91,14 @@
 			y: -1.0d
 		}
 		{
-			dependencies: ["25707627F6DB5E26"]
+			dependencies: ["77C5E06CED2FE3A4"]
 			id: "3BAB9A02195C2EDB"
 			tasks: [{
 				id: "634D6E8848CEB7D4"
 				item: "immersiveengineering:coal_coke"
 				type: "item"
 			}]
-			x: -12.0d
+			x: -10.5d
 			y: -1.0d
 		}
 		{
@@ -200,8 +200,8 @@
 		}
 		{
 			dependencies: [
-				"26E7EB6672AACC22"
 				"3BAB9A02195C2EDB"
+				"66655CCA4C60B843"
 			]
 			id: "2278B7B8E02538AD"
 			tasks: [{
@@ -209,7 +209,7 @@
 				item: "thermal:steel_ingot"
 				type: "item"
 			}]
-			x: -10.5d
+			x: -9.0d
 			y: -0.5d
 		}
 		{
@@ -220,7 +220,7 @@
 				item: "thermal:steel_plate"
 				type: "item"
 			}]
-			x: -9.0d
+			x: -7.5d
 			y: -0.5d
 		}
 		{
@@ -231,7 +231,7 @@
 				item: "pneumaticcraft:pressure_tube"
 				type: "item"
 			}]
-			x: -7.5d
+			x: -6.0d
 			y: -0.5d
 		}
 		{
@@ -243,7 +243,7 @@
 				item: "pneumaticcraft:safety_tube_module"
 				type: "item"
 			}]
-			x: -6.0d
+			x: -4.5d
 			y: 1.5d
 		}
 		{
@@ -254,7 +254,7 @@
 				item: "pneumaticcraft:thermopneumatic_processing_plant"
 				type: "item"
 			}]
-			x: -6.0d
+			x: -4.5d
 			y: -0.5d
 		}
 		{
@@ -272,7 +272,7 @@
 					type: "item"
 				}
 			]
-			x: -4.5d
+			x: -3.0d
 			y: 1.5d
 		}
 		{
@@ -288,7 +288,7 @@
 				item: "pneumaticcraft:yeast_culture_bucket"
 				type: "item"
 			}]
-			x: -4.5d
+			x: -3.0d
 			y: -0.5d
 		}
 		{
@@ -304,7 +304,7 @@
 				item: "pneumaticcraft:ethanol_bucket"
 				type: "item"
 			}]
-			x: -3.0d
+			x: -1.5d
 			y: -0.5d
 		}
 		{
@@ -327,7 +327,7 @@
 					type: "item"
 				}
 			]
-			x: -1.5d
+			x: 0.0d
 			y: -0.5d
 		}
 		{
@@ -338,7 +338,7 @@
 				item: "pneumaticcraft:air_compressor"
 				type: "item"
 			}]
-			x: 0.0d
+			x: 1.5d
 			y: 0.0d
 		}
 		{
@@ -354,7 +354,7 @@
 				item: "pneumaticcraft:vegetable_oil_bucket"
 				type: "item"
 			}]
-			x: 2.0d
+			x: 3.5d
 			y: 0.0d
 		}
 		{
@@ -365,7 +365,7 @@
 				item: "spongefactory:inert_stress_endurance_mechanism"
 				type: "item"
 			}]
-			x: 4.0d
+			x: 5.5d
 			y: 0.0d
 		}
 		{
@@ -376,7 +376,7 @@
 				item: "pneumaticcraft:turbine_rotor"
 				type: "item"
 			}]
-			x: 6.0d
+			x: 7.5d
 			y: 0.0d
 		}
 		{
@@ -387,7 +387,7 @@
 				item: "pneumaticcraft:fluid_mixer"
 				type: "item"
 			}]
-			x: 8.0d
+			x: 9.5d
 			y: 0.0d
 		}
 		{
@@ -403,7 +403,7 @@
 				item: "pneumaticcraft:biodiesel_bucket"
 				type: "item"
 			}]
-			x: 10.0d
+			x: 11.5d
 			y: 0.0d
 		}
 		{
@@ -419,7 +419,7 @@
 				item: "pneumaticcraft:lubricant_bucket"
 				type: "item"
 			}]
-			x: 11.0d
+			x: 12.5d
 			y: 2.0d
 		}
 		{
@@ -435,7 +435,7 @@
 				item: "pneumaticcraft:plastic_bucket"
 				type: "item"
 			}]
-			x: 12.5d
+			x: 14.0d
 			y: 0.0d
 		}
 		{
@@ -446,7 +446,7 @@
 				item: "pneumaticcraft:plastic"
 				type: "item"
 			}]
-			x: 14.5d
+			x: 16.0d
 			y: 0.0d
 		}
 		{
@@ -458,7 +458,7 @@
 				item: "pneumaticcraft:heat_frame"
 				type: "item"
 			}]
-			x: 15.5d
+			x: 17.0d
 			y: -1.5d
 		}
 		{
@@ -470,7 +470,7 @@
 				item: "pneumaticcraft:drill_bit_compressed_iron"
 				type: "item"
 			}]
-			x: 12.5d
+			x: 14.0d
 			y: 2.0d
 		}
 		{
@@ -484,7 +484,7 @@
 				item: "pneumaticcraft:vortex_tube"
 				type: "item"
 			}]
-			x: 14.5d
+			x: 16.0d
 			y: 2.0d
 		}
 		{
@@ -495,7 +495,7 @@
 				item: "pneumaticcraft:vortex_cannon"
 				type: "item"
 			}]
-			x: 14.0d
+			x: 15.5d
 			y: 3.5d
 		}
 		{
@@ -507,7 +507,7 @@
 				item: "pneumaticcraft:air_canister"
 				type: "item"
 			}]
-			x: 13.5d
+			x: 15.0d
 			y: 5.0d
 		}
 		{
@@ -518,7 +518,7 @@
 				item: "spongefactory:plastic_lattice"
 				type: "item"
 			}]
-			x: 16.5d
+			x: 18.0d
 			y: 0.0d
 		}
 		{
@@ -529,7 +529,7 @@
 				item: "spongefactory:distillation_filler"
 				type: "item"
 			}]
-			x: 18.5d
+			x: 20.0d
 			y: 0.0d
 		}
 		{
@@ -552,7 +552,7 @@
 					type: "item"
 				}
 			]
-			x: 20.5d
+			x: 22.0d
 			y: 0.0d
 		}
 		{
@@ -563,7 +563,7 @@
 				item: "pneumaticcraft:thermal_lagging"
 				type: "item"
 			}]
-			x: 20.0d
+			x: 21.5d
 			y: 1.5d
 		}
 		{
@@ -574,7 +574,7 @@
 				item: "thermal:white_rockwool"
 				type: "item"
 			}]
-			x: 19.5d
+			x: 21.0d
 			y: 3.0d
 		}
 		{
@@ -586,7 +586,7 @@
 				item: "thermal:slag"
 				type: "item"
 			}]
-			x: 19.0d
+			x: 20.5d
 			y: 4.5d
 		}
 		{
@@ -614,9 +614,33 @@
 					type: "item"
 				}
 			]
-			x: 22.5d
+			x: 24.0d
 			y: 0.0d
 		}
+		{
+			dependencies: ["25707627F6DB5E26"]
+			id: "77C5E06CED2FE3A4"
+			tasks: [{
+				advancement: "immersiveengineering:main/mb_cokeoven"
+				criterion: ""
+				id: "2174D4C55A742301"
+				type: "advancement"
+			}]
+			x: -13.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["26E7EB6672AACC22"]
+			id: "66655CCA4C60B843"
+			tasks: [{
+				advancement: "immersiveengineering:main/mb_blastfurnace"
+				criterion: ""
+				id: "50BF4E77B9DECED6"
+				type: "advancement"
+			}]
+			x: -10.5d
+			y: 0.5d
+		}
 	]
-	title: "{chapter.spongefactory.chapter_2.title}"
+	title: "{getting_start.chapter.spongefactory.chapter_2.title}"
 }
