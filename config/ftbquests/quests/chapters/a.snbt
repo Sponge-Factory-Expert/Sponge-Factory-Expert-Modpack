@@ -19,7 +19,7 @@
 				item: "minecraft:oak_log"
 				type: "item"
 			}]
-			subtitle: "{getting_start.chapter.spongefactory.chapter_1.cut_logs_first.subtitle}"
+			subtitle: "{mechanical_age.chapter.spongefactory.chapter_1.cut_logs_first.subtitle}"
 			tasks: [{
 				id: "016C108813C0E554"
 				item: {
@@ -32,7 +32,7 @@
 				title: "Any #minecraft:logs"
 				type: "item"
 			}]
-			title: "{getting_start.chapter.spongefactory.chapter_1.cut_logs_first.title}"
+			title: "{mechanical_age.chapter.spongefactory.chapter_1.cut_logs_first.title}"
 			x: -22.5d
 			y: -2.5d
 		}
@@ -944,6 +944,7 @@
 			y: -2.0d
 		}
 		{
+			can_repeat: true
 			dependencies: ["1B9A6EE528ABFEDE"]
 			icon: "create:creative_blaze_cake"
 			id: "52129CC7EA35972E"
@@ -1179,5 +1180,5 @@
 			y: -9.5d
 		}
 	]
-	title: "{getting_start.chapter.spongefactory.chapter_1.title}"
+	title: "{mechanical_age.chapter.spongefactory.chapter_1.title}"
 }

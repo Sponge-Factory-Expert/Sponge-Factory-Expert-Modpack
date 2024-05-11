@@ -2133,7 +2133,20 @@ ServerEvents.recipes(event => {
     event.remove({output: 'immersivepetroleum:gas_generator'})
     event.remove({output: 'productivebees:honey_generator'})
     event.remove({output: 'pneumaticcraft:pneumatic_dynamo'})
-    event.remove({output: 'ae2:vibration_chamber'})
+    event.remove({output:'mekanismgenerators:heat_generator'})
+    event.shaped('mekanismgenerators:heat_generator',
+        [
+            'MMM',
+            'SDS',
+            'AXA'
+        ], {
+            X: 'create:steam_engine',
+            A: 'minecraft:copper_ingot',
+            M: 'minecraft:iron_ingot',
+            D: 'immersiveengineering:dynamo',
+            S: '#minecraft:planks'
+        }
+    )
 
     // 交流发电机
     event.replaceInput({output: 'createaddition:alternator'}, '#forge:rods/iron', 'immersiveengineering:dynamo')
@@ -2216,7 +2229,67 @@ ServerEvents.recipes(event => {
             D: 'immersiveengineering:light_engineering'
         }
     )
+
+    // 种刚玉
+    event.recipes.botanypots.soil('ae2:quartz_growth_accelerator',
+        {
+            block: 'ae2:quartz_growth_accelerator',
+            "properties": {
+                "powered": true
+            }
+        },
+        [
+            'quartz_growth_accelerator'
+        ], -1, 1.3
+    ).id('spongefactory:quartz_growth_accelerator')
+    plantCorundum(event, 'red')
+    plantCorundum(event, 'violet')
+    plantCorundum(event, 'white')
+    plantCorundum(event, 'yellow')
+    plantCorundum(event, 'black')
+    plantCorundum(event, 'blue')
+    plantCorundum(event, 'indigo')
+    plantCorundum(event, 'green')
+    plantCorundum(event, 'orange')
 })
+
+function plantCorundum(event, color) {
+    event.recipes.botanypots.soil("quark:" + color + "_corundum",
+        {
+            block: "quark:" + color + "_corundum"
+        },
+        [
+            color + "_corundum"
+        ], -1, 1
+    ).id('spongefactory:block_' + color + "_corundum")
+    event.custom({
+        "type": "botanypots:crop",
+        "seed": {
+            "item": "quark:" + color + "_corundum_cluster"
+        },
+        "categories": [
+            color + "_corundum",
+            'quartz_growth_accelerator'
+        ],
+        "growthTicks": 1200,
+        "display": {
+            "block": "quark:" + color + "_corundum_cluster",
+            "properties": {
+                "facing": "up"
+            }
+        },
+        "drops": [
+            {
+                "chance": 1.00,
+                "output": {
+                    "item": "quark:" + color + "_corundum_cluster"
+                },
+                "minRolls": 1,
+                "maxRolls": 1
+            }
+        ]
+    }).id('spongefactory:' + color + '_corundum_cluster')
+}
 
 function replaceRecipes(event, match, wis) {
     event.replaceInput({}, match, wis)

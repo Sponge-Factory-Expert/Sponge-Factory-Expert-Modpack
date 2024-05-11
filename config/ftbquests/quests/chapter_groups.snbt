@@ -1,6 +1,6 @@
 {
 	chapter_groups: [
-		{ id: "0460A39D8CE5799E", title: "{questGroup.spongefactory.getting_start}" }
+		{ id: "0460A39D8CE5799E", title: "{questGroup.spongefactory.mechanical_age}" }
 		{ id: "101DBDEF848F1E88", title: "{questGroup.spongefactory.electric_age}" }
 	]
 }

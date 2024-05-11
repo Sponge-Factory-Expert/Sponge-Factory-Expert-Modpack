@@ -11,14 +11,14 @@
 		dependencies: ["3A59DE4553974471"]
 		id: "16AE3FF1EAAA3F74"
 		size: 3.0d
-		subtitle: "{getting_start.chapter.spongefactory.chapter_4.pass.subtitle}"
+		subtitle: "{mechanical_age.chapter.spongefactory.chapter_4.pass.subtitle}"
 		tasks: [{
 			id: "3F160C2ACA1D40B6"
 			type: "checkmark"
 		}]
-		title: "{getting_start.chapter.spongefactory.chapter_4.pass.title}"
+		title: "{mechanical_age.chapter.spongefactory.chapter_4.pass.title}"
 		x: 0.0d
 		y: 0.0d
 	}]
-	title: "{getting_start.chapter.spongefactory.chapter_4.title}"
+	title: "{mechanical_age.chapter.spongefactory.chapter_4.title}"
 }

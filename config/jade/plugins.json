@@ -69,13 +69,16 @@
     "registry_name": "OFF",
     "mod_name": true
   },
+  "mcjtylib": {
+    "jadeaddons": true
+  },
   "apotheosis": {
     "adventure": true,
     "ench": true,
     "spawner": true
   },
-  "custommachinery": {
-    "machine_component_provider": true
+  "lootr": {
+    "info": true
   },
   "ae2": {
     "part_icon": true,
@@ -116,6 +119,9 @@
   "ars_nouveau": {
     "mob_jar": true
   },
+  "jadeaddons": {
+    "equipment_requirement": ""
+  },
   "mekanism": {
     "infuse_type": true,
     "gas": true,
@@ -141,6 +147,17 @@
     "mortar": true,
     "cauldron": true
   },
+  "create": {
+    "filter": true,
+    "backtank_capacity": true,
+    "goggles.requires_goggles": true,
+    "goggles": false,
+    "blaze_burner": true,
+    "exact_block": true,
+    "crafting_blueprint": true,
+    "goggles.detailed": false,
+    "placard": true
+  },
   "waystones": {
     "waystone": true
   },
@@ -155,10 +172,5 @@
     "infused_farmland": true,
     "crop": true,
     "inferium_crop": true
-  },
-  "storagedrawers": {
-    "display.stacklimit": true,
-    "display.content": true,
-    "display.status": true
   }
 }
