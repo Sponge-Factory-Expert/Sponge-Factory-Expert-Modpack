@@ -9,7 +9,7 @@
 		#Configure FPS Display mode
 		#Complete mode gives you min FPS count and average count
 		#Allowed Values: OFF, SIMPLE, ADVANCED
-		fpsDisplay = "ADVANCED"
+		fpsDisplay = "OFF"
 		#Configure FPS Display gravity
 		#Places counter on specified corner of your screen
 		#Allowed Values: LEFT, CENTER, RIGHT
@@ -28,14 +28,14 @@
 	[embeddiumplus.quality]
 		#Toggle fog feature
 		#Fog was a vanilla feature
-		fog = true
+		fog = false
 		#Clean my skies
 		#Blue band was a vanilla feature, toggle off will show sky color directly
 		blueBand = true
 		#Raise clouds
 		#Modify clouds height perfect for a adaptative world experience
 		#Range: 0 ~ 512
-		cloudsHeight = 192
+		cloudsHeight = 128
 		#Do not show me your name
 		#disables nametag rendering for players and entities
 		disableNameTagRendering = false
@@ -67,7 +67,7 @@
 			#This option overrides 'valueByDefault' state
 			dimensionWhitelist = []
 			#Toggle darkness when dimension has no SkyLight
-			enableOnNoSkyLight = false
+			enableOnNoSkyLight = true
 			#Disables all bright sources of darkness like moon or fog
 			#Only affects darkness effect
 			enableBlockLightOnly = false
