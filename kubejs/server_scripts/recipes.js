@@ -626,15 +626,15 @@ ServerEvents.recipes(event => {
 
     // 精密构件
     event.remove({output: 'create:precision_mechanism'})
-    const glyphCraft = 'naturesaura:sky_ingot'
-    event.recipes.create.sequenced_assembly('create:precision_mechanism', glyphCraft, [
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:brass_sheet']),
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:cogwheel']),
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:wrench']).keepHeldItem(),
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:large_cogwheel']),
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'create:wrench']).keepHeldItem(),
-        event.recipes.createDeploying(glyphCraft, [glyphCraft, 'minecraft:iron_nugget']),
-    ]).transitionalItem(glyphCraft).loops(5)
+    const skyIngot = 'naturesaura:sky_ingot'
+    event.recipes.create.sequenced_assembly('create:precision_mechanism', skyIngot, [
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'create:brass_sheet']),
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'create:cogwheel']),
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'create:wrench']).keepHeldItem(),
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'create:large_cogwheel']),
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'create:wrench']).keepHeldItem(),
+        event.recipes.createDeploying(skyIngot, [skyIngot, 'minecraft:iron_nugget']),
+    ]).transitionalItem(skyIngot).loops(5)
 
     // 砖窑
     event.remove({output: 'immersiveengineering:alloybrick', not: {input: 'immersiveengineering:slab_alloybrick'}})
@@ -2133,7 +2133,7 @@ ServerEvents.recipes(event => {
     event.remove({output: 'immersivepetroleum:gas_generator'})
     event.remove({output: 'productivebees:honey_generator'})
     event.remove({output: 'pneumaticcraft:pneumatic_dynamo'})
-    event.remove({output:'mekanismgenerators:heat_generator'})
+    event.remove({output: 'mekanismgenerators:heat_generator'})
     event.shaped('mekanismgenerators:heat_generator',
         [
             'MMM',
@@ -2251,6 +2251,290 @@ ServerEvents.recipes(event => {
     plantCorundum(event, 'indigo')
     plantCorundum(event, 'green')
     plantCorundum(event, 'orange')
+
+    // 为气动的炼油配方增加温度上限
+    event.remove({id: 'pneumaticcraft:refinery/oil_4'})
+    event.remove({id: 'pneumaticcraft:refinery/oil_3'})
+    event.remove({id: 'pneumaticcraft:refinery/oil_2'})
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 10,
+            "tag": "forge:crude_oil"
+        },
+        "results": [
+            {
+                "amount": 2,
+                "fluid": "pneumaticcraft:diesel"
+            },
+            {
+                "amount": 3,
+                "fluid": "pneumaticcraft:kerosene"
+            },
+            {
+                "amount": 3,
+                "fluid": "pneumaticcraft:gasoline"
+            },
+            {
+                "amount": 2,
+                "fluid": "pneumaticcraft:lpg"
+            }
+        ],
+        "temperature": {
+            "min_temp": 373,
+            "max_temp": 673
+        }
+    }).id('pneumaticcraft:refinery/oil_4')
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 10,
+            "tag": "forge:crude_oil"
+        },
+        "results": [
+            {
+                "amount": 2,
+                "fluid": "pneumaticcraft:diesel"
+            },
+            {
+                "amount": 3,
+                "fluid": "pneumaticcraft:kerosene"
+            },
+            {
+                "amount": 2,
+                "fluid": "pneumaticcraft:lpg"
+            }
+        ],
+        "temperature": {
+            "min_temp": 373,
+            "max_temp": 673
+        }
+    }).id('pneumaticcraft:refinery/oil_3')
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 10,
+            "tag": "forge:crude_oil"
+        },
+        "results": [
+            {
+                "amount": 4,
+                "fluid": "pneumaticcraft:diesel"
+            },
+            {
+                "amount": 2,
+                "fluid": "pneumaticcraft:lpg"
+            }
+        ],
+        "temperature": {
+            "min_temp": 373,
+            "max_temp": 673
+        }
+    }).id('pneumaticcraft:refinery/oil_2')
+
+    // 沉浸原油 - 精馏塔
+    event.remove({type: 'immersivepetroleum:distillation'})
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 10,
+            "tag": "forge:naphtha_cracked"
+        },
+        "results": [
+            {
+                "amount": 6,
+                "fluid": "immersivepetroleum:ethylene"
+            },
+            {
+                "amount": 2,
+                "fluid": "immersivepetroleum:propylene"
+            },
+            {
+                "amount": 2,
+                "fluid": "immersivepetroleum:benzene"
+            }
+        ],
+        "temperature": {
+            "min_temp": 873
+        }
+    })
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 12,
+            "tag": "forge:lubricant_cracked"
+        },
+        "results": [
+            {
+                "amount": 6,
+                "fluid": "immersivepetroleum:kerosene"
+            },
+            {
+                "amount": 6,
+                "fluid": "immersivepetroleum:diesel_sulfur"
+            }
+        ],
+        "temperature": {
+            "min_temp": 873
+        }
+    })
+    event.custom({
+        "type": "pneumaticcraft:refinery",
+        "input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 10,
+            "tag": "forge:kerosene"
+        },
+        "results": [
+            {
+                "amount": 2,
+                "fluid": "immersivepetroleum:naphtha"
+            },
+            {
+                "amount": 3,
+                "fluid": "immersivepetroleum:gasoline_additives"
+            },
+            {
+                "amount": 5,
+                "fluid": "immersivepetroleum:diesel_sulfur"
+            }
+        ],
+        "temperature": {
+            "min_temp": 873
+        }
+    })
+
+    // 精炼配方
+    event.custom({
+        "type": "thermal:refinery",
+        "ingredient": {
+            "fluid": "immersivepetroleum:ethylene",
+            "amount": 100
+        },
+        "result": [
+            {
+                "fluid": "pneumaticcraft:plastic",
+                "amount": 1000
+            },
+            {
+                "item": "immersivepetroleum:bitumen",
+                "chance": 0.05
+            }
+        ],
+        "energy": 1024
+    })
+    event.custom({
+        "type": "thermal:refinery",
+        "ingredient": {
+            "fluid": "immersivepetroleum:propylene",
+            "amount": 100
+        },
+        "result": [
+            {
+                "fluid": "pneumaticcraft:plastic",
+                "amount": 2000
+            },
+            {
+                "item": "immersivepetroleum:bitumen",
+                "chance": 0.1
+            }
+        ],
+        "energy": 1024
+    })
+    event.custom({
+        "type": "thermal:refinery",
+        "ingredient": {
+            "fluid_tag": "forge:lubricant",
+            "amount": 24
+        },
+        "result": [
+            {
+                "fluid": "immersivepetroleum:lubricant_cracked",
+                "amount": 24
+            },
+            {
+                "item": "immersivepetroleum:paraffin_wax",
+                "chance": 0.024
+            }
+        ],
+        "energy": 512
+    })
+    event.custom({
+        "type": "thermal:refinery",
+        "ingredient": {
+            "fluid_tag": "forge:diesel_sulfur",
+            "amount": 10
+        },
+        "result": [
+            {
+                "fluid": "immersivepetroleum:diesel",
+                "amount": 10
+            },
+            {
+                "item": "immersiveengineering:dust_sulfur",
+                "chance": 0.05
+            }
+        ],
+        "energy": 512
+    })
+    event.custom({
+        "type": "thermal:refinery",
+        "ingredient": {
+            "fluid_tag": "forge:naphtha",
+            "amount": 20
+        },
+        "result": [
+            {
+                "fluid": "immersivepetroleum:naphtha_cracked",
+                "amount": 20
+            }
+        ],
+        "energy": 512
+    })
+
+    // 乙醇到乙醛
+    event.remove({id: 'immersiveengineering:refinery/acetaldehyde'})
+
+    // 组件蓝图
+    event.replaceInput({id: 'immersiveengineering:crafting/blueprint_components'}, '#forge:ingots/aluminum', 'immersiveengineering:plate_duroplast')
+
+    // Gloomy Cactus
+    event.recipes.botanypots.soil('deeperdarker:gloomy_sculk',
+        {
+            block: 'deeperdarker:gloomy_sculk'
+        },
+        [
+            'gloomy_sculk'
+        ], -1, 1
+    ).id('spongefactory:gloomy_sculk')
+    event.custom({
+        "type": "botanypots:crop",
+        "seed": {
+            "item": 'deeperdarker:gloomy_cactus'
+        },
+        "categories": [
+            'gloomy_sculk'
+        ],
+        "growthTicks": 1200,
+        "display": {
+            "block": 'deeperdarker:gloomy_cactus'
+        },
+        "drops": [
+            {
+                "chance": 1.00,
+                "output": {
+                    "item": 'deeperdarker:gloomy_cactus'
+                },
+                "minRolls": 1,
+                "maxRolls": 1
+            }
+        ]
+    }).id('spongefactory:gloomy_cactus')
 })
 
 function plantCorundum(event, color) {

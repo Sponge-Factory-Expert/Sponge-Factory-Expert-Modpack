@@ -6,17 +6,75 @@
 	id: "017E96750BFC31A9"
 	order_index: 0
 	quest_links: [ ]
-	quests: [{
-		id: "446788A0401FB4B9"
-		shape: "octagon"
-		size: 3.0d
-		tasks: [{
-			id: "378A786F7874D511"
+	quests: [
+		{
+			id: "446788A0401FB4B9"
+			shape: "octagon"
+			size: 3.0d
+			tasks: [{
+				id: "378A786F7874D511"
+				type: "checkmark"
+			}]
 			title: "{chapter.spongefactory.welcome.welcome.title}"
-			type: "checkmark"
-		}]
-		x: 1.0d
-		y: 0.5d
-	}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["446788A0401FB4B9"]
+			icon: {
+				Count: 1b
+				id: "immersiveengineering:arc_furnace"
+				tag: { }
+			}
+			id: "048474BD23F30DA3"
+			rewards: [
+				{
+					id: "239B9A21BDC5CF4E"
+					item: "create:empty_schematic"
+					type: "item"
+				}
+				{
+					id: "426209F763762DDF"
+					item: "create:schematic_table"
+					type: "item"
+				}
+			]
+			size: 2.0d
+			subtitle: "{chapter.spongefactory.welcome.multiblock.subtitle}"
+			tasks: [{
+				id: "528CFA4D65A3C109"
+				type: "checkmark"
+			}]
+			title: "{chapter.spongefactory.welcome.multiblock.title}"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["446788A0401FB4B9"]
+			icon: "ftbquests:book"
+			id: "6D6F49FEEF22E3B1"
+			rewards: [
+				{
+					id: "3453FE656852CB41"
+					item: "ftbquests:book"
+					type: "item"
+				}
+				{
+					id: "635C7CE23460F4A0"
+					item: "ftbquests:screen_1"
+					type: "item"
+				}
+			]
+			size: 2.0d
+			subtitle: "{chapter.spongefactory.welcome.quests.subtitle}"
+			tasks: [{
+				id: "56BA33B73D94D72A"
+				type: "checkmark"
+			}]
+			title: "{chapter.spongefactory.welcome.quests.title}"
+			x: 0.0d
+			y: -6.0d
+		}
+	]
 	title: "{chapter.spongefactory.welcome.title}"
 }

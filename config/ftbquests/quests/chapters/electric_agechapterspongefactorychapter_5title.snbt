@@ -8,16 +8,6 @@
 	quest_links: [ ]
 	quests: [
 		{
-			id: "20952958D0E973C4"
-			tasks: [{
-				id: "07366521343D4475"
-				title: "Center"
-				type: "checkmark"
-			}]
-			x: 0.0d
-			y: 0.0d
-		}
-		{
 			dependencies: ["16AE3FF1EAAA3F74"]
 			id: "54E8AC36717A615A"
 			tasks: [{
@@ -99,6 +89,127 @@
 			}]
 			x: -5.0d
 			y: -2.0d
+		}
+		{
+			dependencies: [
+				"6754D7CA1EDB270A"
+				"71C5F5E47F52075F"
+			]
+			id: "377F40071FCE36E8"
+			tasks: [{
+				advancement: "immersivepetroleum:main/mb_hydrotreater"
+				criterion: ""
+				id: "705E3DFEAD0625D7"
+				type: "advancement"
+			}]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["54E8AC36717A615A"]
+			hide_dependency_lines: true
+			id: "71C5F5E47F52075F"
+			rewards: [{
+				id: "23FAB740A0D06821"
+				item: "immersivepetroleum:naphtha_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "26DA70E311AF819C"
+				item: "immersivepetroleum:naphtha_bucket"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["377F40071FCE36E8"]
+			id: "2144C4C49722FA9E"
+			tasks: [{
+				id: "2FDECC3924B69019"
+				item: "immersivepetroleum:naphtha_cracked_bucket"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2144C4C49722FA9E"]
+			id: "2EE5A8AF90731B71"
+			rewards: [{
+				id: "7F20E2552E913226"
+				item: "immersivepetroleum:ethylene_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "126759A8BABB57B3"
+				item: "immersivepetroleum:ethylene_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2EE5A8AF90731B71"]
+			id: "4F86A5ACD8362097"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_refinery"
+				criterion: ""
+				id: "02283568580FDE22"
+				type: "advancement"
+			}]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4F86A5ACD8362097"]
+			id: "262E8E167BC32CBF"
+			tasks: [{
+				id: "66E149B2A81B765F"
+				item: "immersiveengineering:acetaldehyde_bucket"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["262E8E167BC32CBF"]
+			id: "1BECCD55BA593C02"
+			tasks: [{
+				id: "19E1E813C4A82B33"
+				item: "immersiveengineering:phenolic_resin_bucket"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1BECCD55BA593C02"]
+			id: "5048E648CB01BC1A"
+			tasks: [{
+				id: "03E29DA178D8F3E3"
+				item: "immersiveengineering:plate_duroplast"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5048E648CB01BC1A"]
+			id: "4ADF64D6155C7674"
+			tasks: [{
+				id: "4A17C9F7EDBC56AB"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:blueprint"
+					tag: {
+						blueprint: "components"
+					}
+				}
+				type: "item"
+			}]
+			x: 15.0d
+			y: 0.0d
 		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_5.title}"
