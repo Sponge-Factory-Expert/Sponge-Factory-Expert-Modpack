@@ -85,19 +85,24 @@ ServerEvents.recipes(event => {
         A: "minecraft:string", S: '#quark:stone_tool_materials', T: '#twilightforest:uncrafting_ignores_cost'
     })
     // 木炭粉
-    event.shapeless('mekanism:dust_charcoal', [Item.of('minecraft:charcoal'), '#spongefactory:hammer'])
-        .customIngredientAction('#spongefactory:hammer', "use_hammer")
+    event.shapeless('mekanism:dust_charcoal', [Item.of('minecraft:charcoal'), 'spongefactory:stone_hammer'])
+        .customIngredientAction('spongefactory:stone_hammer', "use_hammer")
+    event.custom({
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [{"item": 'minecraft:charcoal'}, {"item": "immersiveengineering:hammer"}],
+        "result": {"item": 'mekanism:dust_charcoal'}
+    })
     // 用于扣除石锤的耐久
     Ingredient.registerCustomIngredientAction("use_hammer", (itemstack, index, inventory) => {
-        let hammer_nbt;
-        try {
-            hammer_nbt = inventory.extractItem(inventory.find(Item.of('spongefactory:stone_hammer')), 1, false).getNbt()
-        } catch (e) {
-            hammer_nbt = inventory.extractItem(inventory.find(Item.of('immersiveengineering:hammer')), 1, false).getNbt()
+        let hammer_nbt = inventory.extractItem(inventory.find(Item.of('spongefactory:stone_hammer')), 1, false).getNbt();
+        hammer_nbt.Damage += 1;
+        // 此处 64 为石锤的durability属性
+        if (hammer_nbt.Damage >= 64) {
+            return Item.of('air');
+        } else {
+            itemstack.nbt = itemstack.nbt.merge(hammer_nbt);
         }
-        hammer_nbt.Damage += 1
-        itemstack.nbt = itemstack.nbt.merge(hammer_nbt)
-        return itemstack
+        return itemstack;
     })
 
     // 熔炉内衬

@@ -17,7 +17,7 @@
 	]
 	emergency_items_cooldown: 300
 	grid_scale: 0.5d
-	icon: "spongefactory:rotor"
+	icon: "spongefactory:logo"
 	lock_message: ""
 	loot_crate_no_drop: {
 		boss: 0

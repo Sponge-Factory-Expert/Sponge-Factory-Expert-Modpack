@@ -5,7 +5,7 @@
   "countersOfDifferentMaterialsConnect": false,
   "foodPopsOffStove": false,
   "tablesOfDifferentMaterialsConnect": false,
-  "enableBook": true,
+  "enableBook": false,
   "differentMirrorsConnect": false,
   "mobsSitOnChairs": true,
   "renderImmersivePortalsMirrors": true,
