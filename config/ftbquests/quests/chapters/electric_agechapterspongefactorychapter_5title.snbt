@@ -3,6 +3,7 @@
 	default_quest_shape: ""
 	filename: "electric_agechapterspongefactorychapter_5title"
 	group: "101DBDEF848F1E88"
+	icon: "immersiveengineering:watermill"
 	id: "77300B1246DE0E0A"
 	order_index: 0
 	quest_links: [ ]
@@ -87,8 +88,8 @@
 				id: "49AA34C7EACAA925"
 				type: "advancement"
 			}]
-			x: -5.0d
-			y: -2.0d
+			x: -2.5d
+			y: -4.0d
 		}
 		{
 			dependencies: [
@@ -206,10 +207,356 @@
 						blueprint: "components"
 					}
 				}
+				match_nbt: true
 				type: "item"
 			}]
 			x: 15.0d
 			y: 0.0d
+		}
+		{
+			dependencies: ["6754D7CA1EDB270A"]
+			icon: {
+				Count: 1b
+				id: "immersiveengineering:squeezer"
+				tag: { }
+			}
+			id: "382CE60CD9DF0FDF"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_squeezer"
+				criterion: ""
+				id: "08A51AC83357170C"
+				type: "advancement"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["382CE60CD9DF0FDF"]
+			id: "544EC51E9B8A6AD0"
+			tasks: [{
+				id: "7027CFF53506C94D"
+				item: "spongefactory:high_temperature_deposition_substrate"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2144C4C49722FA9E"]
+			id: "193AED5B5E97B3CF"
+			tasks: [{
+				id: "4CA4067A88857347"
+				item: "immersivepetroleum:benzene_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"193AED5B5E97B3CF"
+				"544EC51E9B8A6AD0"
+			]
+			id: "5AB45B7B2CEBC2B0"
+			tasks: [{
+				id: "34BACFA32D7E77A4"
+				item: "immersiveengineering:dust_hop_graphite"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["44C1AAAC35941E07"]
+			id: "19E15CD68A249A76"
+			tasks: [{
+				id: "63BCA784B48626E1"
+				item: "thermal:chiller_ingot_cast"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"5AB45B7B2CEBC2B0"
+				"19E15CD68A249A76"
+			]
+			id: "05958A95643F6BE1"
+			tasks: [{
+				id: "3EF913A71C60DBAF"
+				item: "immersiveengineering:ingot_hop_graphite"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["05958A95643F6BE1"]
+			id: "0E937645F533B4D8"
+			tasks: [{
+				id: "28AB8AA062D5C051"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:graphite_electrode"
+					tag: {
+						graphDmg: 48000
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			x: 10.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6754D7CA1EDB270A"]
+			hide_dependency_lines: true
+			id: "2D4668DED1B95FFF"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_arcfurnace"
+				criterion: ""
+				id: "780FED50C069C602"
+				type: "advancement"
+			}]
+			x: 10.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"2D4668DED1B95FFF"
+				"0E937645F533B4D8"
+			]
+			id: "6163E3C225DF43AE"
+			tasks: [{
+				id: "166EF425A30BCD26"
+				item: "occultism:chalk_purple_impure"
+				type: "item"
+			}]
+			x: 12.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6163E3C225DF43AE"]
+			id: "4093F781E7317B1E"
+			tasks: [{
+				id: "41B5A0001B2E72AD"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_purple"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 15.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["4ADF64D6155C7674"]
+			id: "319524B95EFA918F"
+			tasks: [{
+				id: "7FFFB8B330E1429A"
+				item: "immersiveengineering:component_electronic"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["4ADF64D6155C7674"]
+			id: "181648F3AD9F0EBB"
+			tasks: [{
+				id: "2CA2FEE645A18F8C"
+				item: "immersiveengineering:component_electronic_adv"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["181648F3AD9F0EBB"]
+			id: "72D7973AEA036C70"
+			tasks: [{
+				id: "5BE228F977A0F906"
+				item: "compactcrafting:projector_dish"
+				type: "item"
+			}]
+			x: 20.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"319524B95EFA918F"
+				"181648F3AD9F0EBB"
+			]
+			id: "7FF7A65BC1A2BD57"
+			tasks: [{
+				id: "66C23BE3BB756651"
+				item: "compactcrafting:base"
+				type: "item"
+			}]
+			x: 20.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"7FF7A65BC1A2BD57"
+				"72D7973AEA036C70"
+			]
+			id: "70B7C1BAF5DC1729"
+			tasks: [{
+				id: "28EA0D21CDE30C2D"
+				item: "compactcrafting:field_projector"
+				type: "item"
+			}]
+			x: 22.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"70B7C1BAF5DC1729"
+				"2F122CDD3602D81B"
+			]
+			id: "34A583C9532E55CF"
+			tasks: [{
+				id: "1D094D37B9DFCFDC"
+				item: {
+					Count: 1b
+					id: "occultism:dimensional_matrix"
+					tag: {
+						spiritName: "Narmurkyn"
+					}
+				}
+				type: "item"
+			}]
+			x: 25.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4093F781E7317B1E"]
+			id: "24CFA4BD2C278DE4"
+			tasks: [{
+				id: "0EB617EEF28A2576"
+				item: "naturesaura:fortress_finder"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["24CFA4BD2C278DE4"]
+			id: "674B37AC212D7C18"
+			tasks: [{
+				id: "457F2D04F78D6D9A"
+				item: "naturesaura:end_city_finder"
+				type: "item"
+			}]
+			x: 20.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["674B37AC212D7C18"]
+			id: "2F122CDD3602D81B"
+			tasks: [{
+				id: "2E790CE5E4381FF1"
+				item: "spongefactory:space_link_eye"
+				type: "item"
+			}]
+			x: 22.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2F122CDD3602D81B"]
+			id: "6662EFA20B65A224"
+			tasks: [{
+				id: "4C2B79367FFF5E21"
+				item: "spongefactory:portal_frame"
+				type: "item"
+			}]
+			x: 25.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6662EFA20B65A224"]
+			id: "366B5F5ED49DF20B"
+			tasks: [{
+				id: "19630BC5A634F5F9"
+				item: "javd:portal_block"
+				type: "item"
+			}]
+			x: 27.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["6662EFA20B65A224"]
+			id: "1E11C207FB0C945F"
+			tasks: [{
+				id: "298917F6A6965B90"
+				item: "jamd:mine_portal_block"
+				type: "item"
+			}]
+			x: 27.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4093F781E7317B1E"]
+			id: "3CA8A350903A9285"
+			tasks: [{
+				id: "18CE81C15FB730D1"
+				item: "thermal:chiller_rod_cast"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["3CA8A350903A9285"]
+			id: "02FEAE1094B64F6F"
+			tasks: [{
+				id: "0446BC6BFAB10C58"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:blueprint"
+					tag: {
+						blueprint: "electrode"
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			x: 20.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["02FEAE1094B64F6F"]
+			id: "70A4DA88085AB75D"
+			tasks: [{
+				id: "09963B38FD43C3E6"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:graphite_electrode"
+					tag: {
+						graphDmg: 0
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			x: 22.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["100A611AE35855F6"]
+			id: "56DE6CEBB79D6A2A"
+			tasks: [{
+				id: "7FAA5C89DEEAC759"
+				item: "mekanismgenerators:heat_generator"
+				type: "item"
+			}]
+			x: -8.0d
+			y: -3.5d
 		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_5.title}"
