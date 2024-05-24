@@ -1,5 +1,6 @@
 ClientEvents.lang('en_us', event => {
     event.add('block.pneumaticcraft.ethanol', "Ethanol")
+    event.add('block.immersivepetroleum.benzene_fluid_block', "Benzene")
     event.add('ritual.spongefactory.craft_vacuum_pump.started', "Start converting the Encased Fan into a Vacuum Pump.")
     event.add('ritual.spongefactory.craft_vacuum_pump.finished', "Successfully converted a Encased Fan into a Vacuum Pump")
     event.add('ritual.spongefactory.craft_printed_circuit_board.started', "Start soldering Circuit Components to the Unassembled PCB.")
@@ -16,6 +17,7 @@ ClientEvents.lang('en_us', event => {
 })
 ClientEvents.lang('zh_cn', event => {
     event.add('block.pneumaticcraft.ethanol', "乙醇")
+    event.add('block.immersivepetroleum.benzene_fluid_block', "苯")
     event.add('ritual.spongefactory.craft_vacuum_pump.started', "开始将鼓风机转化为真空泵。")
     event.add('ritual.spongefactory.craft_vacuum_pump.finished', "成功将鼓风机转化为真空泵。")
     event.add('ritual.spongefactory.craft_printed_circuit_board.started', "开始将电路元件焊接到未组装的印刷电路板。")

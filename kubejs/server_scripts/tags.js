@@ -39,10 +39,19 @@ ServerEvents.tags('item', event => {
     event.add('spongefactory:magnetizable', 'minecraft:iron_ingot')
     event.add('spongefactory:magnetizable', 'thermal:steel_ingot')
     event.add('spongefactory:magnetizable', 'thermal:nickel_ingot')
+
+    // 盐块
+    event.add('mekanism:block_salt', 'mekanism:block_salt')
 })
 
 ServerEvents.tags('block', event => {
     // 乙醇
-    event.add('spongefactory:ethanol','immersiveengineering:ethanol_fluid_block')
-    event.add('spongefactory:ethanol','pneumaticcraft:ethanol')
+    event.add('spongefactory:ethanol', 'immersiveengineering:ethanol_fluid_block')
+    event.add('spongefactory:ethanol', 'pneumaticcraft:ethanol')
+})
+
+ServerEvents.tags('fluid', event => {
+    event.add('spongefactory:glowstone', 'thermal:glowstone')
+
+    event.add('spongefactory:gloomy_extract', 'spongefactory:gloomy_extract')
 })

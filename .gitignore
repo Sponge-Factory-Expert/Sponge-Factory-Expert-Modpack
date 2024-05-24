@@ -40,4 +40,6 @@ usernamecache.json
 patchouli_data.json
 reauth.toml
 !/config/inventoryprofilesnext/inventoryprofiles.json
+config/byg/backups/
+config/oculus.properties
 config/inventoryprofilesnext/*/

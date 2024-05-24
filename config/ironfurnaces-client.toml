@@ -10,15 +10,15 @@
 		# How much energy can be stored in tier 0 furnaces.
 		# Default: 80 000
 		#Range: > 4000
-		tier_0 = 80000
+		tier_0 = 8000
 		# How much energy can be stored in tier 1 furnaces.
 		# Default: 200 000
 		#Range: > 4000
-		tier_1 = 200000
+		tier_1 = 20000
 		# How much energy can be stored in tier 2 furnaces.
 		# Default: 1 000 000
 		#Range: > 4000
-		tier_2 = 1000000
+		tier_2 = 100000
 
 	[furnaces.iron_furnace]
 		# What tier this furnace should be.

@@ -3,6 +3,41 @@ ServerEvents.recipes(event => {
         event.remove({output: output})
     }
 
+    let bottleItem = (input, fluidTag, fluidAmount, output) => {
+        event.custom({
+            "type": "immersiveengineering:bottling_machine",
+            "fluid": {
+                "amount": fluidAmount,
+                "tag": fluidTag
+            },
+            "input": {
+                "item": input
+            },
+            "results": [
+                {
+                    "item": output
+                }
+            ]
+        })
+        event.custom({
+            "type": "thermal:bottler",
+            "ingredients": [
+                {
+                    "item": input
+                },
+                {
+                    "fluid_tag": fluidTag,
+                    "amount": fluidAmount
+                }
+            ],
+            "result": [
+                {
+                    "item": output
+                }
+            ]
+        })
+    }
+
     event.remove({input: '#forge:ores', output: '#forge:ingots'})
     event.remove({input: '#forge:ores', output: '#forge:dusts'})
     event.remove({input: '#forge:ores', output: '#forge:raw_materials'})
@@ -1350,6 +1385,21 @@ ServerEvents.recipes(event => {
             }
         ]
     })
+    event.custom({
+        "type": "immersiveengineering:bottling_machine",
+        "fluid": {
+            "amount": 250,
+            "tag": 'forge:plantoil'
+        },
+        "input": {
+            "item": 'spongefactory:stress_endurance_mechanism'
+        },
+        "results": [
+            {
+                "item": 'spongefactory:inert_stress_endurance_mechanism'
+            }
+        ]
+    })
 
     // 轮机转子
     event.replaceInput({output: 'pneumaticcraft:turbine_rotor'}, 'pneumaticcraft:ingot_iron_compressed', 'spongefactory:inert_stress_endurance_mechanism')
@@ -1730,7 +1780,7 @@ ServerEvents.recipes(event => {
             "item": 'create:encased_fan'
         },
         "pentacle_id": "occultism:possess_foliot",
-        "duration": 60,
+        "duration": 5,
         "spirit_max_age": -1,
         "ritual_dummy": {
             "item": 'minecraft:air'
@@ -2669,7 +2719,7 @@ ServerEvents.recipes(event => {
             "item": 'rftoolsbase:infused_enderpearl'
         },
         "pentacle_id": "occultism:craft_djinni",
-        "duration": 60,
+        "duration": 5,
         "ritual_dummy": {
             "item": "air"
         },
@@ -2718,7 +2768,7 @@ ServerEvents.recipes(event => {
             "item": 'naturesaura:end_city_finder'
         },
         "pentacle_id": "occultism:craft_afrit",
-        "duration": 500,
+        "duration": 5,
         "ritual_dummy": {
             "item": "air"
         },
@@ -2873,6 +2923,538 @@ ServerEvents.recipes(event => {
 
     // 热爆花 移除
     removeOutput('botania:entropinnyum')
+
+    // 黑曜石粉
+    event.recipes.thermal.pulverizer('mekanism:dust_obsidian', 'minecraft:obsidian')
+    // 通用机械粉碎机
+    event.recipes.mekanismCrushing('mekanism:dust_obsidian', 'minecraft:obsidian')
+    // 沉浸粉碎机
+    event.custom({
+        "type": "immersiveengineering:crusher",
+        "energy": 1600,
+        "input": {"item": 'minecraft:obsidian'},
+        "result": {"item": 'mekanism:dust_obsidian'},
+        "secondaries": []
+    })
+
+    // 删除所有碎矿者的配方
+    event.remove({type: 'occultism:crushing'})
+
+    // 胶子
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:up_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:boson"
+        }
+    })
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:down_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:boson"
+        }
+    })
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:strange_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:gluon"
+        }
+    })
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:charm_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:gluon"
+        }
+    })
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:bottom_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:gluon"
+        }
+    })
+    event.custom({
+        "type": "spongefactory:mass_energy_converting",
+        "input": {
+            "amount": 10,
+            "gas": "spongefactory:top_quark"
+        },
+        "output": {
+            "amount": 10,
+            "gas": "spongefactory:gluon"
+        }
+    })
+
+    // 黑铁锭
+    event.remove({id: 'extendedcrafting:black_iron_ingot'})
+    event.custom({
+        "type": "lychee:item_inside",
+        "item_in": [
+            {
+                "item": "minecraft:iron_ingot"
+            },
+            {
+                "item": "spongefactory:blackstone_ingot"
+            }
+        ],
+        "block_in": {
+            "blocks": [
+                "immersivepetroleum:benzene_fluid_block"
+            ]
+        },
+        "post": {
+            "type": "drop_item",
+            "item": "extendedcrafting:black_iron_ingot",
+            "count": 2
+        }
+    })
+
+    // 异界石基座
+    removeOutput('occultism:otherstone_pedestal')
+    event.custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "S   S",
+            "SSSSS",
+            " XXX ",
+            "  X  ",
+            " SSS "
+        ],
+        "key": {
+            "S": {
+                "item": 'occultism:otherstone_slab'
+            },
+            "X": {
+                "item": 'occultism:otherstone'
+            }
+        },
+        "result": {
+            "item": 'occultism:otherstone_pedestal'
+        }
+    })
+
+    // 含铁的黑石
+    event.shaped('spongefactory:blackstone_with_iron',
+        [
+            ' S ',
+            'SXS',
+            ' S '
+        ], {
+            X: 'minecraft:blackstone',
+            S: 'minecraft:iron_nugget'
+        }
+    )
+
+    // 黑石锭
+    event.custom({
+        "type": "minecraft:blasting",
+        "ingredient": {
+            "item": 'spongefactory:blackstone_with_iron'
+        },
+        "result": 'spongefactory:blackstone_ingot',
+        "experience": 0.1,
+        "cookingtime": 125
+    })
+    event.custom({
+        "type": "minecraft:smelting",
+        "ingredient": {
+            "item": 'spongefactory:blackstone_with_iron'
+        },
+        "result": 'spongefactory:blackstone_ingot',
+        "experience": 0.1,
+        "cookingtime": 250
+    })
+
+    // 流明精华
+    event.remove({id: 'extendedcrafting:luminessence'})
+    bottleItem('mysticalagriculture:inferium_essence', 'spongefactory:glowstone', 500, 'extendedcrafting:luminessence')
+
+    // 强化荧石
+    event.custom({
+        "type": "immersiveengineering:fermenter",
+        "energy": 6400,
+        "fluid": {
+            "amount": 125,
+            "fluid": 'thermal:glowstone'
+        },
+        "input": {
+            "item": 'thermal:glowstone_mushroom_spores'
+        }
+    })
+
+    // 基础合成催化剂
+    removeOutput('extendedcrafting:basic_catalyst')
+    event.custom({
+        "type": "pneumaticcraft:pressure_chamber",
+        "inputs": [
+            {
+                "type": "pneumaticcraft:stacked_item",
+                "count": 4,
+                "item": 'extendedcrafting:basic_component'
+            },
+            {
+                "item": 'extendedcrafting:black_iron_slate'
+            }
+        ],
+        "pressure": 3,
+        "results": [
+            {
+                "item": 'extendedcrafting:basic_catalyst'
+            }
+        ]
+    })
+
+    // 忧郁提取物
+    event.custom({
+        "type": "immersiveengineering:squeezer",
+        "energy": 6400,
+        "fluid": {
+            "amount": 50,
+            "fluid": 'spongefactory:gloomy_extract'
+        },
+        "input": {
+            "item": 'deeperdarker:gloomy_cactus'
+        }
+    })
+
+    // 高级合成组件、催化剂
+    removeOutput('extendedcrafting:advanced_component')
+    bottleItem('extendedcrafting:basic_component', 'spongefactory:gloomy_extract', 500, 'extendedcrafting:advanced_component')
+    removeOutput('extendedcrafting:advanced_catalyst')
+    event.custom({
+        "type": "pneumaticcraft:pressure_chamber",
+        "inputs": [
+            {
+                "type": "pneumaticcraft:stacked_item",
+                "count": 4,
+                "item": 'extendedcrafting:advanced_component'
+            },
+            {
+                "item": 'extendedcrafting:black_iron_slate'
+            }
+        ],
+        "pressure": 3,
+        "results": [
+            {
+                "item": 'extendedcrafting:advanced_catalyst'
+            }
+        ]
+    })
+
+    // 高级合成台
+    removeOutput('extendedcrafting:advanced_table')
+    event.custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "ABA",
+            "CDC",
+            "AEA"
+        ],
+        "key": {
+            "A": {
+                "item": "extendedcrafting:advanced_component"
+            },
+            "B": {
+                "item": "extendedcrafting:advanced_catalyst"
+            },
+            "C": {
+                "item": "extendedcrafting:basic_table"
+            },
+            "D": {
+                "item": "minecraft:gold_block"
+            },
+            "E": {
+                "item": "extendedcrafting:black_iron_slate"
+            }
+        },
+        "result": {
+            "item": 'extendedcrafting:advanced_table'
+        }
+    })
+
+    // 盐水
+    event.custom({
+        "type": "immersiveengineering:mixer",
+        "energy": 3200,
+        "fluid": {
+            "amount": 1000,
+            "tag": 'minecraft:water'
+        },
+        "inputs": [{
+            "tag": 'mekanism:block_salt'
+        }],
+        "result": {
+            "amount": 1000,
+            "fluid": 'mekanism:brine'
+        }
+    })
+
+    // 稀硫酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'minecraft:water'
+        },
+        "item_input": {
+            "item": 'thermal:sulfur'
+        },
+        "fluid_output": {
+            "amount": 250,
+            "fluid": 'spongefactory:dilute_sulfuric_acid'
+        },
+        "pressure": 3,
+        "speed": 5,
+        "temperature": {
+            "min_temp": 1073
+        }
+    })
+    // 发烟硫酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'spongefactory:dilute_sulfuric_acid'
+        },
+        "item_input": {
+            "item": 'thermal:sulfur'
+        },
+        "fluid_output": {
+            "amount": 250,
+            "fluid": 'spongefactory:oleum'
+        },
+        "pressure": 1,
+        "speed": 5,
+        "temperature": {
+            "min_temp": 353,
+            "max_temp": 393
+        }
+    })
+    // 硫酸
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "fluid_output": {
+            "amount": 500,
+            "fluid": 'spongefactory:sulfuric_acid'
+        },
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'spongefactory:oleum'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'minecraft:water'
+        },
+        "pressure": 2.0,
+        "time": 50
+    })
+
+    // 盐酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'spongefactory:sulfuric_acid'
+        },
+        "item_input": {
+            "item": 'mekanism:block_salt'
+        },
+        "fluid_output": {
+            "amount": 250,
+            "fluid": 'spongefactory:hydrochloric_acid'
+        },
+        "pressure": 3,
+        "speed": 5,
+        "temperature": {
+            "min_temp": 373
+        }
+    })
+
+    // 硝酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 50,
+            "fluid": 'spongefactory:sulfuric_acid'
+        },
+        "item_input": {
+            "item": 'thermal:niter'
+        },
+        "fluid_output": {
+            "amount": 50,
+            "fluid": 'spongefactory:nitric_acid'
+        },
+        "pressure": 1,
+        "speed": 5,
+        "temperature": {
+            "min_temp": 473
+        }
+    })
+
+    // 王水
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "fluid_output": {
+            "amount": 200,
+            "fluid":'spongefactory:aqua_regia'
+        },
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 150,
+            "fluid":'spongefactory:hydrochloric_acid'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 50,
+            "fluid": 'spongefactory:nitric_acid'
+        },
+        "pressure": 2.0,
+        "time": 50
+    })
+
+    // 氯金酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": 'spongefactory:aqua_regia'
+        },
+        "item_input": {
+            "item": 'minecraft:gold_ingot'
+        },
+        "fluid_output": {
+            "amount": 100,
+            "fluid": 'spongefactory:chloroauric_acid_solution'
+        },
+        "pressure": 0,
+        "speed": 5
+    })
+
+    // 金电镀液
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "fluid_output": {
+            "amount": 1000,
+            "fluid":'spongefactory:gold_plating_solution'
+        },
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 1000,
+            "fluid": 'spongefactory:chloroauric_acid_solution'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 25,
+            "fluid": 'spongefactory:potassium_hydroxide_solution'
+        },
+        "pressure": 2.0,
+        "time": 50
+    })
+
+    // 氯金酸
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 50,
+            "fluid": 'mekanism:brine'
+        },
+        "item_input": {
+            "item": 'spongefactory:slaked_lime'
+        },
+        "fluid_output": {
+            "amount": 50,
+            "fluid": 'spongefactory:potassium_hydroxide_solution'
+        },
+        "pressure": 0,
+        "speed": 5,
+        "temperature": {
+            "min_temp": 673
+        }
+    })
+
+    // 存储促动基座
+    removeOutput('occultism:storage_controller_base')
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 1000,
+            "fluid": 'spongefactory:gold_plating_solution'
+        },
+        "item_input": {
+            "item": 'occultism:otherstone_pedestal'
+        },
+        "item_output": {
+            "item": 'occultism:storage_controller_base'
+        },
+        "pressure": -0.8,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 673
+        }
+    })
+
+    // 存储稳定器基座
+    event.custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "A   A",
+            "AAAAA"
+        ],
+        "key": {
+            "A": {
+                "item": "occultism:otherstone_slab"
+            }
+        },
+        "result": {
+            "item": 'spongefactory:storage_stabilizer_base'
+        }
+    })
 })
 
 function plantCorundum(event, color) {

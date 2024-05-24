@@ -54,7 +54,7 @@
 				type: "item"
 			}]
 			x: -8.0d
-			y: -0.5d
+			y: -5.0d
 		}
 		{
 			dependencies: ["100A611AE35855F6"]
@@ -557,6 +557,427 @@
 			}]
 			x: -8.0d
 			y: -3.5d
+		}
+		{
+			dependencies: [
+				"193AED5B5E97B3CF"
+				"38017084911ED61B"
+			]
+			id: "201C74DD6520AC31"
+			tasks: [{
+				id: "51302F4BF65181BA"
+				item: "extendedcrafting:black_iron_ingot"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4AEFEE7387AC51E8"]
+			id: "38017084911ED61B"
+			tasks: [{
+				id: "586C6EB14F4B0141"
+				item: "spongefactory:blackstone_ingot"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["54E8AC36717A615A"]
+			hide_dependency_lines: true
+			id: "4AEFEE7387AC51E8"
+			tasks: [{
+				id: "71D9CA66622C2BC7"
+				item: "spongefactory:blackstone_with_iron"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"2CA8EC2A54027D59"
+				"78B2526B3913E3FF"
+			]
+			id: "302C4D03CF6120FF"
+			tasks: [{
+				id: "63924BA4E60303B3"
+				item: "extendedcrafting:basic_component"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["66FBA0705B450F40"]
+			id: "78B2526B3913E3FF"
+			tasks: [{
+				id: "0C9B4614B3DAB0B0"
+				item: "extendedcrafting:luminessence"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["32953D821148E4E9"]
+			id: "66FBA0705B450F40"
+			rewards: [{
+				id: "2C05C114CC101B00"
+				item: "thermal:glowstone_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "582BBF9F3021FF30"
+				item: "thermal:glowstone_bucket"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["54E8AC36717A615A"]
+			hide_dependency_lines: true
+			id: "32953D821148E4E9"
+			tasks: [{
+				id: "1897BE75ACCF7662"
+				item: "thermal:glowstone_mushroom_spores"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["201C74DD6520AC31"]
+			id: "2CA8EC2A54027D59"
+			tasks: [{
+				id: "12FE3E3FA388F340"
+				item: "extendedcrafting:black_iron_slate"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["302C4D03CF6120FF"]
+			id: "4F0D1428B2AEB570"
+			tasks: [{
+				id: "4C300431B49A3D82"
+				item: "extendedcrafting:basic_catalyst"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4F0D1428B2AEB570"]
+			id: "0ED9381498EF5136"
+			tasks: [{
+				id: "73B74B3EE7B72FEA"
+				item: "extendedcrafting:basic_table"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["205EC232A3A93705"]
+			icon: "deeperdarker:gloomy_sculk"
+			id: "24209D4339992739"
+			tasks: [{
+				biome: "deeperdarker:overcast_columns"
+				id: "62D0986BE50DA96A"
+				type: "biome"
+			}]
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3ED9DE8BCD851834"]
+			icon: "minecraft:sculk"
+			id: "205EC232A3A93705"
+			tasks: [{
+				dimension: "deeperdarker:otherside"
+				id: "3C90F2CCC705AC4B"
+				type: "dimension"
+			}]
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["24209D4339992739"]
+			id: "3CD13A9D346E7CCA"
+			tasks: [{
+				id: "610A1ED809471865"
+				item: "deeperdarker:gloomy_cactus"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1C633A954D353CB4"]
+			id: "3ED9DE8BCD851834"
+			tasks: [{
+				id: "00FD2947981AADA7"
+				item: "deeperdarker:heart_of_the_deep"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["54E8AC36717A615A"]
+			hide_dependency_lines: true
+			id: "1C633A954D353CB4"
+			tasks: [{
+				entity: "minecraft:warden"
+				id: "441F196F4E8578D2"
+				type: "kill"
+				value: 1L
+			}]
+			x: -4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3CD13A9D346E7CCA"]
+			id: "72FF46541E8A095B"
+			rewards: [{
+				id: "33991F5732573126"
+				item: "spongefactory:gloomy_extract_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4930A0463C0C498D"
+				item: "spongefactory:gloomy_extract_bucket"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"302C4D03CF6120FF"
+				"72FF46541E8A095B"
+			]
+			id: "0FA0D110B8CADF28"
+			tasks: [{
+				id: "1703B0EA6780B307"
+				item: "extendedcrafting:advanced_component"
+				type: "item"
+			}]
+			x: 10.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0FA0D110B8CADF28"]
+			id: "24DC25A452F22AA2"
+			tasks: [{
+				id: "4C6F9BA05AAAF85D"
+				item: "extendedcrafting:advanced_catalyst"
+				type: "item"
+			}]
+			x: 13.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"0ED9381498EF5136"
+				"24DC25A452F22AA2"
+			]
+			id: "7D071B6C3784E7AA"
+			tasks: [{
+				id: "6418330D79FD1EAC"
+				item: "extendedcrafting:advanced_table"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7D071B6C3784E7AA"]
+			id: "79857C8EBA1A45D6"
+			tasks: [{
+				id: "5ACC9158372538EE"
+				item: "occultism:otherstone_pedestal"
+				type: "item"
+			}]
+			x: 18.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["594ACFB13229083A"]
+			id: "3A9D1F8DED20D0FD"
+			tasks: [{
+				id: "678F7EB1E18E9AE8"
+				item: "spongefactory:potassium_hydroxide_solution_bucket"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["13339672C92B056E"]
+			id: "594ACFB13229083A"
+			tasks: [{
+				id: "106162A86BE83D19"
+				item: "mekanism:brine_bucket"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"3A9D1F8DED20D0FD"
+				"26D5287EF07C18CC"
+			]
+			id: "6F489AC44995C15C"
+			rewards: [{
+				id: "75B4BCCCDE9DCA83"
+				item: "spongefactory:gold_plating_solution_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "57EC57C77033E04B"
+				item: "spongefactory:gold_plating_solution_bucket"
+				type: "item"
+			}]
+			x: 16.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6754D7CA1EDB270A"]
+			id: "13339672C92B056E"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_mixer"
+				criterion: ""
+				id: "46C7FB29C12495FF"
+				type: "advancement"
+			}]
+			x: -5.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4FCA27AF178D0C33"]
+			id: "26D5287EF07C18CC"
+			tasks: [{
+				id: "0E384A1548B5E97E"
+				item: "spongefactory:chloroauric_acid_solution_bucket"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"769FE6AD8B15ED0C"
+				"708DFBF9925F5CCE"
+			]
+			id: "4FCA27AF178D0C33"
+			tasks: [{
+				id: "7BC438C4507E4A81"
+				item: "spongefactory:aqua_regia_bucket"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["720CEC8EA807DB5E"]
+			id: "769FE6AD8B15ED0C"
+			tasks: [{
+				id: "7A242166355DC4C5"
+				item: "spongefactory:hydrochloric_acid_bucket"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["720CEC8EA807DB5E"]
+			id: "708DFBF9925F5CCE"
+			tasks: [{
+				id: "0BD7EE7CBACB9DED"
+				item: "spongefactory:nitric_acid_bucket"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["11119C0FEA5B4B25"]
+			id: "720CEC8EA807DB5E"
+			tasks: [{
+				id: "34F3A3E89BF4EAA3"
+				item: "spongefactory:sulfuric_acid_bucket"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["0C9DE5071088415F"]
+			id: "11119C0FEA5B4B25"
+			tasks: [{
+				id: "67F438AA1547A587"
+				item: "spongefactory:oleum_bucket"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["54E8AC36717A615A"]
+			hide_dependency_lines: true
+			id: "0C9DE5071088415F"
+			tasks: [{
+				id: "4B044D377F6FBADC"
+				item: "spongefactory:dilute_sulfuric_acid_bucket"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"79857C8EBA1A45D6"
+				"6F489AC44995C15C"
+			]
+			id: "7EC98AE580E5780A"
+			tasks: [{
+				id: "365D837CE7CB1A68"
+				item: "occultism:storage_controller_base"
+				type: "item"
+			}]
+			x: 22.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7D071B6C3784E7AA"]
+			id: "39261A4DF91156F4"
+			tasks: [{
+				id: "2BF0054834EF86DA"
+				item: "spongefactory:storage_stabilizer_base"
+				type: "item"
+			}]
+			x: 18.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"34A583C9532E55CF"
+				"7EC98AE580E5780A"
+			]
+			id: "43C6D2AC77EFACF3"
+			tasks: [{
+				id: "228D238CA5A4FBAD"
+				item: "occultism:storage_controller"
+				type: "item"
+			}]
+			x: 29.0d
+			y: 0.0d
 		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_5.title}"
