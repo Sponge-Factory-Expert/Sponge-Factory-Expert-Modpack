@@ -28,7 +28,7 @@
 	[embeddiumplus.quality]
 		#Toggle fog feature
 		#Fog was a vanilla feature
-		fog = false
+		fog = true
 		#Clean my skies
 		#Blue band was a vanilla feature, toggle off will show sky color directly
 		blueBand = true
@@ -48,7 +48,7 @@
 			#Configure Darkness Mode
 			#Each config changes what is considered 'true darkness'
 			#Allowed Values: TOTAL_DARKNESS, PITCH_BLACK, DARK, DIM, OFF
-			mode = "OFF"
+			mode = "DARK"
 			#Toggle Darkness on Overworld dimension
 			enableOnOverworld = true
 			#Toggle Darkness on Nether dimension
@@ -62,12 +62,12 @@
 			#Range: 0.0 ~ 1.0
 			endFogBright = 0.5
 			#Toggle Darkness default mode for modded dimensions
-			valueByDefault = false
+			valueByDefault = true
 			#List of all dimensions to use True Darkness
 			#This option overrides 'valueByDefault' state
 			dimensionWhitelist = []
 			#Toggle darkness when dimension has no SkyLight
-			enableOnNoSkyLight = true
+			enableOnNoSkyLight = false
 			#Disables all bright sources of darkness like moon or fog
 			#Only affects darkness effect
 			enableBlockLightOnly = false
@@ -109,11 +109,11 @@
 				#Configure horizontal max distance before cull Block entities
 				#Value is squared, default was 64^2 (or 64x64)
 				#Range: > 0
-				cullingMaxDistanceX = 4096
+				cullingMaxDistanceX = 65536
 				#Configure vertical max distance before cull Block entities
 				#Value is raw
 				#Range: 0 ~ 512
-				cullingMaxDistanceY = 32
+				cullingMaxDistanceY = 64
 				#List of all Block Entities to be ignored by distance culling
 				#Uses ResourceLocation to identify it
 				#Example 1: "minecraft:chest" - Ignores chests only

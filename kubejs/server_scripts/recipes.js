@@ -38,6 +38,87 @@ ServerEvents.recipes(event => {
         })
     }
 
+    let pressMetalToPlate = (metal, plate) => {
+        let id = "_" + metal + "_to_" + plate;
+        id = id.replace(/:/g, '_');
+        event.custom({
+            "type": "create:pressing",
+            "ingredients": [
+                {
+                    "item": metal
+                }
+            ],
+            "results": [
+                {
+                    "item": plate
+                }
+            ]
+        }).id("create_pressing" + id)
+        event.custom({
+            "group": "ad_astra",
+            "type": "ad_astra:hammering",
+            "ingredients": [
+                {
+                    "item": "ad_astra:hammer"
+                },
+                {
+                    "item": metal
+                }
+            ],
+            "result": {
+                "item": plate,
+                "count": 1
+            }
+        }).id("astra_hammer" + id)
+        event.custom({
+            "type": "thermal:press",
+            "ingredient": {
+                "item": metal
+            },
+            "result": [
+                {
+                    "item": plate
+                }
+            ]
+        }).id("thermal_press" + id)
+        event.custom({
+            "type": "immersiveengineering:metal_press",
+            "energy": 2400,
+            "input": {
+                "item": metal
+            },
+            "mold": "immersiveengineering:mold_plate",
+            "result": {
+                "item": plate
+            }
+        }).id("ie_press" + id)
+        event.custom({
+            "type": "minecraft:crafting_shapeless",
+            "ingredients": [
+                {
+                    "item": metal
+                },
+                {
+                    "item": "immersiveengineering:hammer"
+                }
+            ],
+            "result": {
+                "item": plate
+            }
+        }).id("ie_hammer" + id)
+        event.custom({
+            "type": "ad_astra:compressing",
+            "input": {
+                "item": metal
+            },
+            "output": {
+                "id": plate,
+                "count": 1
+            },
+            "cookTime": 200
+        }).id("astra_pressing" + id)
+    }
+
     event.remove({input: '#forge:ores', output: '#forge:ingots'})
     event.remove({input: '#forge:ores', output: '#forge:dusts'})
     event.remove({input: '#forge:ores', output: '#forge:raw_materials'})
@@ -73,7 +154,7 @@ ServerEvents.recipes(event => {
     // 锇
     addOreWashingRecipes(event, "osmium")
     addOreGroundRecipes(event, "osmium")
-    // TODO: 后续加上用氢气还原镍
+    // TODO: 后续加上用氢气还原锇
     // 锡
     addOreWashingRecipes(event, "tin")
     addOreGroundRecipes(event, "tin")
@@ -96,6 +177,8 @@ ServerEvents.recipes(event => {
     addOreWashingRecipes(event, "uranium")
     addOreGroundRecipes(event, "uranium")
     // TODO: 后续加上萃取炼铀
+    // 钛
+    addOreWashingRecipes(event, "titanium")
 
     // 生石灰
     event.custom({
@@ -470,10 +553,11 @@ ServerEvents.recipes(event => {
     event.shaped(Item.of('ars_nouveau:imbuement_chamber', 1),
         [
             'PXP',
-            'X X',
+            'XSX',
             'PPP'], {
-            X: '#forge:ingots/brass',
-            P: 'minecraft:smooth_stone'
+            X: 'spongefactory:gold_plated_brass_ingot',
+            P: 'minecraft:smooth_stone',
+            S: 'industrialforegoing:machine_frame_pity'
         }
     )
 
@@ -484,7 +568,7 @@ ServerEvents.recipes(event => {
             'PXP',
             'GGG',
             'XPX'], {
-            X: '#forge:ingots/brass',
+            X: 'spongefactory:gold_plated_brass_ingot',
             P: 'minecraft:smooth_stone',
             G: '#forge:glass'
         }
@@ -497,7 +581,7 @@ ServerEvents.recipes(event => {
             ' G ',
             'XPX',
             'XBX'], {
-            X: '#forge:ingots/brass',
+            X: 'spongefactory:gold_plated_brass_ingot',
             P: 'create:blaze_cake',
             G: 'ars_nouveau:source_gem',
             B: 'ars_nouveau:source_gem_block'
@@ -511,7 +595,7 @@ ServerEvents.recipes(event => {
             'X X',
             'BGB',
             'X X'], {
-            X: '#forge:ingots/brass',
+            X: 'spongefactory:gold_plated_brass_ingot',
             G: 'ars_nouveau:source_gem_block',
             B: '#forge:ingots/gold'
         }
@@ -521,8 +605,19 @@ ServerEvents.recipes(event => {
     event.replaceInput({output: 'ars_nouveau:arcane_pedestal'}, 'minecraft:gold_nugget', '#forge:nuggets/brass')
 
     // 附魔装置
-    event.replaceInput({output: 'ars_nouveau:enchanting_apparatus'}, 'minecraft:gold_nugget', '#forge:nuggets/brass')
-    event.replaceInput({output: 'ars_nouveau:enchanting_apparatus'}, 'minecraft:gold_ingot', '#forge:ingots/brass')
+    removeOutput('ars_nouveau:enchanting_apparatus')
+    event.shaped('ars_nouveau:enchanting_apparatus',
+        [
+            'GAG',
+            'XCX',
+            'GAG'
+        ], {
+            X: 'spongefactory:gold_plated_brass_ingot',
+            C: 'thermal:machine_frame',
+            G: 'minecraft:gold_nugget',
+            A: 'ars_nouveau:sourcestone'
+        }
+    )
 
     // 魔源宝石
     event.remove({output: 'ars_nouveau:source_gem', type: 'ars_nouveau:imbuement'})
@@ -3235,6 +3330,25 @@ ServerEvents.recipes(event => {
             "min_temp": 1073
         }
     })
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "fluid_output": {
+            "amount": 500,
+            "fluid": 'spongefactory:dilute_sulfuric_acid'
+        },
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'spongefactory:sulfuric_acid'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 250,
+            "fluid": 'minecraft:water'
+        },
+        "pressure": 2.0,
+        "time": 50
+    })
     // 发烟硫酸
     event.custom({
         "type": "pneumaticcraft:thermo_plant",
@@ -3333,12 +3447,12 @@ ServerEvents.recipes(event => {
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 200,
-            "fluid":'spongefactory:aqua_regia'
+            "fluid": 'spongefactory:aqua_regia'
         },
         "input1": {
             "type": "pneumaticcraft:fluid",
             "amount": 150,
-            "fluid":'spongefactory:hydrochloric_acid'
+            "fluid": 'spongefactory:hydrochloric_acid'
         },
         "input2": {
             "type": "pneumaticcraft:fluid",
@@ -3375,7 +3489,7 @@ ServerEvents.recipes(event => {
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 1000,
-            "fluid":'spongefactory:gold_plating_solution'
+            "fluid": 'spongefactory:gold_plating_solution'
         },
         "input1": {
             "type": "pneumaticcraft:fluid",
@@ -3454,6 +3568,1079 @@ ServerEvents.recipes(event => {
         "result": {
             "item": 'spongefactory:storage_stabilizer_base'
         }
+    })
+
+    // 工业先锋的干橡胶
+    removeOutput('industrialforegoing:plastic')
+
+    // 魔源钢板金属
+    event.shaped('4x spongefactory:sheetmetal_source_steel',
+        [
+            ' X ',
+            'X X',
+            ' X '
+        ], {
+            X: 'spongefactory:source_steel_plate'
+        }
+    )
+
+    // 魔源钢板
+    pressMetalToPlate('spongefactory:source_steel_ingot', 'spongefactory:source_steel_plate')
+
+    // 魔源钢锭
+    event.custom({
+        "type": "ars_nouveau:imbuement",
+        "count": 1,
+        "input": {
+            "item": 'thermal:steel_ingot'
+        },
+        "output": 'spongefactory:source_steel_ingot',
+        "pedestalItems": [],
+        "source": 500
+    })
+
+    // 空白插件
+    event.custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "  A  ",
+            " BCB ",
+            " BDB ",
+            "  A  "
+        ],
+        "key": {
+            "A": {
+                "item": "pneumaticcraft:plastic"
+            },
+            "B": {
+                "item": 'spongefactory:gold_plated_brass_ingot'
+            },
+            "C": {
+                "item": "minecraft:redstone"
+            },
+            "D": {
+                "item": "pneumaticcraft:printed_circuit_board"
+            }
+        },
+        "result": {
+            "item": 'spongefactory:blank_addon'
+        }
+    })
+
+    // 低级机器框架
+    removeOutput('industrialforegoing:machine_frame_pity')
+    event.custom({
+        type: 'compactcrafting:miniaturization',
+        version: 1,
+        recipeSize: 3,
+        layers: [
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["S", "S", "S"],
+                    ["S", "F", "S"],
+                    ["S", "S", "S"],
+                ]
+            },
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["F", "F", "F"],
+                    ["F", "F", "F"],
+                    ["F", "F", "F"],
+                ]
+            },
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["S", "S", "S"],
+                    ["S", "F", "S"],
+                    ["S", "S", "S"],
+                ]
+            }
+        ],
+        catalyst: {
+            id: 'spongefactory:blank_addon',
+            Count: 1
+        },
+        components: {
+            'S': {
+                type: "compactcrafting:block",
+                block: 'minecraft:oak_planks'
+            },
+            'F': {
+                type: "compactcrafting:block",
+                block: 'minecraft:cobblestone'
+            }
+        },
+        outputs: [{
+            id: 'industrialforegoing:machine_frame_pity',
+            Count: 1
+        }]
+    })
+
+    // 硫酸锌
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 1.0,
+        "exothermic": true,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": 'spongefactory:dilute_sulfuric_acid'
+        },
+        "item_input": {
+            "item": 'create:zinc_ingot'
+        },
+        "fluid_output": {
+            "amount": 100,
+            "fluid": 'spongefactory:zinc_sulfate_solution'
+        },
+        "pressure": 0,
+        "speed": 5
+    })
+
+    // 锌电镀液
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "fluid_output": {
+            "amount": 1000,
+            "fluid": 'spongefactory:zinc_plating_solution'
+        },
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 1000,
+            "fluid": 'spongefactory:zinc_sulfate_solution'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 25,
+            "fluid": 'spongefactory:potassium_hydroxide_solution'
+        },
+        "pressure": 2.0,
+        "time": 50
+    })
+
+    // 镀金黄铜
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": 'spongefactory:gold_plating_solution'
+        },
+        "item_input": {
+            "item": 'create:brass_ingot'
+        },
+        "item_output": {
+            "item": 'spongefactory:gold_plated_brass_ingot'
+        },
+        "pressure": -0.8,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 673
+        }
+    })
+
+    // 农艺魔源通道
+    event.replaceInput({output: 'ars_nouveau:agronomic_sourcelink'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 炼金魔源通道
+    event.replaceInput({output: 'ars_nouveau:alchemical_sourcelink'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 生死魔源通道
+    event.replaceInput({output: 'ars_nouveau:vitalic_sourcelink'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 菌丝魔源通道
+    event.replaceInput({output: 'ars_nouveau:mycelial_sourcelink'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 魔源元件外壳
+    event.replaceInput({output: 'arseng:source_cell_housing'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 流体魔源通道
+    event.replaceInput({output: 'starbunclemania:fluid_sourcelink'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+    // 奥术核心
+    event.replaceInput({output: 'ars_nouveau:arcane_core'}, 'minecraft:gold_ingot', 'spongefactory:gold_plated_brass_ingot')
+
+    // 树液提取器
+    event.replaceInput({output: 'industrialforegoing:fluid_extractor'}, 'minecraft:piston', 'ars_nouveau:alchemical_sourcelink')
+
+    // 循环所有配方
+    event.remove({mod: 'cyclic'})
+
+    // 耐热绝缘覆层片
+    event.shaped('3x spongefactory:heat_resistant_dielectric_paste_sheet',
+        [
+            'SSS',
+            'XXX',
+            'SSS'
+        ], {
+            X: 'spongefactory:dielectric_paste_sheet',
+            S: 'industrialforegoing:dryrubber'
+        }
+    )
+
+    // 未处理的机器框架
+    event.custom({
+        type: 'compactcrafting:miniaturization',
+        version: 1,
+        recipeSize: 3,
+        layers: [
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["S", "S", "S"],
+                    ["S", "", "S"],
+                    ["S", "S", "S"],
+                ]
+            },
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["X", "", "X"],
+                    ["", "", ""],
+                    ["X", "", "X"],
+                ]
+            },
+            {
+                type: 'compactcrafting:mixed',
+                pattern: [
+                    ["X", "X", "X"],
+                    ["X", "", "X"],
+                    ["X", "X", "X"],
+                ]
+            }
+        ],
+        catalyst: {
+            id: 'spongefactory:heat_resistant_dielectric_paste_sheet',
+            Count: 1
+        },
+        components: {
+            'S': {
+                type: "compactcrafting:block",
+                block: 'immersiveengineering:sheetmetal_iron'
+            },
+            'X': {
+                type: "compactcrafting:block",
+                block: 'spongefactory:sheetmetal_source_steel'
+            }
+        },
+        outputs: [{
+            id: 'spongefactory:unprocessed_machine_frame',
+            Count: 1
+        }]
+    })
+
+    // 机器框架
+    removeOutput('thermal:machine_frame')
+    event.custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 500,
+            "fluid": 'spongefactory:zinc_plating_solution'
+        },
+        "item_input": {
+            "item": 'spongefactory:unprocessed_machine_frame'
+        },
+        "item_output": {
+            "item": 'thermal:machine_frame'
+        },
+        "pressure": -0.8,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 673
+        }
+    })
+
+    // 移除所有齿轮的有序合成配方
+    event.remove({output: '#forge:gears', type: 'minecraft:crafting_shaped'})
+    event.remove({output: '#forge:gears', type: 'immersiveengineering:metal_press'})
+
+    // 钻石齿轮
+    event.custom({
+        "type": "immersiveengineering:metal_press",
+        "conditions": [
+            {
+                "type": "forge:not",
+                "value": {
+                    "type": "forge:tag_empty",
+                    "tag": 'forge:gears/diamond'
+                }
+            }
+        ],
+        "energy": 2400,
+        "input": {
+            "base_ingredient": {
+                "item": 'minecraft:diamond'
+            },
+            "count": 4
+        },
+        "mold": "immersiveengineering:mold_gear",
+        "result": {
+            "item": 'thermal:diamond_gear'
+        }
+    })
+
+    // 粉碎之魔符
+    removeOutput("ars_nouveau:glyph_crush")
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 55,
+        "inputItems": [
+            {
+                "item": {
+                    "item": "ars_nouveau:earth_essence"
+                }
+            },
+            {
+                "item": {
+                    "item": 'create:crushing_wheel'
+                }
+            },
+            {
+                "item": {
+                    "item": 'mob_grinding_utils:saw'
+                }
+            }
+        ],
+        "output": "ars_nouveau:glyph_crush"
+    })
+
+    // 磨粉机
+    removeOutput('thermal:machine_pulverizer')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_crush',
+            'ars_nouveau:glyph_craft',
+            'minecraft:piston',
+            'thermal:basalz_powder'
+        ],
+        'thermal:machine_frame',
+        'thermal:machine_pulverizer',
+        3000,
+    )
+
+    // 魔源钢粉
+    event.recipes.thermal.pulverizer('spongefactory:source_steel_dust', 'spongefactory:source_steel_ingot')
+    event.recipes.mekanismCrushing('spongefactory:source_steel_dust', 'spongefactory:source_steel_ingot')
+    // 魔源钢粉到魔源钢锭
+    event.custom({
+        "type": "minecraft:blasting",
+        "ingredient": {
+            "item": 'spongefactory:source_steel_dust'
+        },
+        "result": 'spongefactory:source_steel_ingot',
+        "experience": 0.1,
+        "cookingtime": 125
+    })
+    event.custom({
+        "type": "minecraft:smelting",
+        "ingredient": {
+            "item": 'spongefactory:source_steel_dust'
+        },
+        "result": 'spongefactory:source_steel_ingot',
+        "experience": 0.1,
+        "cookingtime": 250
+    })
+
+    // 水槽
+    event.replaceInput({output: 'cookingforblockheads:sink'}, 'minecraft:water_bucket', 'ars_nouveau:glyph_conjure_water')
+
+    // 分裂之魔符
+    removeOutput("ars_nouveau:glyph_split")
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 160,
+        "inputItems": [
+            {
+                "item": {
+                    "item": "ars_nouveau:relay_splitter"
+                }
+            },
+            {
+                "item": {
+                    "item": 'thermal:saw_blade'
+                }
+            },
+            {
+                "item": {
+                    "item": 'create:mechanical_saw'
+                }
+            }
+        ],
+        "output": "ars_nouveau:glyph_split"
+    })
+
+    // 交换之魔符
+    removeOutput("ars_nouveau:glyph_exchange")
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 55,
+        "inputItems": [
+            {
+                "item": {
+                    "item": "ars_nouveau:manipulation_essence"
+                }
+            },
+            {
+                "item": {
+                    "item": "minecraft:emerald_block"
+                }
+            },
+            {
+                "item": {
+                    "item": 'spongefactory:solvation_fabric'
+                }
+            },
+            {
+                "item": {
+                    "tag": "forge:ender_pearls"
+                }
+            }
+        ],
+        "output": "ars_nouveau:glyph_exchange"
+    })
+
+    // 溶剂化织物
+    event.shaped('spongefactory:solvation_fabric',
+        [
+            ' S ',
+            'SXS',
+            ' S '
+        ], {
+            X: 'spongefactory:source_steel_dust',
+            S: 'minecraft:string'
+        }
+    )
+
+    // 化学溶解室
+    removeOutput('industrialforegoing:dissolution_chamber')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'spongefactory:solvation_fabric',
+            'spongefactory:solvation_fabric',
+            'thermal:diamond_gear',
+            'pneumaticcraft:plastic',
+            'minecraft:bucket',
+            'minecraft:bucket',
+            'ars_nouveau:glyph_exchange'
+        ],
+        'industrialforegoing:machine_frame_pity',
+        'industrialforegoing:dissolution_chamber',
+        3000,
+    )
+
+    // 氢氧化钾粉
+    event.custom({
+        "type": "thermal:crystallizer",
+        "ingredients": [
+            {
+                "fluid": 'spongefactory:potassium_hydroxide_solution',
+                "amount": 100
+            },
+            {
+                "item": 'thermal:quartz_dust'
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:potassium_hydroxide_dust'
+            }
+        ]
+    })
+
+    // 钻石齿轮
+    event.custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "tag": 'forge:gems/diamond',
+                "count": 4
+            },
+            {
+                "item": "thermal:press_gear_die"
+            }
+        ],
+        "result": [
+            {
+                "item": 'thermal:diamond_gear'
+            }
+        ]
+    })
+    // 石英齿轮
+    event.custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "tag": 'forge:gems/quartz',
+                "count": 4
+            },
+            {
+                "item": "thermal:press_gear_die"
+            }
+        ],
+        "result": [
+            {
+                "item": 'thermal:quartz_gear'
+            }
+        ]
+    })
+    // 绿宝石齿轮
+    event.custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "tag": 'forge:gems/emerald',
+                "count": 4
+            },
+            {
+                "item": "thermal:press_gear_die"
+            }
+        ],
+        "result": [
+            {
+                "item": 'thermal:emerald_gear'
+            }
+        ]
+    })
+    // 青金石齿轮
+    event.custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "tag": 'forge:gems/lapis',
+                "count": 4
+            },
+            {
+                "item": "thermal:press_gear_die"
+            }
+        ],
+        "result": [
+            {
+                "item": 'thermal:lapis_gear'
+            }
+        ]
+    })
+    // 魔源钢齿轮
+    event.custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'spongefactory:source_steel_ingot',
+                "count": 4
+            },
+            {
+                "item": "thermal:press_gear_die"
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:source_steel_gear'
+            }
+        ]
+    })
+
+    // 解包磨具
+    removeOutput('thermal:press_unpacking_die')
+    event.shaped('thermal:press_unpacking_die',
+        [
+            'X S',
+            ' V ',
+            'S X'
+        ], {
+            V: 'ars_nouveau:glyph_split',
+            X: 'spongefactory:source_steel_plate',
+            S: 'thermal:bronze_plate'
+        }
+    )
+
+    // 破坏之魔符
+    removeOutput('ars_nouveau:glyph_break')
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 55,
+        "inputItems": [
+            {
+                "item": {
+                    "item": 'forbidden_arcanus:netherite_blacksmith_gavel'
+                }
+            }
+        ],
+        "output": 'ars_nouveau:glyph_break'
+    })
+
+    // 移除塑料块、塑料路
+    event.remove({output: '#pneumaticcraft:plastic_bricks'})
+    event.remove({input: '#pneumaticcraft:plastic_bricks'})
+    event.remove({output: '#pneumaticcraft:smooth_plastic_bricks'})
+    event.remove({input: '#pneumaticcraft:smooth_plastic_bricks'})
+
+    // 多驱冲压机
+    removeOutput('thermal:machine_press')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'create:mechanical_press',
+            'ars_nouveau:glyph_break',
+            'minecraft:iron_block',
+            'minecraft:anvil'
+        ],
+        'thermal:machine_frame',
+        'thermal:machine_press',
+        3000,
+    )
+
+    // 钙
+    event.custom({
+        "type": "immersiveengineering:arc_furnace",
+        "additives": [
+            {
+                "item": 'mekanism:dust_charcoal'
+            }
+        ],
+        "energy": 51200,
+        "input": {
+            "item": 'spongefactory:quicklime'
+        },
+        "results": [
+            {
+                "base_ingredient": {
+                    "item": 'spongefactory:calcium_ingot'
+                },
+                "count": 1
+            }
+        ],
+        "time": 100
+    })
+
+    // 盛装流体之魔符
+    removeOutput('starbunclemania:glyph_pickup_fluid')
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 55,
+        "inputItems": [
+            {
+                "item": {
+                    "item": 'spongefactory:quicklime'
+                }
+            },
+            {
+                "item": {
+                    "item": 'mekanism:salt'
+                }
+            },
+            {
+                "item": {
+                    "item": 'minecraft:hopper'
+                }
+            },
+            {
+                "item": {
+                    "item": 'starbunclemania:fluid_jar'
+                }
+            }
+        ],
+        "output": 'starbunclemania:glyph_pickup_fluid'
+    })
+
+    // 结晶器
+    removeOutput('thermal:machine_crystallizer')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'starbunclemania:glyph_pickup_fluid',
+            'thermal:diving_fabric',
+            '#spongefactory:polished_corundum',
+            'minecraft:cauldron'
+        ],
+        'thermal:machine_frame',
+        'thermal:machine_crystallizer',
+        3000,
+    )
+
+    // 移除裂岩弹制粉
+    event.remove({input:'thermal:earth_charge', output:'#forge:dusts'})
+    event.remove({input:'thermal:earth_charge', output:'#forge:dusts/ender_pearl'})
+
+    // 硝酸钠
+    event.custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'mekanism:salt'
+            }
+        ],
+        "inputFluid": "{Amount:100,FluidName:\"spongefactory:nitric_acid\"}",
+        "output": {
+            "count": 1,
+            "item": 'spongefactory:sodium_nitrate'
+        },
+        "processingTime": 100
+    })
+
+    // 亚硝酸钠
+    event.custom({
+        "type": "minecraft:smelting",
+        "ingredient": {
+            "item": 'spongefactory:sodium_nitrate'
+        },
+        "result": 'spongefactory:sodium_nitrite',
+        "experience": 0.1,
+        "cookingtime": 250
+    })
+
+    // 冻结之魔符
+    removeOutput("ars_nouveau:glyph_freeze")
+    event.custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 27,
+        "inputItems": [
+            {
+                "item": {
+                    "item": "ars_nouveau:water_essence"
+                }
+            },
+            {
+                "item": {
+                    "item": "minecraft:snow_block"
+                }
+            },
+            {
+                "item": {
+                    "item": 'powah:dry_ice'
+                }
+            },
+            {
+                "item": {
+                    "item": 'spongefactory:sodium_nitrite'
+                }
+            },
+            {
+                "item": {
+                    "item": 'thermal:ice_charge'
+                }
+            }
+        ],
+        "output": "ars_nouveau:glyph_freeze"
+    })
+
+    // 冷冻单元
+    event.replaceInput({output:'cookingforblockheads:ice_unit'}, 'minecraft:snowball', 'thermal:ice_charge')
+
+    // 急速冷冻机
+    removeOutput('thermal:machine_chiller')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'cookingforblockheads:ice_unit',
+            'ars_nouveau:glyph_freeze',
+            'cookingforblockheads:ice_unit',
+            'powah:dry_ice'
+        ],
+        'thermal:machine_frame',
+        'thermal:machine_chiller',
+        3000,
+    )
+
+    // 熔融钾
+    event.custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'spongefactory:potassium_hydroxide_dust'
+            }
+        ],
+        "inputFluid": "{Amount:100,FluidName:\"spongefactory:molten_calcium\"}",
+        "output": {
+            "count": 1,
+            "item": 'spongefactory:slaked_lime'
+        },
+        "outputFluid": "{Amount:100,FluidName:\"spongefactory:molten_potassium\"}",
+        "processingTime": 100
+    })
+
+    // 熔融钠
+    event.custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'mekanism:salt'
+            }
+        ],
+        "inputFluid": "{Amount:100,FluidName:\"spongefactory:molten_potassium\"}",
+        "output": {
+            "count": 1,
+            "item": 'spongefactory:hydrochloride'
+        },
+        "outputFluid": "{Amount:100,FluidName:\"spongefactory:molten_sodium\"}",
+        "processingTime": 100
+    })
+
+    // 熔岩炉
+    removeOutput('thermal:machine_crucible')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_smelt',
+            'create:blaze_cake',
+            'create:blaze_burner',
+            'create:basin'
+        ],
+        'thermal:machine_frame',
+        'thermal:machine_crucible',
+        3000,
+    )
+
+    // 熔融钙
+    event.custom({
+        "type": "thermal:crucible",
+        "ingredient": {
+            "item": 'spongefactory:calcium_ingot'
+        },
+        "result": [
+            {
+                "fluid": "spongefactory:molten_calcium",
+                "amount": 100
+            }
+        ],
+        "energy": 8000
+    })
+    // 钙锭
+    event.custom({
+        "type": "thermal:chiller",
+        "ingredients": [
+            {
+                "fluid": "spongefactory:molten_calcium",
+                "amount": 100
+            },
+            {
+                "item": 'thermal:chiller_ingot_cast'
+            }
+        ],
+        "result": [
+            {
+                "item":'spongefactory:calcium_ingot',
+                "count": 1
+            }
+        ],
+        "energy": 1000
+    })
+
+    // 熔融钠
+    event.custom({
+        "type": "thermal:crucible",
+        "ingredient": {
+            "item": 'spongefactory:sodium_ingot'
+        },
+        "result": [
+            {
+                "fluid": "spongefactory:molten_sodium",
+                "amount": 100
+            }
+        ],
+        "energy": 8000
+    })
+    // 钠锭
+    event.custom({
+        "type": "thermal:chiller",
+        "ingredients": [
+            {
+                "fluid": "spongefactory:molten_sodium",
+                "amount": 100
+            },
+            {
+                "item": 'thermal:chiller_ingot_cast'
+            }
+        ],
+        "result": [
+            {
+                "item":'spongefactory:sodium_ingot',
+                "count": 1
+            }
+        ],
+        "energy": 1000
+    })
+
+    // 流体管道、物品管道
+    event.replaceInput({output:'pipez:item_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
+    event.replaceInput({output:'pipez:fluid_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
+
+    // 四氯化钛
+    event.custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'spongefactory:crushed_titanium_ore'
+            },
+            {
+                "item": 'mekanism:dust_charcoal'
+            },
+            {
+                "item": 'spongefactory:hypochlorite'
+            }
+        ],
+        "inputFluid": "{Amount:100,FluidName:\"spongefactory:hydrochloric_acid\"}",
+        "output": {
+            "count": 1,
+            "item": 'spongefactory:hydrochloride'
+        },
+        "outputFluid": "{Amount:100,FluidName:\"spongefactory:titanium_tetrachloride\"}",
+        "processingTime": 100
+    })
+
+    // 次氯酸盐
+    event.custom({
+        "type": "pneumaticcraft:amadron",
+        "input": {
+            "type": "ITEM",
+            "amount": 1,
+            "id": "minecraft:emerald"
+        },
+        "level": 0,
+        "output": {
+            "type": "ITEM",
+            "amount": 8,
+            "id": 'spongefactory:hypochlorite'
+        },
+        "static": true
+    })
+
+    // 钛
+    event.custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": "spongefactory:titanium_tetrachloride"
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 400,
+            "fluid": "spongefactory:molten_sodium"
+        },
+        "item_output": {
+            "item": 'spongefactory:titanium_ingot'
+        },
+        "pressure": 1,
+        "time": 40
+    })
+
+    // 钛种子
+    event.remove({id:'mysticalagriculture:seed/infusion/titanium'})
+    event.custom({
+        "type": "mysticalagriculture:infusion",
+        "ingredients": [
+            {
+                "item":'spongefactory:titanium_ingot'
+            },
+            {
+                "type": "mysticalagriculture:crop_component",
+                "component": "essence",
+                "crop": "mysticalagriculture:titanium"
+            },
+            {
+                "item":'spongefactory:titanium_ingot'
+            },
+            {
+                "type": "mysticalagriculture:crop_component",
+                "component": "essence",
+                "crop": "mysticalagriculture:titanium"
+            },
+            {
+                "item":'spongefactory:titanium_ingot'
+            },
+            {
+                "type": "mysticalagriculture:crop_component",
+                "component": "essence",
+                "crop": "mysticalagriculture:titanium"
+            },
+            {
+                "item":'spongefactory:titanium_ingot'
+            },
+            {
+                "type": "mysticalagriculture:crop_component",
+                "component": "essence",
+                "crop": "mysticalagriculture:titanium"
+            }
+        ],
+        "input": {
+            "type": "mysticalagriculture:crop_component",
+            "component": "seed",
+            "crop": "mysticalagriculture:titanium"
+        },
+        "result": {
+            "item": "mysticalagriculture:titanium_seeds"
+        }
+    })
+
+    // 熔融钛
+    event.custom({
+        "type": "thermal:crucible",
+        "ingredient": {
+            "item": 'spongefactory:titanium_ingot'
+        },
+        "result": [
+            {
+                "fluid": "spongefactory:molten_titanium",
+                "amount": 100
+            }
+        ],
+        "energy": 8000
+    })
+    event.custom({
+        "type": "thermal:chiller",
+        "ingredients": [
+            {
+                "fluid": "spongefactory:molten_titanium",
+                "amount": 100
+            },
+            {
+                "item": 'thermal:chiller_ingot_cast'
+            }
+        ],
+        "result": [
+            {
+                "item":'spongefactory:titanium_ingot',
+                "count": 1
+            }
+        ],
+        "energy": 1000
+    })
+
+    // 熔融钾
+    event.custom({
+        "type": "thermal:crucible",
+        "ingredient": {
+            "item": 'spongefactory:potassium_ingot'
+        },
+        "result": [
+            {
+                "fluid": "spongefactory:molten_potassium",
+                "amount": 100
+            }
+        ],
+        "energy": 8000
+    })
+    event.custom({
+        "type": "thermal:chiller",
+        "ingredients": [
+            {
+                "fluid": "spongefactory:molten_potassium",
+                "amount": 100
+            },
+            {
+                "item": 'thermal:chiller_ingot_cast'
+            }
+        ],
+        "result": [
+            {
+                "item":'spongefactory:potassium_ingot',
+                "count": 1
+            }
+        ],
+        "energy": 1000
     })
 })
 

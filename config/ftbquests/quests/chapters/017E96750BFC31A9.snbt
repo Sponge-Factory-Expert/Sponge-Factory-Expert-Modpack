@@ -8,6 +8,7 @@
 	quest_links: [ ]
 	quests: [
 		{
+			icon: "spongefactory:logo"
 			id: "446788A0401FB4B9"
 			shape: "octagon"
 			size: 3.0d
@@ -74,6 +75,20 @@
 			title: "{chapter.spongefactory.welcome.quests.title}"
 			x: 0.0d
 			y: -6.0d
+		}
+		{
+			dependencies: ["446788A0401FB4B9"]
+			icon: "botania:cosmetic_questgiver_mark"
+			id: "3E2C4A1081B8DC42"
+			size: 2.0d
+			subtitle: "{chapter.spongefactory.welcome.jecharacters.subtitle}"
+			tasks: [{
+				id: "7B3C15F19D8EACD0"
+				type: "checkmark"
+			}]
+			title: "{chapter.spongefactory.welcome.jecharacters.title}"
+			x: -6.0d
+			y: 0.0d
 		}
 	]
 	title: "{chapter.spongefactory.welcome.title}"

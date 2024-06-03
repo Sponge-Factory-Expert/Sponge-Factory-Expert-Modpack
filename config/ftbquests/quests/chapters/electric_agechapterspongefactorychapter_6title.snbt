@@ -1,0 +1,724 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "electric_agechapterspongefactorychapter_6title"
+	group: "101DBDEF848F1E88"
+	icon: "thermal:machine_frame"
+	id: "16817D404944442C"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"7D071B6C3784E7AA"
+				"5A99D89D956204E7"
+			]
+			id: "051DF1BCDC2B7F05"
+			tasks: [{
+				id: "362EDCBA1C34D2A6"
+				item: "spongefactory:blank_addon"
+				type: "item"
+			}]
+			x: -13.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"70B7C1BAF5DC1729"
+				"051DF1BCDC2B7F05"
+			]
+			id: "7092AD7AB2A89462"
+			tasks: [{
+				id: "033862DF66DDEF6A"
+				item: "industrialforegoing:machine_frame_pity"
+				type: "item"
+			}]
+			x: -11.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6F489AC44995C15C"]
+			id: "5A99D89D956204E7"
+			tasks: [{
+				id: "2568F28FD5BB5F57"
+				item: "spongefactory:gold_plated_brass_ingot"
+				type: "item"
+			}]
+			x: -16.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7092AD7AB2A89462"]
+			id: "2B2650F444B5F1F8"
+			tasks: [{
+				id: "250C997BD8FFAD9A"
+				item: "ars_nouveau:imbuement_chamber"
+				type: "item"
+			}]
+			x: -8.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["2B2650F444B5F1F8"]
+			id: "7F95E224C382637F"
+			tasks: [{
+				id: "061611BC88AFA217"
+				item: "ars_nouveau:source_gem"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2B2650F444B5F1F8"]
+			id: "22678C444213F3CC"
+			tasks: [{
+				id: "7B9313DA48F656BE"
+				item: "spongefactory:source_steel_ingot"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["22678C444213F3CC"]
+			id: "524FF9F0C5759460"
+			tasks: [{
+				id: "07B543384F041736"
+				item: "spongefactory:source_steel_plate"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["524FF9F0C5759460"]
+			id: "176BF5A37C878614"
+			tasks: [{
+				id: "6CDB55DC1CCAD249"
+				item: "spongefactory:sheetmetal_source_steel"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7F95E224C382637F"]
+			id: "43FC167810E982FA"
+			tasks: [{
+				id: "65D3EDB59E374FEC"
+				item: "ars_nouveau:alchemical_sourcelink"
+				type: "item"
+			}]
+			x: -5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["43FC167810E982FA"]
+			id: "42380C58F333727D"
+			tasks: [{
+				id: "609889482B7572BE"
+				item: "industrialforegoing:fluid_extractor"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["42380C58F333727D"]
+			id: "3C2513549676B37C"
+			tasks: [{
+				id: "20C89FC813437782"
+				item: "industrialforegoing:latex_bucket"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3C2513549676B37C"]
+			id: "1AC7447127C51346"
+			tasks: [{
+				id: "527FD4914FABC4C2"
+				item: "industrialforegoing:latex_processing_unit"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1AC7447127C51346"]
+			id: "0F1FF9868696370F"
+			tasks: [{
+				id: "44CDEB45F9A03627"
+				item: "industrialforegoing:tinydryrubber"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["0F1FF9868696370F"]
+			id: "3FCC00A176804233"
+			tasks: [{
+				id: "7E88A5C36A51B6F5"
+				item: "industrialforegoing:dryrubber"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3FCC00A176804233"]
+			id: "3601BE2FDFD1D9F4"
+			tasks: [{
+				id: "702D95BE6F0A0DB9"
+				item: "spongefactory:heat_resistant_dielectric_paste_sheet"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"3601BE2FDFD1D9F4"
+				"176BF5A37C878614"
+			]
+			id: "129152D743FCE33E"
+			tasks: [{
+				id: "78F401E6489F9F94"
+				item: "spongefactory:unprocessed_machine_frame"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["129152D743FCE33E"]
+			id: "0512DFA2623841A2"
+			tasks: [{
+				id: "294C28F75A623E26"
+				item: "spongefactory:zinc_sulfate_solution_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0512DFA2623841A2"]
+			id: "6BA57A2898AAEA5B"
+			tasks: [{
+				id: "4C4078146FCAE541"
+				item: "spongefactory:zinc_plating_solution_bucket"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6BA57A2898AAEA5B"]
+			id: "3E20BD8BE2FC86BC"
+			tasks: [{
+				id: "5813DDA49A6C6769"
+				item: "thermal:machine_frame"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3E20BD8BE2FC86BC"]
+			id: "7F602B4FB85B3D15"
+			tasks: [
+				{
+					id: "6D81F35F4B142313"
+					item: "ars_nouveau:enchanting_apparatus"
+					type: "item"
+				}
+				{
+					id: "503FCF9F119845BB"
+					item: "ars_nouveau:arcane_core"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "4B6D3B00B2B446EF"
+					item: "ars_nouveau:arcane_pedestal"
+					type: "item"
+				}
+			]
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7F95E224C382637F"]
+			id: "1312D36A6609A603"
+			tasks: [{
+				id: "0C87EA49E32F07FE"
+				item: "ars_nouveau:source_gem_block"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["1312D36A6609A603"]
+			id: "7323FC3A26E01B66"
+			tasks: [{
+				id: "3F1FA566B2E8E872"
+				item: "ars_nouveau:volcanic_sourcelink"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7323FC3A26E01B66"]
+			id: "6FE669A562B5A304"
+			tasks: [{
+				id: "23E7FB0B9D78E33F"
+				item: "ars_nouveau:lava_lily"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6FE669A562B5A304"]
+			id: "5A2E17708F10F666"
+			tasks: [{
+				id: "717B447DC29734FD"
+				item: "ars_nouveau:scribes_table"
+				type: "item"
+			}]
+			x: 12.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7F602B4FB85B3D15"]
+			id: "253AAA965D3A48D3"
+			tasks: [{
+				id: "086465B8CABA459D"
+				item: "ars_nouveau:air_essence"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7F602B4FB85B3D15"]
+			id: "1AC1B602D46C977D"
+			tasks: [{
+				id: "2755E45F2D09052A"
+				item: "ars_nouveau:earth_essence"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7F602B4FB85B3D15"]
+			id: "572C7068E940D6C4"
+			tasks: [{
+				id: "2E5F8ECC4F49CD03"
+				item: "ars_nouveau:fire_essence"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7F602B4FB85B3D15"]
+			id: "32F53728557DC445"
+			tasks: [{
+				id: "06539A74BD35AA8C"
+				item: "ars_nouveau:water_essence"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"1AC1B602D46C977D"
+				"253AAA965D3A48D3"
+				"32F53728557DC445"
+				"572C7068E940D6C4"
+			]
+			id: "1DA7CC90327C357C"
+			tasks: [{
+				id: "7231EBDED790AEC9"
+				item: "ars_nouveau:novice_spell_book"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"1DA7CC90327C357C"
+				"5A2E17708F10F666"
+			]
+			id: "68F363880370E9BC"
+			tasks: [{
+				id: "6AE9AC26DDA21B52"
+				item: "ars_nouveau:glyph_craft"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"5A2E17708F10F666"
+				"1DA7CC90327C357C"
+			]
+			id: "52F150D21DCD6AC8"
+			tasks: [{
+				id: "1CBBE2A910B3FA91"
+				item: "ars_nouveau:glyph_crush"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"52F150D21DCD6AC8"
+				"68F363880370E9BC"
+			]
+			id: "282FB233BB062EBF"
+			tasks: [{
+				id: "7A35325A664E2E4B"
+				item: "thermal:machine_pulverizer"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["282FB233BB062EBF"]
+			id: "06756D6DCBD919D2"
+			tasks: [{
+				id: "4A4B4292177FA5BB"
+				item: "spongefactory:source_steel_dust"
+				type: "item"
+			}]
+			x: 18.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["06756D6DCBD919D2"]
+			id: "5D1E11F0B96C77EE"
+			tasks: [{
+				id: "64460C362A335D5F"
+				item: "spongefactory:solvation_fabric"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"1DA7CC90327C357C"
+				"5A2E17708F10F666"
+			]
+			id: "203B9D7792CC9ED0"
+			tasks: [{
+				id: "6F96E4987788E47D"
+				item: "ars_nouveau:glyph_split"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["5D1E11F0B96C77EE"]
+			id: "1E8DD85A30D5B960"
+			tasks: [{
+				id: "6914494EC2F9AB3E"
+				item: "ars_nouveau:glyph_exchange"
+				type: "item"
+			}]
+			x: 23.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1E8DD85A30D5B960"]
+			id: "34A2152468919DEA"
+			tasks: [{
+				id: "79D967671FBA82AA"
+				item: "industrialforegoing:dissolution_chamber"
+				type: "item"
+			}]
+			x: 25.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["203B9D7792CC9ED0"]
+			id: "02D456BE983B8EA9"
+			tasks: [{
+				id: "08DCBCA408ED489A"
+				item: "thermal:press_unpacking_die"
+				type: "item"
+			}]
+			x: 16.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"1DA7CC90327C357C"
+				"5A2E17708F10F666"
+			]
+			id: "3D95C0FA4171DA3A"
+			tasks: [{
+				id: "5D92AF83648EEF14"
+				item: "ars_nouveau:glyph_break"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3D95C0FA4171DA3A"]
+			id: "712F9D99B78327DE"
+			tasks: [{
+				id: "58F04D80121487E9"
+				item: "thermal:machine_press"
+				type: "item"
+			}]
+			x: 16.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"02D456BE983B8EA9"
+				"712F9D99B78327DE"
+			]
+			id: "7ECD72691F8182E1"
+			tasks: [{
+				id: "09A40F7049809E14"
+				item: "mekanism:salt"
+				type: "item"
+			}]
+			x: 18.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7ECD72691F8182E1"]
+			id: "21DC98F14A3BE4AC"
+			tasks: [{
+				id: "19A403B3707B882F"
+				item: "starbunclemania:glyph_pickup_fluid"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["21DC98F14A3BE4AC"]
+			id: "1E6EF44A63E28E12"
+			tasks: [{
+				id: "7D0C23BD2EDB23EB"
+				item: "thermal:machine_crystallizer"
+				type: "item"
+			}]
+			x: 23.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"1E6EF44A63E28E12"
+				"282FB233BB062EBF"
+			]
+			id: "591A0D6171E9BFE0"
+			tasks: [{
+				id: "2913287C9E258CE4"
+				item: "spongefactory:potassium_hydroxide_dust"
+				type: "item"
+			}]
+			x: 25.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"591A0D6171E9BFE0"
+				"34A2152468919DEA"
+				"770D5759484CEDA4"
+			]
+			id: "799E2D50A02A88D6"
+			rewards: [{
+				id: "6174BCCD95636AB8"
+				item: "spongefactory:molten_potassium_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0FF0D8888508CB06"
+				item: "spongefactory:molten_potassium_bucket"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7ECD72691F8182E1"]
+			id: "0CA7C66B6D422010"
+			tasks: [{
+				id: "7ACB599FAABB7E70"
+				item: "spongefactory:sodium_nitrate"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["0CA7C66B6D422010"]
+			id: "6B866D9AC9F15367"
+			tasks: [{
+				id: "73C7B101CEE0597E"
+				item: "spongefactory:sodium_nitrite"
+				type: "item"
+			}]
+			x: 23.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6B866D9AC9F15367"]
+			id: "549F9552572C5B03"
+			tasks: [{
+				id: "5118B24B86D726B9"
+				item: "ars_nouveau:glyph_freeze"
+				type: "item"
+			}]
+			x: 25.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["549F9552572C5B03"]
+			id: "7293DC2BF7CABAF5"
+			tasks: [{
+				id: "4C4AF71432CFB401"
+				item: "thermal:machine_chiller"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["799E2D50A02A88D6"]
+			id: "7E8DD6D6E0EF55B4"
+			tasks: [{
+				id: "78C8C2F7FB611E6A"
+				item: "spongefactory:molten_sodium_bucket"
+				type: "item"
+			}]
+			x: 30.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"1DA7CC90327C357C"
+				"5A2E17708F10F666"
+			]
+			id: "0C43872D7408E067"
+			tasks: [{
+				id: "6860EDB8BF227D57"
+				item: "ars_nouveau:glyph_smelt"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0C43872D7408E067"]
+			id: "7AFB3A82E024EA70"
+			tasks: [{
+				id: "1EE112BC1E972586"
+				item: "thermal:machine_crucible"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["7AFB3A82E024EA70"]
+			id: "770D5759484CEDA4"
+			tasks: [{
+				id: "4411DA1BD6B814D2"
+				item: "spongefactory:calcium_ingot"
+				type: "item"
+			}]
+			x: 19.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["5A99D89D956204E7"]
+			hide_dependency_lines: true
+			id: "69B42B81F1EF0DB3"
+			tasks: [{
+				id: "7C05B97E0A0C1091"
+				item: "spongefactory:impure_crushed_titanium_ore"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["69B42B81F1EF0DB3"]
+			id: "494EAAD4E7DE74B0"
+			tasks: [{
+				id: "362A792438004AF5"
+				item: "spongefactory:crushed_titanium_ore"
+				type: "item"
+			}]
+			x: 30.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5A99D89D956204E7"]
+			hide_dependency_lines: true
+			id: "1588A73F4AE55214"
+			tasks: [{
+				id: "14671585F9142A29"
+				item: "spongefactory:hypochlorite"
+				type: "item"
+			}]
+			x: 30.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"1588A73F4AE55214"
+				"494EAAD4E7DE74B0"
+			]
+			id: "26C3D9A33E840C15"
+			rewards: [{
+				id: "75E424C305C813B5"
+				item: "spongefactory:titanium_tetrachloride_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3A3D1B8E47D1347B"
+				item: "spongefactory:titanium_tetrachloride_bucket"
+				type: "item"
+			}]
+			x: 32.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"7E8DD6D6E0EF55B4"
+				"26C3D9A33E840C15"
+			]
+			id: "7321AA4DF5E4F3AE"
+			tasks: [{
+				id: "605F35231E58E850"
+				item: "spongefactory:titanium_ingot"
+				type: "item"
+			}]
+			x: 34.5d
+			y: -0.5d
+		}
+	]
+	title: "{electric_age.chapter.spongefactory.chapter_6.title}"
+}

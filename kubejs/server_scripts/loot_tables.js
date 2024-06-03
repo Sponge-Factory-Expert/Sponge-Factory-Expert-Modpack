@@ -69,6 +69,10 @@ ServerEvents.blockLootTables(event => {
     uraniumOreLootTable(event,'mekanism:deepslate_uranium_ore')
     uraniumOreLootTable(event,'immersiveengineering:deepslate_ore_uranium')
     uraniumOreLootTable(event,'immersiveengineering:ore_uranium')
+
+    // 钛 2
+    titaniumOreLootTable(event, 'spongefactory:titanium_ore')
+    titaniumOreLootTable(event, 'spongefactory:deepslate_titanium_ore')
 })
 
 function copperOreLootTable(event, ore) {
@@ -582,5 +586,57 @@ function uraniumOreLootTable(event, ore) {
             "name": "main",
             "rolls": 1.0
         }]
+    })
+}
+
+function titaniumOreLootTable(event, ore) {
+    event.addJson(ore, {
+        "type": "minecraft:block",
+        "pools": [
+            {
+                "bonus_rolls": 0.0,
+                "entries": [
+                    {
+                        "type": "minecraft:alternatives",
+                        "children": [
+                            {
+                                "type": "minecraft:item",
+                                "conditions": [
+                                    {
+                                        "condition": "minecraft:match_tool",
+                                        "predicate": {
+                                            "enchantments": [
+                                                {
+                                                    "enchantment": "minecraft:silk_touch",
+                                                    "levels": {
+                                                        "min": 1
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "name": ore
+                            },
+                            {
+                                "type": "minecraft:item",
+                                "functions": [
+                                    {
+                                        "enchantment": "minecraft:fortune",
+                                        "formula": "minecraft:ore_drops",
+                                        "function": "minecraft:apply_bonus"
+                                    },
+                                    {
+                                        "function": "minecraft:explosion_decay"
+                                    }
+                                ],
+                                "name": 'spongefactory:impure_crushed_titanium_ore'
+                            }
+                        ]
+                    }
+                ],
+                "rolls": 1.0
+            }
+        ]
     })
 }

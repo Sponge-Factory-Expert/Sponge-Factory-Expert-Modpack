@@ -3,7 +3,7 @@
 	default_quest_shape: ""
 	filename: "electric_agechapterspongefactorychapter_5title"
 	group: "101DBDEF848F1E88"
-	icon: "immersiveengineering:watermill"
+	icon: "occultism:storage_controller"
 	id: "77300B1246DE0E0A"
 	order_index: 0
 	quest_links: [ ]
