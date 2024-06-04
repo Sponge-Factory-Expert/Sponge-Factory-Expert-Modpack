@@ -719,6 +719,50 @@
 			x: 34.5d
 			y: -0.5d
 		}
+		{
+			dependencies: ["7321AA4DF5E4F3AE"]
+			id: "336F6CC8EF336E6A"
+			tasks: [{
+				id: "5769F6CFC5053FEC"
+				item: "spongefactory:induction_coil"
+				type: "item"
+			}]
+			x: 37.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["336F6CC8EF336E6A"]
+			id: "7BC48563E3F66A22"
+			tasks: [{
+				id: "619EF4EADAFDEBAC"
+				item: "spongefactory:advanced_machine_frame"
+				type: "item"
+			}]
+			x: 39.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7BC48563E3F66A22"]
+			id: "57575BED170B7355"
+			tasks: [{
+				id: "48F5206D0A3EFFBD"
+				item: "thermal:machine_furnace"
+				type: "item"
+			}]
+			x: 42.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["57575BED170B7355"]
+			id: "4C9ABABB7426F8F0"
+			tasks: [{
+				id: "20C909EF593B0597"
+				item: "thermal:machine_smelter"
+				type: "item"
+			}]
+			x: 44.5d
+			y: -0.5d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_6.title}"
 }

@@ -132,6 +132,11 @@
     "energy": true,
     "tooltip_renderer": true
   },
+  "easy_villagers": {
+    "villager": true,
+    "converter": true,
+    "breeder": true
+  },
   "mysticalagradditions": {
     "infused_farmland": true
   },

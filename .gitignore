@@ -18,6 +18,7 @@ journeymap/data/
 journeymap/server/
 journeymap/icon/
 journeymap/journeymap.log
+journeymap/
 kubejs/probe/
 backups/
 screenshots/
@@ -27,6 +28,8 @@ pfm/
 ESM/
 fancymenu_data/
 schematics/uploaded/
+emojiful/
+simplebackups/
 
 o_prof
 options.txt

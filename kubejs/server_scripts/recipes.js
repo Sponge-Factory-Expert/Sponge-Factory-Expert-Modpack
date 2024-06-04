@@ -38,6 +38,41 @@ ServerEvents.recipes(event => {
         })
     }
 
+    let moltenIngot = (ingot, molten) => {
+        event.custom({
+            "type": "thermal:crucible",
+            "ingredient": {
+                "item": ingot
+            },
+            "result": [
+                {
+                    "fluid": molten,
+                    "amount": 100
+                }
+            ],
+            "energy": 8000
+        })
+        event.custom({
+            "type": "thermal:chiller",
+            "ingredients": [
+                {
+                    "fluid": molten,
+                    "amount": 100
+                },
+                {
+                    "item": 'thermal:chiller_ingot_cast'
+                }
+            ],
+            "result": [
+                {
+                    "item": ingot,
+                    "count": 1
+                }
+            ],
+            "energy": 1000
+        })
+    }
+
     let pressMetalToPlate = (metal, plate) => {
         let id = "_" + metal + "_to_" + plate;
         id = id.replace(/:/g, '_');
@@ -4262,8 +4297,8 @@ ServerEvents.recipes(event => {
     )
 
     // 移除裂岩弹制粉
-    event.remove({input:'thermal:earth_charge', output:'#forge:dusts'})
-    event.remove({input:'thermal:earth_charge', output:'#forge:dusts/ender_pearl'})
+    event.remove({input: 'thermal:earth_charge', output: '#forge:dusts'})
+    event.remove({input: 'thermal:earth_charge', output: '#forge:dusts/ender_pearl'})
 
     // 硝酸钠
     event.custom({
@@ -4329,7 +4364,7 @@ ServerEvents.recipes(event => {
     })
 
     // 冷冻单元
-    event.replaceInput({output:'cookingforblockheads:ice_unit'}, 'minecraft:snowball', 'thermal:ice_charge')
+    event.replaceInput({output: 'cookingforblockheads:ice_unit'}, 'minecraft:snowball', 'thermal:ice_charge')
 
     // 急速冷冻机
     removeOutput('thermal:machine_chiller')
@@ -4394,78 +4429,14 @@ ServerEvents.recipes(event => {
     )
 
     // 熔融钙
-    event.custom({
-        "type": "thermal:crucible",
-        "ingredient": {
-            "item": 'spongefactory:calcium_ingot'
-        },
-        "result": [
-            {
-                "fluid": "spongefactory:molten_calcium",
-                "amount": 100
-            }
-        ],
-        "energy": 8000
-    })
-    // 钙锭
-    event.custom({
-        "type": "thermal:chiller",
-        "ingredients": [
-            {
-                "fluid": "spongefactory:molten_calcium",
-                "amount": 100
-            },
-            {
-                "item": 'thermal:chiller_ingot_cast'
-            }
-        ],
-        "result": [
-            {
-                "item":'spongefactory:calcium_ingot',
-                "count": 1
-            }
-        ],
-        "energy": 1000
-    })
+    moltenIngot('spongefactory:calcium_ingot', "spongefactory:molten_calcium")
 
     // 熔融钠
-    event.custom({
-        "type": "thermal:crucible",
-        "ingredient": {
-            "item": 'spongefactory:sodium_ingot'
-        },
-        "result": [
-            {
-                "fluid": "spongefactory:molten_sodium",
-                "amount": 100
-            }
-        ],
-        "energy": 8000
-    })
-    // 钠锭
-    event.custom({
-        "type": "thermal:chiller",
-        "ingredients": [
-            {
-                "fluid": "spongefactory:molten_sodium",
-                "amount": 100
-            },
-            {
-                "item": 'thermal:chiller_ingot_cast'
-            }
-        ],
-        "result": [
-            {
-                "item":'spongefactory:sodium_ingot',
-                "count": 1
-            }
-        ],
-        "energy": 1000
-    })
+    moltenIngot('spongefactory:sodium_ingot', "spongefactory:molten_sodium")
 
     // 流体管道、物品管道
-    event.replaceInput({output:'pipez:item_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
-    event.replaceInput({output:'pipez:fluid_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
+    event.replaceInput({output: 'pipez:item_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
+    event.replaceInput({output: 'pipez:fluid_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
 
     // 四氯化钛
     event.custom({
@@ -4528,12 +4499,12 @@ ServerEvents.recipes(event => {
     })
 
     // 钛种子
-    event.remove({id:'mysticalagriculture:seed/infusion/titanium'})
+    event.remove({id: 'mysticalagriculture:seed/infusion/titanium'})
     event.custom({
         "type": "mysticalagriculture:infusion",
         "ingredients": [
             {
-                "item":'spongefactory:titanium_ingot'
+                "item": 'spongefactory:titanium_ingot'
             },
             {
                 "type": "mysticalagriculture:crop_component",
@@ -4541,7 +4512,7 @@ ServerEvents.recipes(event => {
                 "crop": "mysticalagriculture:titanium"
             },
             {
-                "item":'spongefactory:titanium_ingot'
+                "item": 'spongefactory:titanium_ingot'
             },
             {
                 "type": "mysticalagriculture:crop_component",
@@ -4549,7 +4520,7 @@ ServerEvents.recipes(event => {
                 "crop": "mysticalagriculture:titanium"
             },
             {
-                "item":'spongefactory:titanium_ingot'
+                "item": 'spongefactory:titanium_ingot'
             },
             {
                 "type": "mysticalagriculture:crop_component",
@@ -4557,7 +4528,7 @@ ServerEvents.recipes(event => {
                 "crop": "mysticalagriculture:titanium"
             },
             {
-                "item":'spongefactory:titanium_ingot'
+                "item": 'spongefactory:titanium_ingot'
             },
             {
                 "type": "mysticalagriculture:crop_component",
@@ -4576,71 +4547,122 @@ ServerEvents.recipes(event => {
     })
 
     // 熔融钛
-    event.custom({
-        "type": "thermal:crucible",
-        "ingredient": {
-            "item": 'spongefactory:titanium_ingot'
-        },
-        "result": [
-            {
-                "fluid": "spongefactory:molten_titanium",
-                "amount": 100
-            }
-        ],
-        "energy": 8000
-    })
-    event.custom({
-        "type": "thermal:chiller",
-        "ingredients": [
-            {
-                "fluid": "spongefactory:molten_titanium",
-                "amount": 100
-            },
-            {
-                "item": 'thermal:chiller_ingot_cast'
-            }
-        ],
-        "result": [
-            {
-                "item":'spongefactory:titanium_ingot',
-                "count": 1
-            }
-        ],
-        "energy": 1000
-    })
+    moltenIngot('spongefactory:titanium_ingot', "spongefactory:molten_titanium")
 
     // 熔融钾
+    moltenIngot('spongefactory:potassium_ingot', "spongefactory:molten_potassium")
+
+    // 磁感应线圈
     event.custom({
-        "type": "thermal:crucible",
-        "ingredient": {
-            "item": 'spongefactory:potassium_ingot'
-        },
-        "result": [
-            {
-                "fluid": "spongefactory:molten_potassium",
-                "amount": 100
-            }
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "   AA",
+            " ABBA",
+            " BAB ",
+            "ABBA ",
+            "AA   "
         ],
-        "energy": 8000
+        "key": {
+            "A": {
+                "item": "minecraft:gold_ingot"
+            },
+            "B": {
+                "item": "spongefactory:titanium_ingot"
+            }
+        },
+        "result": {
+            "item": 'spongefactory:induction_coil'
+        }
     })
+
+    moltenIngot('thermal:lumium_ingot', 'spongefactory:molten_lumium')
+    moltenIngot('thermal:signalum_ingot', 'spongefactory:molten_signalum')
+
+    // 高级机器框架
+    event.shaped('spongefactory:advanced_machine_frame',
+        [
+            'XSX'
+        ], {
+            S: 'thermal:machine_frame',
+            X: 'spongefactory:induction_coil'
+        }
+    )
+
+    // flammable
+    removeOutput('ars_elemental:glyph_not_fiery_filter')
     event.custom({
-        "type": "thermal:chiller",
-        "ingredients": [
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 27,
+        "inputItems": [
             {
-                "fluid": "spongefactory:molten_potassium",
-                "amount": 100
+                "item": {
+                    "item": 'create:attribute_filter'
+                }
             },
             {
-                "item": 'thermal:chiller_ingot_cast'
+                "item": {
+                    "item": 'create:blaze_cake'
+                }
             }
         ],
-        "result": [
+        "output": 'ars_elemental:glyph_not_fiery_filter'
+    })
+
+    // 红石熔炼炉
+    removeOutput('thermal:machine_furnace')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_smelt',
+            'ironfurnaces:silver_furnace',
+            'thermal:fire_tnt',
+            'ars_elemental:glyph_not_fiery_filter'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_furnace',
+        3000,
+    )
+
+    // 法术之花种子
+    event.remove({id: 'ars_nouveau:magebloom_crop'})
+    event.custom({
+        "type": "thermal:smelter",
+        "ingredients": [
             {
-                "item":'spongefactory:potassium_ingot',
+                "value": [
+                    {
+                        "item": 'spongefactory:source_steel_ingot'
+                    },
+                    {
+                        "item": 'spongefactory:source_steel_dust'
+                    }
+                ],
+                "count": 4
+            },
+            {
+                "value": [
+                    {
+                        "item": 'ars_nouveau:source_gem'
+                    }
+                ],
+                "count": 4
+            },
+            {
+                "value": [
+                    {
+                        "tag": 'forge:seeds'
+                    }
+                ],
                 "count": 1
             }
         ],
-        "energy": 1000
+        "result": [
+            {
+                "item": 'ars_nouveau:magebloom_crop',
+                "count": 1
+            }
+        ],
+        "energy": 2800
     })
 })
 
