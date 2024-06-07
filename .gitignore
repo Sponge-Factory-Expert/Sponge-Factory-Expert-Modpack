@@ -9,7 +9,7 @@ local/
 logs/
 modernfix/
 modernfix/structureCacheV1/
-defaultconfigs/
+defaultconfigs/*
 resourcepacks/
 shaderpacks/
 localconfigs/
@@ -42,6 +42,9 @@ usernamecache.json
 .qmenu_opened.marker
 patchouli_data.json
 reauth.toml
+TrashSlotSaveState.json
+!/defaultconfigs/tiab-server.toml
+!/defaultconfigs/create-server.toml
 !/config/inventoryprofilesnext/inventoryprofiles.json
 config/byg/backups/
 config/oculus.properties

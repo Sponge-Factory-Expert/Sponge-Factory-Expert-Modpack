@@ -52,6 +52,19 @@ ServerEvents.tags('block', event => {
 
 ServerEvents.tags('fluid', event => {
     event.add('spongefactory:glowstone', 'thermal:glowstone')
-
     event.add('spongefactory:gloomy_extract', 'spongefactory:gloomy_extract')
+})
+
+ServerEvents.tags('minecraft:worldgen/biome', event => {
+    event.add('spongefactory:alien_planet', 'ad_astra:mercury_deltas')
+    event.add('spongefactory:alien_planet', 'ad_astra:martian_wastelands')
+    event.add('spongefactory:alien_planet', 'ad_astra:venus_wastelands')
+    event.add('spongefactory:alien_planet', 'ad_astra:martian_canyon_creek')
+    event.add('spongefactory:alien_planet', 'ad_astra:glacio_snowy_barrens')
+    event.add('spongefactory:alien_planet', 'ad_astra:infernal_venus_barrens')
+    event.add('spongefactory:alien_planet', 'ad_astra:martian_polar_caps')
+    event.add('spongefactory:alien_planet', 'ad_astra:lunar_wastelands')
+    event.add('spongefactory:alien_planet', 'ad_astra:orbit')
+    event.add('spongefactory:alien_planet', 'ad_astra:glacio_ice_peaks')
+
 })

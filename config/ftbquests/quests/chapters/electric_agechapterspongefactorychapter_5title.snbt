@@ -979,6 +979,20 @@
 			x: 29.0d
 			y: 0.0d
 		}
+		{
+			dependencies: [
+				"6F489AC44995C15C"
+				"39261A4DF91156F4"
+			]
+			id: "5D01C448CA6C25BA"
+			tasks: [{
+				id: "5B26D8484BA32E55"
+				item: "occultism:storage_stabilizer_tier3"
+				type: "item"
+			}]
+			x: 22.0d
+			y: 3.0d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_5.title}"
 }

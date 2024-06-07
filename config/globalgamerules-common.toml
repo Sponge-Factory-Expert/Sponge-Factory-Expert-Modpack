@@ -6,7 +6,7 @@
 		#Whether advancements should be announced in chat.
 		announce_advancements = true
 		#Whether command blocks should notify admins when they perform commands.
-		command_block_output = true
+		command_block_output = false
 		#Whether to log admin commands to server log.
 		log_admin_commands = true
 		#Whether the feedback from commands executed by a player should show up in chat. Also affects the default behavior of whether command blocks store their output text.

@@ -3,6 +3,99 @@ ServerEvents.recipes(event => {
         event.remove({output: output})
     }
 
+    let plantCorundum = (color) => {
+        event.recipes.botanypots.soil("quark:" + color + "_corundum",
+            {
+                block: "quark:" + color + "_corundum"
+            },
+            [
+                color + "_corundum"
+            ], -1, 1
+        ).id('spongefactory:block_' + color + "_corundum")
+        event.custom({
+            "type": "botanypots:crop",
+            "seed": {
+                "item": "quark:" + color + "_corundum_cluster"
+            },
+            "categories": [
+                color + "_corundum",
+                'quartz_growth_accelerator'
+            ],
+            "growthTicks": 1200,
+            "display": {
+                "block": "quark:" + color + "_corundum_cluster",
+                "properties": {
+                    "facing": "up"
+                }
+            },
+            "drops": [
+                {
+                    "chance": 1.00,
+                    "output": {
+                        "item": "quark:" + color + "_corundum_cluster"
+                    },
+                    "minRolls": 1,
+                    "maxRolls": 1
+                }
+            ]
+        }).id('spongefactory:' + color + '_corundum_cluster')
+    }
+
+    let addOreGroundRecipes = (oreName) => {
+        // 使用石锤
+        event.shapeless("spongefactory:ground_" + oreName + "_ore", [Item.of("spongefactory:crushed_" + oreName + "_ore"), '#spongefactory:hammer'])
+            .customIngredientAction('#spongefactory:hammer', "use_hammer")
+        // 粉碎轮
+        event.recipes.create.crushing("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
+        // 热力粉碎机
+        event.recipes.thermal.pulverizer("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
+        // 通用机械粉碎机
+        event.recipes.mekanismCrushing("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
+        // 沉浸粉碎机
+        event.custom({
+            "type": "immersiveengineering:crusher",
+            "energy": 1600,
+            "input": {"item": "spongefactory:crushed_" + oreName + "_ore"},
+            "result": {"item": "spongefactory:ground_" + oreName + "_ore"},
+            "secondaries": []
+        })
+    }
+
+    let addOreWashingRecipes = (oreName) => {
+        // 丢入水中
+        event.custom({
+            "type": "lychee:item_inside",
+            "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
+            "block_in": {"blocks": ["minecraft:water"]},
+            "post": {"type": "drop_item", "item": "spongefactory:crushed_" + oreName + "_ore"}
+        })
+        // 丢入装水的炼药锅
+        event.custom({
+            "type": "lychee:item_inside",
+            "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
+            "block_in": {"blocks": ["water_cauldron"], "state": {"level": 3}},
+            "post": {"type": "drop_item", "item": "spongefactory:crushed_" + oreName + "_ore"}
+        })
+        // 水+鼓风机
+        event.recipes.create.splashing("spongefactory:crushed_" + oreName + "_ore", "spongefactory:impure_crushed_" + oreName + "_ore")
+    }
+
+    let addCharcoalDustMixture = (oreName) => {
+        event.shapeless("spongefactory:charcoal_" + oreName + "_ore_mixture", [Item.of('mekanism:dust_charcoal'), "spongefactory:ground_" + oreName + "_ore"])
+    }
+
+    let addSmeltingMixtureRecipes = (oreName) => {
+        event.smelting("minecraft:raw_" + oreName, "spongefactory:charcoal_" + oreName + "_ore_mixture")
+        event.recipes.thermal.smelter("minecraft:raw_" + oreName, "spongefactory:charcoal_" + oreName + "_ore_mixture")
+    }
+
+    let addGeneratedOreRecipes = (oreName) => {
+        addOreWashingRecipes(oreName)
+        addOreGroundRecipes(oreName)
+        addCharcoalDustMixture(oreName)
+        addSmeltingMixtureRecipes(oreName)
+    }
+
     let bottleItem = (input, fluidTag, fluidAmount, output) => {
         event.custom({
             "type": "immersiveengineering:bottling_machine",
@@ -170,50 +263,50 @@ ServerEvents.recipes(event => {
     // 拆解台
     removeOutput('twilightforest:uncrafting_table')
 
-    addGeneratedOreRecipes(event, "copper")
-    addGeneratedOreRecipes(event, "iron")
+    addGeneratedOreRecipes("copper")
+    addGeneratedOreRecipes("iron")
     // 锌
-    addOreWashingRecipes(event, "zinc")
-    addOreGroundRecipes(event, "zinc")
-    addCharcoalDustMixture(event, "zinc")
+    addOreWashingRecipes("zinc")
+    addOreGroundRecipes("zinc")
+    addCharcoalDustMixture("zinc")
     event.smelting("create:raw_" + "zinc", "spongefactory:charcoal_" + "zinc" + "_ore_mixture")
     // 金
-    addOreWashingRecipes(event, "gold")
-    addOreGroundRecipes(event, "gold")
+    addOreWashingRecipes("gold")
+    addOreGroundRecipes("gold")
     event.smelting("minecraft:raw_" + "gold", "spongefactory:ground_" + "gold" + "_ore")
     // 银
-    addOreWashingRecipes(event, "silver")
-    addOreGroundRecipes(event, "silver")
-    addCharcoalDustMixture(event, "silver")
+    addOreWashingRecipes("silver")
+    addOreGroundRecipes("silver")
+    addCharcoalDustMixture("silver")
     event.smelting("thermal:raw_" + "silver", "spongefactory:charcoal_" + "silver" + "_ore_mixture")
     // 锇
-    addOreWashingRecipes(event, "osmium")
-    addOreGroundRecipes(event, "osmium")
+    addOreWashingRecipes("osmium")
+    addOreGroundRecipes("osmium")
     // TODO: 后续加上用氢气还原锇
     // 锡
-    addOreWashingRecipes(event, "tin")
-    addOreGroundRecipes(event, "tin")
-    addCharcoalDustMixture(event, "tin")
+    addOreWashingRecipes("tin")
+    addOreGroundRecipes("tin")
+    addCharcoalDustMixture("tin")
     event.smelting("thermal:raw_" + "tin", "spongefactory:charcoal_" + "tin" + "_ore_mixture")
     // 镍
-    addOreWashingRecipes(event, "nickel")
-    addOreGroundRecipes(event, "nickel")
+    addOreWashingRecipes("nickel")
+    addOreGroundRecipes("nickel")
     // TODO: 后续加上用化学方法冶炼镍
     // 铝
-    addOreWashingRecipes(event, "aluminum")
-    addOreGroundRecipes(event, "aluminum")
+    addOreWashingRecipes("aluminum")
+    addOreGroundRecipes("aluminum")
     // TODO: 后续加上电解冶炼铝
     // 铅
-    addOreWashingRecipes(event, "lead")
-    addOreGroundRecipes(event, "lead")
-    addCharcoalDustMixture(event, "lead")
+    addOreWashingRecipes("lead")
+    addOreGroundRecipes("lead")
+    addCharcoalDustMixture("lead")
     event.smelting("thermal:raw_" + "lead", "spongefactory:charcoal_" + "lead" + "_ore_mixture")
     // 铀
-    addOreWashingRecipes(event, "uranium")
-    addOreGroundRecipes(event, "uranium")
+    addOreWashingRecipes("uranium")
+    addOreGroundRecipes("uranium")
     // TODO: 后续加上萃取炼铀
     // 钛
-    addOreWashingRecipes(event, "titanium")
+    addOreWashingRecipes("titanium")
 
     // 生石灰
     event.custom({
@@ -2431,15 +2524,15 @@ ServerEvents.recipes(event => {
             'quartz_growth_accelerator'
         ], -1, 1.3
     ).id('spongefactory:quartz_growth_accelerator')
-    plantCorundum(event, 'red')
-    plantCorundum(event, 'violet')
-    plantCorundum(event, 'white')
-    plantCorundum(event, 'yellow')
-    plantCorundum(event, 'black')
-    plantCorundum(event, 'blue')
-    plantCorundum(event, 'indigo')
-    plantCorundum(event, 'green')
-    plantCorundum(event, 'orange')
+    plantCorundum('red')
+    plantCorundum('violet')
+    plantCorundum('white')
+    plantCorundum('yellow')
+    plantCorundum('black')
+    plantCorundum('blue')
+    plantCorundum('indigo')
+    plantCorundum('green')
+    plantCorundum('orange')
 
     // 为气动的炼油配方增加温度上限
     event.remove({id: 'pneumaticcraft:refinery/oil_4'})
@@ -4664,102 +4757,94 @@ ServerEvents.recipes(event => {
         ],
         "energy": 2800
     })
-})
 
-function plantCorundum(event, color) {
-    event.recipes.botanypots.soil("quark:" + color + "_corundum",
-        {
-            block: "quark:" + color + "_corundum"
-        },
+    // 感应炉
+    removeOutput('thermal:machine_smelter')
+    event.recipes.ars_nouveau.enchanting_apparatus(
         [
-            color + "_corundum"
-        ], -1, 1
-    ).id('spongefactory:block_' + color + "_corundum")
-    event.custom({
-        "type": "botanypots:crop",
-        "seed": {
-            "item": "quark:" + color + "_corundum_cluster"
-        },
-        "categories": [
-            color + "_corundum",
-            'quartz_growth_accelerator'
+            'spongefactory:induction_coil',
+            'spongefactory:induction_coil',
+            'spongefactory:induction_coil',
+            'ars_nouveau:volcanic_sourcelink'
         ],
-        "growthTicks": 1200,
-        "display": {
-            "block": "quark:" + color + "_corundum_cluster",
-            "properties": {
-                "facing": "up"
-            }
-        },
-        "drops": [
+        'thermal:machine_furnace',
+        'thermal:machine_smelter',
+        3000,
+    )
+
+    // 时间存储控制器
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'naturesaura:clock_hand',
+            'minecraft:clock'
+        ],
+        'occultism:storage_controller_base',
+        'spongefactory:time_storage_controller',
+        3000,
+    )
+
+    // 时间之瓶
+    removeOutput('tiab:time_in_a_bottle')
+    event.custom({
+        "type": "thermal:smelter",
+        "ingredients": [
             {
-                "chance": 1.00,
-                "output": {
-                    "item": "quark:" + color + "_corundum_cluster"
-                },
-                "minRolls": 1,
-                "maxRolls": 1
+                "value": [
+                    {
+                        "item": 'naturesaura:bottle_two_the_rebottling'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'spongefactory:time_storage_controller'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'minecraft:clock'
+                    }
+                ],
+                "count": 1
             }
-        ]
-    }).id('spongefactory:' + color + '_corundum_cluster')
-}
-
-function replaceRecipes(event, match, wis) {
-    event.replaceInput({}, match, wis)
-    event.replaceOutput({}, match, wis)
-}
-
-function addGeneratedOreRecipes(event, oreName) {
-    addOreWashingRecipes(event, oreName)
-    addOreGroundRecipes(event, oreName)
-    addCharcoalDustMixture(event, oreName)
-    addSmeltingMixtureRecipes(event, oreName)
-}
-
-function addOreWashingRecipes(event, oreName) {
-    // 丢入水中
-    event.custom({
-        "type": "lychee:item_inside",
-        "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
-        "block_in": {"blocks": ["minecraft:water"]},
-        "post": {"type": "drop_item", "item": "spongefactory:crushed_" + oreName + "_ore"}
+        ],
+        "result": [
+            {
+                "item": 'tiab:time_in_a_bottle',
+                "count": 1
+            }
+        ],
+        "energy": 30000
     })
-    // 丢入装水的炼药锅
+
+    // 维度存储稳定器
+    removeOutput('occultism:storage_stabilizer_tier1')
+    removeOutput('occultism:storage_stabilizer_tier2')
+    removeOutput('occultism:storage_stabilizer_tier3')
     event.custom({
-        "type": "lychee:item_inside",
-        "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
-        "block_in": {"blocks": ["water_cauldron"], "state": {"level": 3}},
-        "post": {"type": "drop_item", "item": "spongefactory:crushed_" + oreName + "_ore"}
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 2500,
+            "fluid": 'spongefactory:gold_plating_solution'
+        },
+        "item_input": {
+            "item": 'spongefactory:storage_stabilizer_base'
+        },
+        "item_output": {
+            "item": 'occultism:storage_stabilizer_tier3'
+        },
+        "pressure": -0.8,
+        "speed": 0.1,
+        "temperature": {
+            "min_temp": 673
+        }
     })
-    // 水+鼓风机
-    event.recipes.create.splashing("spongefactory:crushed_" + oreName + "_ore", "spongefactory:impure_crushed_" + oreName + "_ore")
-}
-
-function addOreGroundRecipes(event, oreName) {
-    // 使用石锤
-    event.shapeless("spongefactory:ground_" + oreName + "_ore", [Item.of("spongefactory:crushed_" + oreName + "_ore"), '#spongefactory:hammer'])
-        .customIngredientAction('#spongefactory:hammer', "use_hammer")
-    // 粉碎轮
-    event.recipes.create.crushing("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
-    // 热力粉碎机
-    event.recipes.thermal.pulverizer("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
-    // 通用机械粉碎机
-    event.recipes.mekanismCrushing("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
-    // 沉浸粉碎机
-    event.custom({
-        "type": "immersiveengineering:crusher",
-        "energy": 1600,
-        "input": {"item": "spongefactory:crushed_" + oreName + "_ore"},
-        "result": {"item": "spongefactory:ground_" + oreName + "_ore"},
-        "secondaries": []
-    })
-}
-
-function addCharcoalDustMixture(event, oreName) {
-    event.shapeless("spongefactory:charcoal_" + oreName + "_ore_mixture", [Item.of('mekanism:dust_charcoal'), "spongefactory:ground_" + oreName + "_ore"])
-}
-
-function addSmeltingMixtureRecipes(event, oreName) {
-    event.smelting("minecraft:raw_" + oreName, "spongefactory:charcoal_" + oreName + "_ore_mixture")
-    event.recipes.thermal.smelter("minecraft:raw_" + oreName, "spongefactory:charcoal_" + oreName + "_ore_mixture")
-}
+})
