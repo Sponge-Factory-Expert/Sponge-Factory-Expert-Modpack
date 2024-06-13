@@ -73,6 +73,31 @@ ServerEvents.blockLootTables(event => {
     // 钛 2
     titaniumOreLootTable(event, 'spongefactory:titanium_ore')
     titaniumOreLootTable(event, 'spongefactory:deepslate_titanium_ore')
+
+    let dropSelf = (block) => {
+        event.addJson(block, {
+            "type": "minecraft:block",
+            "pools": [
+                {
+                    "bonus_rolls": 0.0,
+                    "conditions": [
+                        {
+                            "condition": "minecraft:survives_explosion"
+                        }
+                    ],
+                    "entries": [
+                        {
+                            "type": "minecraft:item",
+                            "name": block
+                        }
+                    ],
+                    "rolls": 1.0
+                }
+            ]
+        })
+    }
+
+    dropSelf('ae2:mysterious_cube')
 })
 
 function copperOreLootTable(event, ore) {

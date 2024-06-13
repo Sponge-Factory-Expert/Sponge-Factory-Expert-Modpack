@@ -3,6 +3,7 @@
 	default_quest_shape: ""
 	filename: "017E96750BFC31A9"
 	group: ""
+	icon: "spongefactory:logo"
 	id: "017E96750BFC31A9"
 	order_index: 0
 	quest_links: [ ]

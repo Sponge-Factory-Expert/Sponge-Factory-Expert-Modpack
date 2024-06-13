@@ -3,6 +3,10 @@ ServerEvents.recipes(event => {
         event.remove({output: output})
     }
 
+    let custom = (json) => {
+        return event.custom(json)
+    }
+
     let plantCorundum = (color) => {
         event.recipes.botanypots.soil("quark:" + color + "_corundum",
             {
@@ -12,7 +16,7 @@ ServerEvents.recipes(event => {
                 color + "_corundum"
             ], -1, 1
         ).id('spongefactory:block_' + color + "_corundum")
-        event.custom({
+        custom({
             "type": "botanypots:crop",
             "seed": {
                 "item": "quark:" + color + "_corundum_cluster"
@@ -52,7 +56,7 @@ ServerEvents.recipes(event => {
         // 通用机械粉碎机
         event.recipes.mekanismCrushing("spongefactory:ground_" + oreName + "_ore", "spongefactory:crushed_" + oreName + "_ore")
         // 沉浸粉碎机
-        event.custom({
+        custom({
             "type": "immersiveengineering:crusher",
             "energy": 1600,
             "input": {"item": "spongefactory:crushed_" + oreName + "_ore"},
@@ -63,14 +67,14 @@ ServerEvents.recipes(event => {
 
     let addOreWashingRecipes = (oreName) => {
         // 丢入水中
-        event.custom({
+        custom({
             "type": "lychee:item_inside",
             "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
             "block_in": {"blocks": ["minecraft:water"]},
             "post": {"type": "drop_item", "item": "spongefactory:crushed_" + oreName + "_ore"}
         })
         // 丢入装水的炼药锅
-        event.custom({
+        custom({
             "type": "lychee:item_inside",
             "item_in": {"item": "spongefactory:impure_crushed_" + oreName + "_ore"},
             "block_in": {"blocks": ["water_cauldron"], "state": {"level": 3}},
@@ -97,7 +101,7 @@ ServerEvents.recipes(event => {
     }
 
     let bottleItem = (input, fluidTag, fluidAmount, output) => {
-        event.custom({
+        custom({
             "type": "immersiveengineering:bottling_machine",
             "fluid": {
                 "amount": fluidAmount,
@@ -112,7 +116,7 @@ ServerEvents.recipes(event => {
                 }
             ]
         })
-        event.custom({
+        custom({
             "type": "thermal:bottler",
             "ingredients": [
                 {
@@ -132,7 +136,7 @@ ServerEvents.recipes(event => {
     }
 
     let moltenIngot = (ingot, molten) => {
-        event.custom({
+        custom({
             "type": "thermal:crucible",
             "ingredient": {
                 "item": ingot
@@ -145,7 +149,7 @@ ServerEvents.recipes(event => {
             ],
             "energy": 8000
         })
-        event.custom({
+        custom({
             "type": "thermal:chiller",
             "ingredients": [
                 {
@@ -169,7 +173,7 @@ ServerEvents.recipes(event => {
     let pressMetalToPlate = (metal, plate) => {
         let id = "_" + metal + "_to_" + plate;
         id = id.replace(/:/g, '_');
-        event.custom({
+        custom({
             "type": "create:pressing",
             "ingredients": [
                 {
@@ -182,7 +186,7 @@ ServerEvents.recipes(event => {
                 }
             ]
         }).id("create_pressing" + id)
-        event.custom({
+        custom({
             "group": "ad_astra",
             "type": "ad_astra:hammering",
             "ingredients": [
@@ -198,7 +202,7 @@ ServerEvents.recipes(event => {
                 "count": 1
             }
         }).id("astra_hammer" + id)
-        event.custom({
+        custom({
             "type": "thermal:press",
             "ingredient": {
                 "item": metal
@@ -209,7 +213,7 @@ ServerEvents.recipes(event => {
                 }
             ]
         }).id("thermal_press" + id)
-        event.custom({
+        custom({
             "type": "immersiveengineering:metal_press",
             "energy": 2400,
             "input": {
@@ -220,7 +224,7 @@ ServerEvents.recipes(event => {
                 "item": plate
             }
         }).id("ie_press" + id)
-        event.custom({
+        custom({
             "type": "minecraft:crafting_shapeless",
             "ingredients": [
                 {
@@ -234,7 +238,7 @@ ServerEvents.recipes(event => {
                 "item": plate
             }
         }).id("ie_hammer" + id)
-        event.custom({
+        custom({
             "type": "ad_astra:compressing",
             "input": {
                 "item": metal
@@ -309,20 +313,20 @@ ServerEvents.recipes(event => {
     addOreWashingRecipes("titanium")
 
     // 生石灰
-    event.custom({
+    custom({
         "type": "lychee:item_burning",
         "item_in": {"tag": "forge:limestone"},
         "post": {"type": "drop_item", "item": "spongefactory:quicklime"}
     })
 
     // 熟石灰
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": {"item": "spongefactory:quicklime"},
         "block_in": {"blocks": ["minecraft:water"]},
         "post": [{"type": "drop_item", "item": "spongefactory:slaked_lime"}, {"type": "place", "block": "air"}]
     })
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": {"item": "spongefactory:quicklime"},
         "block_in": {"blocks": ["water_cauldron"], "state": {"level": 3}},
@@ -337,7 +341,7 @@ ServerEvents.recipes(event => {
     // 木炭粉
     event.shapeless('mekanism:dust_charcoal', [Item.of('minecraft:charcoal'), 'spongefactory:stone_hammer'])
         .customIngredientAction('spongefactory:stone_hammer', "use_hammer")
-    event.custom({
+    custom({
         "type": "minecraft:crafting_shapeless",
         "ingredients": [{"item": 'minecraft:charcoal'}, {"item": "immersiveengineering:hammer"}],
         "result": {"item": 'mekanism:dust_charcoal'}
@@ -356,7 +360,7 @@ ServerEvents.recipes(event => {
     })
 
     // 熔炉内衬
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": [{
             "item": "spongefactory:slaked_lime"
@@ -378,7 +382,7 @@ ServerEvents.recipes(event => {
         "block_in": {"blocks": ["minecraft:water"]},
         "post": {"type": "drop_item", "item": "spongefactory:furnace_lining"}
     })
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": [{
             "item": "spongefactory:slaked_lime"
@@ -447,7 +451,7 @@ ServerEvents.recipes(event => {
         X: "#forge:nuggets/iron", A: '#spongefactory:polished_corundum'
     })
     // 抗应力构件
-    event.custom({
+    custom({
         "type": "naturesaura:altar",
         "input": {
             "item": "spongefactory:stress_endurance_mechanism"
@@ -579,7 +583,7 @@ ServerEvents.recipes(event => {
 
     // 粉碎轮
     removeOutput('create:crushing_wheel')
-    event.custom({
+    custom({
         "type": "create:mechanical_crafting",
         "acceptMirrored": false,
         "key": {
@@ -750,7 +754,7 @@ ServerEvents.recipes(event => {
     // 魔源宝石
     event.remove({output: 'ars_nouveau:source_gem', type: 'ars_nouveau:imbuement'})
     event.remove({output: 'ars_nouveau:source_gem_block', type: 'ars_nouveau:imbuement'})
-    event.custom({
+    custom({
         "type": "ars_nouveau:imbuement",
         "count": 1,
         "input": {
@@ -760,7 +764,7 @@ ServerEvents.recipes(event => {
         "pedestalItems": [],
         "source": 500
     })
-    event.custom({
+    custom({
         "type": "ars_nouveau:imbuement",
         "count": 1,
         "input": {
@@ -948,7 +952,7 @@ ServerEvents.recipes(event => {
     event.remove({input: 'immersiveengineering:wirecutter', output: '#forge:wires'})
 
     // 异界琥珀金
-    event.custom({
+    custom({
         "type": "occultism:spirit_fire",
         "ingredient": {
             "item": 'thermal:electrum_ingot'
@@ -963,7 +967,7 @@ ServerEvents.recipes(event => {
 
     // 屠刀
     removeOutput('occultism:butcher_knife')
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -997,7 +1001,7 @@ ServerEvents.recipes(event => {
 
     // 自然祭坛
     removeOutput('naturesaura:nature_altar')
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1037,7 +1041,7 @@ ServerEvents.recipes(event => {
 
     // 愉悦印记
     removeOutput("naturesaura:token_joy")
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1074,7 +1078,7 @@ ServerEvents.recipes(event => {
 
     // 恐惧印记
     removeOutput('naturesaura:token_fear')
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1122,7 +1126,7 @@ ServerEvents.recipes(event => {
 
     // 愤怒印记
     removeOutput("naturesaura:token_anger")
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1165,7 +1169,7 @@ ServerEvents.recipes(event => {
 
     // 忧伤印记
     removeOutput('naturesaura:token_sorrow')
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1219,7 +1223,7 @@ ServerEvents.recipes(event => {
 
     // 苍穹锭
     removeOutput('naturesaura:sky_ingot')
-    event.custom({
+    custom({
         "type": "naturesaura:offering",
         "input": {
             "item": 'spongefactory:infused_brass'
@@ -1234,7 +1238,7 @@ ServerEvents.recipes(event => {
 
     // 呼唤之魂
     removeOutput('naturesaura:calling_spirit')
-    event.custom({
+    custom({
         "type": "minecraft:crafting_shaped",
         "pattern": [
             " O ",
@@ -1287,7 +1291,7 @@ ServerEvents.recipes(event => {
     )
 
     // 肥料
-    event.custom({
+    custom({
         "type": "naturesaura:offering",
         "input": {
             "item": 'pamhc2foodextended:epicbltitem'
@@ -1303,7 +1307,7 @@ ServerEvents.recipes(event => {
 
     // 黑巧克力
     event.remove({input: 'create_confectionery:cocoa_butter'})
-    event.custom({
+    custom({
         "group": "create_confectionery",
         "type": "create:mixing",
         "ingredients": [
@@ -1327,7 +1331,7 @@ ServerEvents.recipes(event => {
         "heatRequirement": "heated"
     })
     // 白巧克力
-    event.custom({
+    custom({
         "group": "create_confectionery",
         "type": "create:mixing",
         "ingredients": [
@@ -1352,7 +1356,7 @@ ServerEvents.recipes(event => {
     })
 
     // 巧克力到蛋糕
-    event.custom({
+    custom({
         "type": "create:filling",
         "ingredients": [
             {
@@ -1372,7 +1376,7 @@ ServerEvents.recipes(event => {
     })
 
     // 粉碎末地石
-    event.custom({
+    custom({
         "type": "create:haunting",
         "ingredients": [
             {
@@ -1400,7 +1404,7 @@ ServerEvents.recipes(event => {
     ]).transitionalItem(hTRLining).loops(10)
 
     // 紫水晶粉
-    event.custom({
+    custom({
         "type": "create:crushing",
         "ingredients": [
             {
@@ -1417,7 +1421,7 @@ ServerEvents.recipes(event => {
     })
 
     // 粉碎轮琥珀金粉
-    event.custom({
+    custom({
         "type": "create:crushing",
         "ingredients": [
             {
@@ -1437,7 +1441,7 @@ ServerEvents.recipes(event => {
 
     // 血液提取器
     removeOutput('evilcraft:blood_extractor')
-    event.custom({
+    custom({
         "type": "minecraft:crafting_shaped",
         "pattern": [
             "SAS",
@@ -1530,7 +1534,7 @@ ServerEvents.recipes(event => {
 
     // 压力室墙壁
     removeOutput('pneumaticcraft:pressure_chamber_wall')
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": {
             "item": 'pneumaticcraft:reinforced_bricks'
@@ -1569,7 +1573,7 @@ ServerEvents.recipes(event => {
     event.shapeless('16x powah:dielectric_paste', ['immersiveengineering:coal_coke', 'immersiveengineering:coal_coke', 'minecraft:lava_bucket', 'minecraft:clay_ball'])
 
     // 惰性耐应力构件
-    event.custom({
+    custom({
         "type": "create:mixing",
         "ingredients": [
             {
@@ -1591,7 +1595,7 @@ ServerEvents.recipes(event => {
         ],
         "heatRequirement": "superheated"
     })
-    event.custom({
+    custom({
         "type": "thermal:bottler",
         "ingredients": [
             {
@@ -1608,7 +1612,7 @@ ServerEvents.recipes(event => {
             }
         ]
     })
-    event.custom({
+    custom({
         "type": "immersiveengineering:bottling_machine",
         "fluid": {
             "amount": 250,
@@ -1635,7 +1639,7 @@ ServerEvents.recipes(event => {
 
     // 涡流炮
     removeOutput('pneumaticcraft:vortex_cannon')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:crafting_shaped_pressurizable",
         "key": {
             "S": {
@@ -1781,7 +1785,7 @@ ServerEvents.recipes(event => {
     )
 
     // 气缸
-    event.custom({
+    custom({
         "type": "create:mechanical_crafting",
         "acceptMirrored": true,
         "key": {
@@ -1824,7 +1828,7 @@ ServerEvents.recipes(event => {
 
     // 液体压缩机
     removeOutput('pneumaticcraft:liquid_compressor')
-    event.custom({
+    custom({
         "type": "minecraft:crafting_shaped",
         "key": {
             "B": {
@@ -1857,7 +1861,7 @@ ServerEvents.recipes(event => {
 
     // 高级液体压缩机
     removeOutput('pneumaticcraft:advanced_liquid_compressor')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:compressor_upgrade_crafting",
         "key": {
             "C": {
@@ -1888,7 +1892,7 @@ ServerEvents.recipes(event => {
 
     // 高级空气压缩机
     removeOutput('pneumaticcraft:advanced_air_compressor')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:compressor_upgrade_crafting",
         "key": {
             "C": {
@@ -1919,7 +1923,7 @@ ServerEvents.recipes(event => {
 
     // 白色粉笔
     removeOutput('occultism:chalk_white')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -1951,7 +1955,7 @@ ServerEvents.recipes(event => {
             X: 'mysticalagriculture:silicon_essence'
         }
     )
-    event.custom({
+    custom({
         "type": "occultism:spirit_fire",
         "ingredient": {
             "item": 'ae2:certus_quartz_dust'
@@ -1962,7 +1966,7 @@ ServerEvents.recipes(event => {
     })
 
     // 无暇的赛特斯石英母岩
-    event.custom({
+    custom({
         "type": "naturesaura:tree_ritual",
         "ingredients": [
             {
@@ -1996,7 +2000,7 @@ ServerEvents.recipes(event => {
 
     // 真空泵
     removeOutput('pneumaticcraft:vacuum_pump')
-    event.custom({
+    custom({
         "type": "occultism:ritual",
         "ritual_type": "occultism:craft",
         "activation_item": {
@@ -2047,7 +2051,7 @@ ServerEvents.recipes(event => {
 
     // 真空管
     removeOutput('immersiveengineering:electron_tube')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -2068,7 +2072,7 @@ ServerEvents.recipes(event => {
 
     // 献祭之碗
     removeOutput('occultism:sacrificial_bowl')
-    event.custom({
+    custom({
         "type": "create:haunting",
         "ingredients": [
             {
@@ -2084,7 +2088,7 @@ ServerEvents.recipes(event => {
 
     // 黄金献祭之碗
     removeOutput('occultism:golden_sacrificial_bowl')
-    event.custom({
+    custom({
         "type": "naturesaura:offering",
         "input": {
             "item": 'occultism:sacrificial_bowl'
@@ -2100,7 +2104,7 @@ ServerEvents.recipes(event => {
 
     // 电容
     event.remove({id: 'pneumaticcraft:pressure_chamber/capacitor'})
-    event.custom({
+    custom({
         "type": "pneumaticcraft:pressure_chamber",
         "inputs": [
             {
@@ -2128,7 +2132,7 @@ ServerEvents.recipes(event => {
 
     // 晶体管
     event.remove({id: 'pneumaticcraft:pressure_chamber/transistor'})
-    event.custom({
+    custom({
         "type": "pneumaticcraft:pressure_chamber",
         "inputs": [
             {
@@ -2166,7 +2170,7 @@ ServerEvents.recipes(event => {
 
     // 亚玛龙平板
     removeOutput('pneumaticcraft:amadron_tablet')
-    event.custom({
+    custom({
         "type": "create:mechanical_crafting",
         "acceptMirrored": true,
         "key": {
@@ -2235,7 +2239,7 @@ ServerEvents.recipes(event => {
 
     // 金色粉笔
     removeOutput('occultism:chalk_gold_impure')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:amadron",
         "input": {
             "type": "ITEM",
@@ -2251,7 +2255,7 @@ ServerEvents.recipes(event => {
         "static": true
     })
     removeOutput('occultism:chalk_gold')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -2275,7 +2279,7 @@ ServerEvents.recipes(event => {
 
     // finishedPCB
     removeOutput('pneumaticcraft:printed_circuit_board')
-    event.custom({
+    custom({
         "type": "occultism:ritual",
         "ritual_type": "occultism:craft",
         "activation_item": {
@@ -2323,7 +2327,7 @@ ServerEvents.recipes(event => {
 
     // 血能注入之星
     removeOutput('evilcraft:blood_infusion_core')
-    event.custom({
+    custom({
         "type": "minecraft:crafting_shaped",
         "pattern": [
             "SRS",
@@ -2347,7 +2351,7 @@ ServerEvents.recipes(event => {
     })
 
     // 漆包线
-    event.custom({
+    custom({
         "type": "pneumaticcraft:assembly_laser",
         "input": {
             "item": 'spongefactory:ignition_coil'
@@ -2448,7 +2452,7 @@ ServerEvents.recipes(event => {
     )
 
     // 绝缘覆层片
-    event.custom({
+    custom({
         "type": "ad_astra:compressing",
         "input": {
             "item": 'powah:dielectric_paste'
@@ -2538,7 +2542,7 @@ ServerEvents.recipes(event => {
     event.remove({id: 'pneumaticcraft:refinery/oil_4'})
     event.remove({id: 'pneumaticcraft:refinery/oil_3'})
     event.remove({id: 'pneumaticcraft:refinery/oil_2'})
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2568,7 +2572,7 @@ ServerEvents.recipes(event => {
             "max_temp": 673
         }
     }).id('pneumaticcraft:refinery/oil_4')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2594,7 +2598,7 @@ ServerEvents.recipes(event => {
             "max_temp": 673
         }
     }).id('pneumaticcraft:refinery/oil_3')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2619,7 +2623,7 @@ ServerEvents.recipes(event => {
 
     // 沉浸原油 - 精馏塔
     event.remove({type: 'immersivepetroleum:distillation'})
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2644,7 +2648,7 @@ ServerEvents.recipes(event => {
             "min_temp": 873
         }
     })
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2665,7 +2669,7 @@ ServerEvents.recipes(event => {
             "min_temp": 873
         }
     })
-    event.custom({
+    custom({
         "type": "pneumaticcraft:refinery",
         "input": {
             "type": "pneumaticcraft:fluid",
@@ -2692,7 +2696,7 @@ ServerEvents.recipes(event => {
     })
 
     // 精炼配方
-    event.custom({
+    custom({
         "type": "thermal:refinery",
         "ingredient": {
             "fluid": "immersivepetroleum:ethylene",
@@ -2710,7 +2714,7 @@ ServerEvents.recipes(event => {
         ],
         "energy": 1024
     })
-    event.custom({
+    custom({
         "type": "thermal:refinery",
         "ingredient": {
             "fluid": "immersivepetroleum:propylene",
@@ -2728,7 +2732,7 @@ ServerEvents.recipes(event => {
         ],
         "energy": 1024
     })
-    event.custom({
+    custom({
         "type": "thermal:refinery",
         "ingredient": {
             "fluid_tag": "forge:lubricant",
@@ -2746,7 +2750,7 @@ ServerEvents.recipes(event => {
         ],
         "energy": 512
     })
-    event.custom({
+    custom({
         "type": "thermal:refinery",
         "ingredient": {
             "fluid_tag": "forge:diesel_sulfur",
@@ -2764,7 +2768,7 @@ ServerEvents.recipes(event => {
         ],
         "energy": 512
     })
-    event.custom({
+    custom({
         "type": "thermal:refinery",
         "ingredient": {
             "fluid_tag": "forge:naphtha",
@@ -2794,7 +2798,7 @@ ServerEvents.recipes(event => {
             'gloomy_sculk'
         ], -1, 1
     ).id('spongefactory:gloomy_sculk')
-    event.custom({
+    custom({
         "type": "botanypots:crop",
         "seed": {
             "item": 'deeperdarker:gloomy_cactus'
@@ -2820,13 +2824,13 @@ ServerEvents.recipes(event => {
 
     // 高定向热解石墨
     removeOutput('immersiveengineering:dust_hop_graphite')
-    event.custom({
+    custom({
         "type": "immersiveengineering:squeezer",
         "energy": 19200,
         "input": {"base_ingredient": {"tag": "forge:dusts/coal_coke"}, "count": 8},
         "result": {"item": 'spongefactory:high_temperature_deposition_substrate'}
     })
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": false,
@@ -2848,7 +2852,7 @@ ServerEvents.recipes(event => {
         }
     })
     removeOutput('immersiveengineering:ingot_hop_graphite')
-    event.custom({
+    custom({
         "type": "immersiveengineering:metal_press",
         "conditions": [{"type": "forge:not", "value": {"type": "forge:tag_empty", "tag": 'forge:ingots/hop_graphite'}}],
         "energy": 3800,
@@ -2858,7 +2862,7 @@ ServerEvents.recipes(event => {
     })
 
     // 紫色粉笔
-    event.custom({
+    custom({
         "type": "immersiveengineering:arc_furnace",
         "additives": [{"item": 'architects_palette:oracle_jelly'}, {"tag": 'forge:dusts/obsidian'}],
         "energy": 12800,
@@ -2868,7 +2872,7 @@ ServerEvents.recipes(event => {
     })
     removeOutput('occultism:chalk_purple_impure')
     removeOutput('occultism:chalk_purple')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -2935,7 +2939,7 @@ ServerEvents.recipes(event => {
 
     // 烈焰之眼
     removeOutput('naturesaura:fortress_finder')
-    event.custom({
+    custom({
         "type": "occultism:ritual",
         "ritual_type": "occultism:craft",
         "activation_item": {
@@ -2973,7 +2977,7 @@ ServerEvents.recipes(event => {
 
     // 潜影之眼
     removeOutput('naturesaura:end_city_finder')
-    event.custom({
+    custom({
         "type": "occultism:spirit_fire",
         "ingredient": {
             "item": 'naturesaura:fortress_finder'
@@ -2984,7 +2988,7 @@ ServerEvents.recipes(event => {
     })
 
     // 空间链接之眼
-    event.custom({
+    custom({
         "type": "occultism:ritual",
         "ritual_type": "occultism:craft",
         "activation_item": {
@@ -3022,7 +3026,7 @@ ServerEvents.recipes(event => {
 
     // 维度矩阵
     removeOutput('occultism:dimensional_matrix')
-    event.custom({
+    custom({
         type: 'compactcrafting:miniaturization',
         version: 1,
         recipeSize: 3,
@@ -3069,7 +3073,7 @@ ServerEvents.recipes(event => {
     })
 
     // 传送门框架
-    event.custom({
+    custom({
         type: 'compactcrafting:miniaturization',
         version: 1,
         recipeSize: 3,
@@ -3120,7 +3124,7 @@ ServerEvents.recipes(event => {
     event.shapeless('jamd:mine_portal_block', [Item.of('minecraft:netherite_pickaxe', '{Damage:0}'), 'spongefactory:portal_frame'])
     // 虚空世界传送门
     removeOutput('javd:portal_block')
-    event.shapeless('javd:portal_block', [Item.of('naturesaura:aura_bottle', '{stored_type:"naturesaura:end"}'), 'spongefactory:portal_frame'])
+    event.shapeless('javd:portal_block', [Item.of('naturesaura:aura_bottle', '{stored_type:"naturesaura:end"}').weakNBT(), 'spongefactory:portal_frame'])
 
     // 杆注魔
     event.replaceInput({output: 'thermal:chiller_rod_cast'}, 'minecraft:blaze_rod', 'occultism:chalk_purple')
@@ -3152,7 +3156,7 @@ ServerEvents.recipes(event => {
     // 通用机械粉碎机
     event.recipes.mekanismCrushing('mekanism:dust_obsidian', 'minecraft:obsidian')
     // 沉浸粉碎机
-    event.custom({
+    custom({
         "type": "immersiveengineering:crusher",
         "energy": 1600,
         "input": {"item": 'minecraft:obsidian'},
@@ -3164,7 +3168,7 @@ ServerEvents.recipes(event => {
     event.remove({type: 'occultism:crushing'})
 
     // 胶子
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3175,7 +3179,7 @@ ServerEvents.recipes(event => {
             "gas": "spongefactory:boson"
         }
     })
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3186,7 +3190,7 @@ ServerEvents.recipes(event => {
             "gas": "spongefactory:boson"
         }
     })
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3197,7 +3201,7 @@ ServerEvents.recipes(event => {
             "gas": "spongefactory:gluon"
         }
     })
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3208,7 +3212,7 @@ ServerEvents.recipes(event => {
             "gas": "spongefactory:gluon"
         }
     })
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3219,7 +3223,7 @@ ServerEvents.recipes(event => {
             "gas": "spongefactory:gluon"
         }
     })
-    event.custom({
+    custom({
         "type": "spongefactory:mass_energy_converting",
         "input": {
             "amount": 10,
@@ -3233,7 +3237,7 @@ ServerEvents.recipes(event => {
 
     // 黑铁锭
     event.remove({id: 'extendedcrafting:black_iron_ingot'})
-    event.custom({
+    custom({
         "type": "lychee:item_inside",
         "item_in": [
             {
@@ -3257,7 +3261,7 @@ ServerEvents.recipes(event => {
 
     // 异界石基座
     removeOutput('occultism:otherstone_pedestal')
-    event.custom({
+    custom({
         "type": "extendedcrafting:shaped_table",
         "pattern": [
             "S   S",
@@ -3292,7 +3296,7 @@ ServerEvents.recipes(event => {
     )
 
     // 黑石锭
-    event.custom({
+    custom({
         "type": "minecraft:blasting",
         "ingredient": {
             "item": 'spongefactory:blackstone_with_iron'
@@ -3301,7 +3305,7 @@ ServerEvents.recipes(event => {
         "experience": 0.1,
         "cookingtime": 125
     })
-    event.custom({
+    custom({
         "type": "minecraft:smelting",
         "ingredient": {
             "item": 'spongefactory:blackstone_with_iron'
@@ -3316,7 +3320,7 @@ ServerEvents.recipes(event => {
     bottleItem('mysticalagriculture:inferium_essence', 'spongefactory:glowstone', 500, 'extendedcrafting:luminessence')
 
     // 强化荧石
-    event.custom({
+    custom({
         "type": "immersiveengineering:fermenter",
         "energy": 6400,
         "fluid": {
@@ -3330,7 +3334,7 @@ ServerEvents.recipes(event => {
 
     // 基础合成催化剂
     removeOutput('extendedcrafting:basic_catalyst')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:pressure_chamber",
         "inputs": [
             {
@@ -3351,7 +3355,7 @@ ServerEvents.recipes(event => {
     })
 
     // 忧郁提取物
-    event.custom({
+    custom({
         "type": "immersiveengineering:squeezer",
         "energy": 6400,
         "fluid": {
@@ -3362,12 +3366,27 @@ ServerEvents.recipes(event => {
             "item": 'deeperdarker:gloomy_cactus'
         }
     })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'deeperdarker:gloomy_cactus'
+            }
+        ],
+        "result": [
+            {
+                "fluid": 'spongefactory:gloomy_extract',
+                "amount": 50
+            }
+        ],
+        "energy": 6400
+    })
 
     // 高级合成组件、催化剂
     removeOutput('extendedcrafting:advanced_component')
     bottleItem('extendedcrafting:basic_component', 'spongefactory:gloomy_extract', 500, 'extendedcrafting:advanced_component')
     removeOutput('extendedcrafting:advanced_catalyst')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:pressure_chamber",
         "inputs": [
             {
@@ -3389,7 +3408,7 @@ ServerEvents.recipes(event => {
 
     // 高级合成台
     removeOutput('extendedcrafting:advanced_table')
-    event.custom({
+    custom({
         "type": "extendedcrafting:shaped_table",
         "pattern": [
             "ABA",
@@ -3419,7 +3438,7 @@ ServerEvents.recipes(event => {
     })
 
     // 盐水
-    event.custom({
+    custom({
         "type": "immersiveengineering:mixer",
         "energy": 3200,
         "fluid": {
@@ -3436,7 +3455,7 @@ ServerEvents.recipes(event => {
     })
 
     // 稀硫酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3458,7 +3477,7 @@ ServerEvents.recipes(event => {
             "min_temp": 1073
         }
     })
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 500,
@@ -3478,7 +3497,7 @@ ServerEvents.recipes(event => {
         "time": 50
     })
     // 发烟硫酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3502,7 +3521,7 @@ ServerEvents.recipes(event => {
         }
     })
     // 硫酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 500,
@@ -3523,7 +3542,7 @@ ServerEvents.recipes(event => {
     })
 
     // 盐酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3547,7 +3566,7 @@ ServerEvents.recipes(event => {
     })
 
     // 硝酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3571,7 +3590,7 @@ ServerEvents.recipes(event => {
     })
 
     // 王水
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 200,
@@ -3592,7 +3611,7 @@ ServerEvents.recipes(event => {
     })
 
     // 氯金酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3613,7 +3632,7 @@ ServerEvents.recipes(event => {
     })
 
     // 金电镀液
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 1000,
@@ -3634,7 +3653,7 @@ ServerEvents.recipes(event => {
     })
 
     // 氯金酸
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3659,7 +3678,7 @@ ServerEvents.recipes(event => {
 
     // 存储促动基座
     removeOutput('occultism:storage_controller_base')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -3682,7 +3701,7 @@ ServerEvents.recipes(event => {
     })
 
     // 存储稳定器基座
-    event.custom({
+    custom({
         "type": "extendedcrafting:shaped_table",
         "pattern": [
             "A   A",
@@ -3716,7 +3735,7 @@ ServerEvents.recipes(event => {
     pressMetalToPlate('spongefactory:source_steel_ingot', 'spongefactory:source_steel_plate')
 
     // 魔源钢锭
-    event.custom({
+    custom({
         "type": "ars_nouveau:imbuement",
         "count": 1,
         "input": {
@@ -3728,7 +3747,7 @@ ServerEvents.recipes(event => {
     })
 
     // 空白插件
-    event.custom({
+    custom({
         "type": "extendedcrafting:shaped_table",
         "pattern": [
             "  A  ",
@@ -3757,7 +3776,7 @@ ServerEvents.recipes(event => {
 
     // 低级机器框架
     removeOutput('industrialforegoing:machine_frame_pity')
-    event.custom({
+    custom({
         type: 'compactcrafting:miniaturization',
         version: 1,
         recipeSize: 3,
@@ -3808,7 +3827,7 @@ ServerEvents.recipes(event => {
     })
 
     // 硫酸锌
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 1.0,
         "exothermic": true,
@@ -3829,7 +3848,7 @@ ServerEvents.recipes(event => {
     })
 
     // 锌电镀液
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "fluid_output": {
             "amount": 1000,
@@ -3850,7 +3869,7 @@ ServerEvents.recipes(event => {
     })
 
     // 镀金黄铜
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -3906,7 +3925,7 @@ ServerEvents.recipes(event => {
     )
 
     // 未处理的机器框架
-    event.custom({
+    custom({
         type: 'compactcrafting:miniaturization',
         version: 1,
         recipeSize: 3,
@@ -3958,7 +3977,7 @@ ServerEvents.recipes(event => {
 
     // 机器框架
     removeOutput('thermal:machine_frame')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -3985,7 +4004,7 @@ ServerEvents.recipes(event => {
     event.remove({output: '#forge:gears', type: 'immersiveengineering:metal_press'})
 
     // 钻石齿轮
-    event.custom({
+    custom({
         "type": "immersiveengineering:metal_press",
         "conditions": [
             {
@@ -4011,7 +4030,7 @@ ServerEvents.recipes(event => {
 
     // 粉碎之魔符
     removeOutput("ars_nouveau:glyph_crush")
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 55,
@@ -4053,7 +4072,7 @@ ServerEvents.recipes(event => {
     event.recipes.thermal.pulverizer('spongefactory:source_steel_dust', 'spongefactory:source_steel_ingot')
     event.recipes.mekanismCrushing('spongefactory:source_steel_dust', 'spongefactory:source_steel_ingot')
     // 魔源钢粉到魔源钢锭
-    event.custom({
+    custom({
         "type": "minecraft:blasting",
         "ingredient": {
             "item": 'spongefactory:source_steel_dust'
@@ -4062,7 +4081,7 @@ ServerEvents.recipes(event => {
         "experience": 0.1,
         "cookingtime": 125
     })
-    event.custom({
+    custom({
         "type": "minecraft:smelting",
         "ingredient": {
             "item": 'spongefactory:source_steel_dust'
@@ -4077,7 +4096,7 @@ ServerEvents.recipes(event => {
 
     // 分裂之魔符
     removeOutput("ars_nouveau:glyph_split")
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 160,
@@ -4103,7 +4122,7 @@ ServerEvents.recipes(event => {
 
     // 交换之魔符
     removeOutput("ars_nouveau:glyph_exchange")
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 55,
@@ -4162,7 +4181,7 @@ ServerEvents.recipes(event => {
     )
 
     // 氢氧化钾粉
-    event.custom({
+    custom({
         "type": "thermal:crystallizer",
         "ingredients": [
             {
@@ -4181,7 +4200,7 @@ ServerEvents.recipes(event => {
     })
 
     // 钻石齿轮
-    event.custom({
+    custom({
         "type": "thermal:press",
         "ingredients": [
             {
@@ -4199,7 +4218,7 @@ ServerEvents.recipes(event => {
         ]
     })
     // 石英齿轮
-    event.custom({
+    custom({
         "type": "thermal:press",
         "ingredients": [
             {
@@ -4217,7 +4236,7 @@ ServerEvents.recipes(event => {
         ]
     })
     // 绿宝石齿轮
-    event.custom({
+    custom({
         "type": "thermal:press",
         "ingredients": [
             {
@@ -4235,7 +4254,7 @@ ServerEvents.recipes(event => {
         ]
     })
     // 青金石齿轮
-    event.custom({
+    custom({
         "type": "thermal:press",
         "ingredients": [
             {
@@ -4253,7 +4272,7 @@ ServerEvents.recipes(event => {
         ]
     })
     // 魔源钢齿轮
-    event.custom({
+    custom({
         "type": "thermal:press",
         "ingredients": [
             {
@@ -4287,7 +4306,7 @@ ServerEvents.recipes(event => {
 
     // 破坏之魔符
     removeOutput('ars_nouveau:glyph_break')
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 55,
@@ -4322,7 +4341,7 @@ ServerEvents.recipes(event => {
     )
 
     // 钙
-    event.custom({
+    custom({
         "type": "immersiveengineering:arc_furnace",
         "additives": [
             {
@@ -4346,7 +4365,7 @@ ServerEvents.recipes(event => {
 
     // 盛装流体之魔符
     removeOutput('starbunclemania:glyph_pickup_fluid')
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 55,
@@ -4394,7 +4413,7 @@ ServerEvents.recipes(event => {
     event.remove({input: 'thermal:earth_charge', output: '#forge:dusts/ender_pearl'})
 
     // 硝酸钠
-    event.custom({
+    custom({
         "type": "industrialforegoing:dissolution_chamber",
         "input": [
             {
@@ -4410,7 +4429,7 @@ ServerEvents.recipes(event => {
     })
 
     // 亚硝酸钠
-    event.custom({
+    custom({
         "type": "minecraft:smelting",
         "ingredient": {
             "item": 'spongefactory:sodium_nitrate'
@@ -4422,7 +4441,7 @@ ServerEvents.recipes(event => {
 
     // 冻结之魔符
     removeOutput("ars_nouveau:glyph_freeze")
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 27,
@@ -4474,7 +4493,7 @@ ServerEvents.recipes(event => {
     )
 
     // 熔融钾
-    event.custom({
+    custom({
         "type": "industrialforegoing:dissolution_chamber",
         "input": [
             {
@@ -4491,7 +4510,7 @@ ServerEvents.recipes(event => {
     })
 
     // 熔融钠
-    event.custom({
+    custom({
         "type": "industrialforegoing:dissolution_chamber",
         "input": [
             {
@@ -4532,7 +4551,7 @@ ServerEvents.recipes(event => {
     event.replaceInput({output: 'pipez:fluid_pipe'}, 'minecraft:iron_ingot', 'immersiveengineering:plate_duroplast')
 
     // 四氯化钛
-    event.custom({
+    custom({
         "type": "industrialforegoing:dissolution_chamber",
         "input": [
             {
@@ -4555,7 +4574,7 @@ ServerEvents.recipes(event => {
     })
 
     // 次氯酸盐
-    event.custom({
+    custom({
         "type": "pneumaticcraft:amadron",
         "input": {
             "type": "ITEM",
@@ -4572,7 +4591,7 @@ ServerEvents.recipes(event => {
     })
 
     // 钛
-    event.custom({
+    custom({
         "type": "pneumaticcraft:fluid_mixer",
         "input1": {
             "type": "pneumaticcraft:fluid",
@@ -4593,7 +4612,7 @@ ServerEvents.recipes(event => {
 
     // 钛种子
     event.remove({id: 'mysticalagriculture:seed/infusion/titanium'})
-    event.custom({
+    custom({
         "type": "mysticalagriculture:infusion",
         "ingredients": [
             {
@@ -4646,7 +4665,7 @@ ServerEvents.recipes(event => {
     moltenIngot('spongefactory:potassium_ingot', "spongefactory:molten_potassium")
 
     // 磁感应线圈
-    event.custom({
+    custom({
         "type": "extendedcrafting:shaped_table",
         "pattern": [
             "   AA",
@@ -4683,7 +4702,7 @@ ServerEvents.recipes(event => {
 
     // flammable
     removeOutput('ars_elemental:glyph_not_fiery_filter')
-    event.custom({
+    custom({
         "type": "ars_nouveau:glyph",
         "count": 1,
         "exp": 27,
@@ -4718,7 +4737,7 @@ ServerEvents.recipes(event => {
 
     // 法术之花种子
     event.remove({id: 'ars_nouveau:magebloom_crop'})
-    event.custom({
+    custom({
         "type": "thermal:smelter",
         "ingredients": [
             {
@@ -4785,7 +4804,7 @@ ServerEvents.recipes(event => {
 
     // 时间之瓶
     removeOutput('tiab:time_in_a_bottle')
-    event.custom({
+    custom({
         "type": "thermal:smelter",
         "ingredients": [
             {
@@ -4826,7 +4845,7 @@ ServerEvents.recipes(event => {
     removeOutput('occultism:storage_stabilizer_tier1')
     removeOutput('occultism:storage_stabilizer_tier2')
     removeOutput('occultism:storage_stabilizer_tier3')
-    event.custom({
+    custom({
         "type": "pneumaticcraft:thermo_plant",
         "air_use_multiplier": 5.0,
         "exothermic": false,
@@ -4847,4 +4866,1647 @@ ServerEvents.recipes(event => {
             "min_temp": 673
         }
     })
+
+    // 热解炉
+    removeOutput('thermal:machine_pyrolyzer')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:burst',
+            'spongefactory:induction_coil',
+            'minecraft:blaze_rod',
+            'industrialforegoing:dissolution_chamber'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_pyrolyzer',
+        3000,
+    )
+
+    // 紫颂脂
+    custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 50,
+            "fluid": 'spongefactory:chorus_juice'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 150,
+            "fluid": 'spongefactory:chorus_oil'
+        },
+        "item_output": {
+            "item": 'spongefactory:chorus_butter'
+        },
+        "pressure": 1,
+        "time": 20
+    })
+
+    // 紫颂油
+    custom({
+        "type": "thermal:pyrolyzer",
+        "ingredient": {
+            "item": 'minecraft:popped_chorus_fruit'
+        },
+        "result": [{
+            "fluid": 'spongefactory:chorus_oil',
+            "amount": 100
+        }
+        ],
+        "experience": 0.1
+    })
+    custom({
+        "type": "thermal:pyrolyzer",
+        "ingredient": {
+            "item": 'minecraft:chorus_plant'
+        },
+        "result": [{
+            "fluid": 'spongefactory:chorus_oil',
+            "amount": 50
+        }
+        ],
+        "experience": 0.1
+    })
+
+    // 紫颂汁
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:chorus_fruit'
+            }
+        ],
+        "result": [
+            {
+                "fluid": 'spongefactory:chorus_juice',
+                "amount": 100
+            }
+        ],
+        "energy": 2400
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:chorus_flower'
+            }
+        ],
+        "result": [
+            {
+                "fluid": 'spongefactory:chorus_juice',
+                "amount": 150
+            }
+        ],
+        "energy": 2400
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:chorus_plant'
+            }
+        ],
+        "result": [
+            {
+                "fluid": 'spongefactory:chorus_juice',
+                "amount": 50
+            }
+        ],
+        "energy": 2400
+    })
+
+    // 紫颂锭
+    custom({
+        "type": "thermal:smelter",
+        "ingredients": [
+            {
+                "value": [
+                    {
+                        "item": 'spongefactory:titanium_ingot'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'spongefactory:chorus_butter'
+                    }
+                ],
+                "count": 3
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:chorus_ingot',
+                "count": 1
+            }
+        ],
+        "energy": 2400
+    })
+
+    // 发射之魔符
+    removeOutput('ars_nouveau:glyph_launch')
+    custom({
+        "type": "ars_nouveau:glyph",
+        "count": 1,
+        "exp": 27,
+        "inputItems": [
+            {
+                "item": {
+                    "item": "ars_nouveau:air_essence"
+                }
+            },
+            {
+                "item": {
+                    "item": 'spongefactory:chorus_ingot'
+                }
+            },
+            {
+                "item": {
+                    "item": 'spongefactory:chorus_ingot'
+                }
+            },
+            {
+                "item": {
+                    "item": 'minecraft:dispenser'
+                }
+            }
+        ],
+        "output": "ars_nouveau:glyph_launch"
+    })
+
+    // 流体灌装机
+    removeOutput('thermal:machine_bottler')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_launch',
+            'create:spout',
+            'minecraft:bucket',
+            'evilcraft:blood_infuser'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_bottler',
+        3000,
+    )
+
+    // 红石通量线圈
+    removeOutput('thermal:rf_coil')
+    custom({
+        "type": "thermal:bottler",
+        "ingredients": [
+            {
+                "item": 'spongefactory:induction_coil'
+            },
+            {
+                "fluid": 'spongefactory:molten_signalum',
+                "amount": 500
+            }
+        ],
+        "result": [
+            {
+                "item": 'thermal:rf_coil'
+            }
+        ]
+    })
+
+    // 插件Tier1
+    removeOutput('industrialforegoing:speed_addon_1')
+    custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'spongefactory:blank_addon'
+            },
+            {
+                "item": "minecraft:sugar"
+            },
+            {
+                "item": "minecraft:sugar"
+            },
+            {
+                "item": 'thermal:rf_coil'
+            },
+            {
+                "item": 'thermal:rf_coil'
+            }
+        ],
+        "inputFluid": "{Amount:500,FluidName:\"spongefactory:chorus_oil\"}",
+        "output": {
+            "count": 1,
+            "item": "industrialforegoing:speed_addon_1",
+            "nbt": "{TitaniumAugment:{Speed:2.0f}}"
+        },
+        "processingTime": 200
+    })
+    removeOutput('industrialforegoing:efficiency_addon_1')
+    custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'spongefactory:blank_addon'
+            },
+            {
+                "item": 'thermal:rf_coil'
+            },
+            {
+                "item": 'thermal:rf_coil'
+            },
+            {
+                "item": "minecraft:blaze_rod"
+            },
+            {
+                "item": "minecraft:blaze_rod"
+            }
+        ],
+        "inputFluid": "{Amount:500,FluidName:\"spongefactory:chorus_oil\"}",
+        "output": {
+            "count": 1,
+            "item": "industrialforegoing:efficiency_addon_1",
+            "nbt": "{TitaniumAugment:{Efficiency:0.9f}}"
+        },
+        "processingTime": 200
+    })
+    removeOutput("industrialforegoing:processing_addon_1")
+    custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'spongefactory:blank_addon'
+            },
+            {
+                "item": 'thermal:rf_coil'
+            },
+            {
+                "item": 'thermal:rf_coil'
+            },
+            {
+                "item": "minecraft:furnace"
+            },
+            {
+                "item": "minecraft:crafting_table"
+            }
+        ],
+        "inputFluid": "{Amount:500,FluidName:\"spongefactory:chorus_oil\"}",
+        "output": {
+            "count": 1,
+            "item": "industrialforegoing:processing_addon_1",
+            "nbt": "{TitaniumAugment:{Processing:2.0f}}"
+        },
+        "processingTime": 200
+    })
+
+    // 范围升级
+    let rangeAddonMaterial = [
+        'minecraft:copper_ingot',
+        'minecraft:iron_ingot',
+        'minecraft:gold_ingot',
+        'minecraft:diamond',
+        'minecraft:netherite_ingot',
+        'minecraft:nether_star',
+        'minecraft:dragon_egg',
+        'minecraft:netherite_block',
+        'mysticalagriculture:tertium_ingot_block',
+        'mysticalagriculture:imperium_ingot_block',
+        'mysticalagriculture:supremium_ingot_block',
+        'mysticalagradditions:insanium_ingot_block'
+    ]
+    for (let i = 0; i <= 11; i++) {
+        removeOutput('industrialforegoing:range_addon' + i)
+        if (i === 0) {
+            custom({
+                "type": "industrialforegoing:dissolution_chamber",
+                "input": [
+                    {
+                        "item": 'spongefactory:blank_addon'
+                    },
+                    {
+                        "item": 'spongefactory:chorus_butter'
+                    },
+                    {
+                        "item": 'spongefactory:chorus_butter'
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    }
+                ],
+                "inputFluid": "{Amount:500,FluidName:\"spongefactory:chorus_juice\"}",
+                "output": {
+                    "count": 1,
+                    "item": "industrialforegoing:range_addon" + i,
+                    "nbt": "{TitaniumAugment:{Range:" + i + ".0f}}"
+                },
+                "processingTime": (200 * (i + 1))
+            })
+        } else {
+            custom({
+                "type": "industrialforegoing:dissolution_chamber",
+                "input": [
+                    {
+                        "item": 'industrialforegoing:range_addon' + (i - 1),
+                        "nbt": "{TitaniumAugment:{Range:" + (i - 1) + ".0f}}"
+                    },
+                    {
+                        "item": 'spongefactory:chorus_butter'
+                    },
+                    {
+                        "item": 'spongefactory:chorus_butter'
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    },
+                    {
+                        "item": rangeAddonMaterial[i]
+                    }
+                ],
+                "inputFluid": "{Amount:500,FluidName:\"spongefactory:chorus_juice\"}",
+                "output": {
+                    "count": 1,
+                    "item": "industrialforegoing:range_addon" + i,
+                    "nbt": "{TitaniumAugment:{Range:" + i + ".0f}}"
+                },
+                "processingTime": (200 * (i + 1))
+            })
+
+        }
+    }
+
+    // 发射台
+    removeOutput('ad_astra:launch_pad')
+    custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            " AAA ",
+            "AAAAA"
+        ],
+        "key": {
+            "A": {
+                "item": "thermal:steel_block"
+            }
+        },
+        "result": {
+            "item": 'ad_astra:launch_pad'
+        }
+    })
+
+    // NASA 工作台
+    removeOutput('ad_astra:nasa_workbench')
+    custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "  A  ",
+            " BCD ",
+            " EFG ",
+            " FHF ",
+            "  F  "
+        ],
+        "key": {
+            "A": {
+                "item": "pneumaticcraft:assembly_drill"
+            },
+            "B": {
+                "item": "pneumaticcraft:assembly_laser"
+            },
+            "C": {
+                "item": "pneumaticcraft:assembly_platform"
+            },
+            "D": {
+                "item": "pneumaticcraft:assembly_io_unit_export"
+            },
+            "E": {
+                "item": "pneumaticcraft:assembly_io_unit_import"
+            },
+            "F": {
+                "item": "thermal:signalum_plate"
+            },
+            "G": {
+                "item": "pneumaticcraft:assembly_controller"
+            },
+            "H": {
+                "item": "thermal:steel_block"
+            }
+        },
+        "result": {
+            "item": 'ad_astra:nasa_workbench'
+        }
+    })
+
+    // 末影锭
+    removeOutput('extendedcrafting:ender_ingot')
+    custom({
+        "type": "thermal:bottler",
+        "ingredients": [
+            {
+                "item": 'spongefactory:chorus_ingot'
+            },
+            {
+                "fluid": 'thermal:ender',
+                "amount": 500
+            }
+        ],
+        "result": [
+            {
+                "item": 'extendedcrafting:ender_ingot'
+            }
+        ]
+    })
+
+    // 末影发电机
+    removeOutput('extendedcrafting:ender_alternator')
+    event.shaped('extendedcrafting:ender_alternator',
+        [
+            ' S ',
+            ' S ',
+            'MMM'
+        ], {
+            M: 'extendedcrafting:ender_ingot_block',
+            S: 'minecraft:ender_eye'
+        }
+    )
+
+    // 药水酿造机
+    removeOutput('thermal:machine_brewer')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_elemental:glyph_poison_spores',
+            'minecraft:brewing_stand',
+            'minecraft:bucket',
+            'thermal:rf_coil'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_brewer',
+        3000,
+    )
+
+    // 流体精炼机
+    removeOutput('thermal:machine_refinery')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'toomanyglyphs:glyph_filter_block',
+            'pneumaticcraft:refinery',
+            'pneumaticcraft:refinery_output',
+            'thermal:rf_coil'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_refinery',
+        3000,
+    )
+
+    // 对二甲苯
+    custom({
+        "type": "thermal:pyrolyzer",
+        "ingredient": {
+            "item": 'thermal_extra:sticky_ball'
+        },
+        "result": [{
+            "fluid": 'spongefactory:p_xylene',
+            "amount": 50
+        }
+        ]
+    })
+
+    // 对苯二甲酸
+    custom({
+        "type": "thermal:chiller",
+        "ingredients": [
+            {
+                "fluid": 'spongefactory:p_xylene',
+                "amount": 100
+            },
+            {
+                "item": 'thermal:iron_plate'
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:terephthalic_acid',
+                "count": 1
+            }
+        ],
+        "energy": 1000
+    })
+
+    // 苯二甲酰氯
+    custom({
+        "type": "thermal:brewer",
+        "ingredients": [
+            {
+                "item": 'spongefactory:terephthalic_acid'
+            },
+            {
+                "fluid_tag": 'forge:benzene',
+                "amount": 100
+            }
+        ],
+        "result": [
+            {
+                "fluid": 'spongefactory:phthaloyl_chloride',
+                "amount": 100
+            }
+        ],
+        "energy": 1000
+    })
+
+    // 对苯二胺
+    custom({
+        "type": "pneumaticcraft:thermo_plant",
+        "air_use_multiplier": 5.0,
+        "exothermic": false,
+        "fluid_input": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": "immersivepetroleum:benzene"
+        },
+        "item_output": {
+            "item": 'spongefactory:p_phenylenediamine'
+        },
+        "pressure": 4,
+        "speed": 0.1
+    })
+
+    // 苯二酐
+    custom({
+        "type": "pneumaticcraft:fluid_mixer",
+        "input1": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 50,
+            "fluid": 'spongefactory:nitric_acid'
+        },
+        "input2": {
+            "type": "pneumaticcraft:fluid",
+            "amount": 100,
+            "fluid": "immersivepetroleum:benzene"
+        },
+        "item_output": {
+            "item": 'spongefactory:phthalic_anhydride'
+        },
+        "pressure": 4,
+        "time": 20
+    })
+
+    // Kevlar
+    custom({
+        "type": "thermal:crystallizer",
+        "ingredients": [
+            {
+                "fluid": 'spongefactory:phthaloyl_chloride',
+                "amount": 1000
+            },
+            {
+                "item": 'spongefactory:p_phenylenediamine'
+            },
+            {
+                "item": 'minecraft:white_dye'
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:kevlar'
+            }
+        ]
+    })
+
+    // Kapton
+    custom({
+        "type": "thermal:smelter",
+        "ingredients": [
+            {
+                "value": [
+                    {
+                        "item": 'spongefactory:phthalic_anhydride'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'spongefactory:p_phenylenediamine'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'minecraft:orange_dye'
+                    }
+                ],
+                "count": 1
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:kapton',
+                "count": 1
+            }
+        ],
+        "energy": 1800
+    })
+
+    // 弹性织物
+    event.shaped('spongefactory:elastic_fabric',
+        [
+            ' M ',
+            'MSM',
+            ' M '
+        ], {
+            M: '#forge:string',
+            S: 'thermal_extra:sticky_ball'
+        }
+    )
+
+    // 航天复合面料
+    event.shaped('spongefactory:aerospace_composite_fabric',
+        [
+            'A',
+            'S',
+            'M'
+        ], {
+            A: 'spongefactory:kevlar',
+            S: 'spongefactory:kapton',
+            M: 'spongefactory:elastic_fabric'
+        }
+    )
+
+    // 航天面罩
+    removeOutput('ad_astra:space_helmet')
+    event.shaped('ad_astra:space_helmet',
+        [
+            'SSS',
+            'SMS'
+        ], {
+            S: 'spongefactory:aerospace_composite_fabric',
+            M: 'minecraft:glass_pane'
+        }
+    )
+    // 航天服
+    removeOutput('ad_astra:space_suit')
+    event.shaped('ad_astra:space_suit',
+        [
+            'SAS',
+            'CSC',
+            'SSS'
+        ], {
+            S: 'spongefactory:aerospace_composite_fabric',
+            A: 'ad_astra:oxygen_gear',
+            C: 'ad_astra:oxygen_tank'
+        }
+    )
+    // 航天裤
+    removeOutput('ad_astra:space_pants')
+    event.shaped('ad_astra:space_pants',
+        [
+            'SSS',
+            'S S',
+            'S S'
+        ], {
+            S: 'spongefactory:aerospace_composite_fabric'
+        }
+    )
+    // 航天靴
+    removeOutput('ad_astra:space_boots')
+    event.shaped('ad_astra:space_boots',
+        [
+            'S S',
+            'S S'
+        ], {
+            S: 'spongefactory:aerospace_composite_fabric'
+        }
+    )
+
+    // 移除所有AE压印器的配方
+    event.remove({type: 'ae2:inscriber'})
+
+    // ae电路板
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'ae2:silicon',
+                "count": 1
+            },
+            {
+                "item": 'ae2:silicon_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_silicon'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'ae2:silicon',
+                "count": 1
+            },
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_silicon'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'thermal:lumium_ingot',
+                "count": 1
+            },
+            {
+                "item": 'ae2:logic_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_logic_processor'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'extendedcrafting:enhanced_ender_ingot',
+                "count": 1
+            },
+            {
+                "item": 'ae2:engineering_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_engineering_processor'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'thermal:enderium_ingot',
+                "count": 1
+            },
+            {
+                "item": 'ae2:calculation_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_calculation_processor'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'thermal:lumium_ingot',
+                "count": 1
+            },
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_logic_processor'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'extendedcrafting:enhanced_ender_ingot',
+                "count": 1
+            },
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_engineering_processor'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'thermal:enderium_ingot',
+                "count": 1
+            },
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:printed_calculation_processor'
+            }
+        ]
+    })
+
+    // 赛特斯石英粉
+    event.recipes.thermal.pulverizer('ae2:certus_quartz_dust', '#forge:gems/certus_quartz')
+
+    // 陨石粉
+    event.recipes.thermal.pulverizer('ae2:sky_dust', 'ad_astra:sky_stone')
+    event.recipes.thermal.pulverizer('ae2:sky_dust', 'ae2:sky_stone_block')
+
+    // 福禄伊克斯粉
+    event.recipes.thermal.pulverizer('ae2:fluix_dust', 'ae2:fluix_crystal')
+
+    // 末影粉->末影珍珠粉
+    event.replaceInput({}, 'ae2:ender_dust', 'thermal:ender_pearl_dust')
+
+    // 压印模板
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_block',
+                "count": 1
+            },
+            {
+                "item": 'ae2:silicon_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:silicon_press'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_block',
+                "count": 1
+            },
+            {
+                "item": 'ae2:logic_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:logic_processor_press'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_block',
+                "count": 1
+            },
+            {
+                "item": 'ae2:engineering_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:engineering_processor_press'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_block',
+                "count": 1
+            },
+            {
+                "item": 'ae2:calculation_processor_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:calculation_processor_press'
+            }
+        ]
+    })
+    custom({
+        "type": "thermal:press",
+        "ingredients": [
+            {
+                "item": 'minecraft:iron_block',
+                "count": 1
+            },
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:universal_press'
+            }
+        ]
+    })
+
+    // ae处理器
+    let aeProcessorTypes = ["calculation", "engineering", "logic"]
+    for (let type of aeProcessorTypes) {
+        custom({
+            "type": "thermal:smelter",
+            "ingredients": [
+                {
+                    "value": [
+                        {
+                            "item": 'minecraft:redstone'
+                        }
+                    ],
+                    "count": 1
+                },
+                {
+                    "value": [
+                        {
+                            "item": 'ae2:printed_' + type + '_processor'
+                        }
+                    ],
+                    "count": 1
+                },
+                {
+                    "value": [
+                        {
+                            "item": 'ae2:printed_silicon'
+                        }
+                    ],
+                    "count": 1
+                }
+            ],
+            "result": [
+                {
+                    "item": 'ae2:' + type + '_processor',
+                    "count": 1
+                }
+            ],
+            "energy": 3000
+        })
+    }
+
+    // MEGA大宗
+    custom({
+        "type": "thermal:smelter",
+        "ingredients": [
+            {
+                "value": [
+                    {
+                        "item": 'ae2:singularity'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'ae2:cell_component_256k'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'mekanism:radioactive_waste_barrel'
+                    }
+                ],
+                "count": 1
+            }
+        ],
+        "result": [
+            {
+                "item": 'megacells:radioactive_cell_component',
+                "count": 1
+            }
+        ],
+        "energy": 3000
+    })
+
+    // 通用压印模板
+    event.shapeless('spongefactory:universal_press', ['ae2:silicon_press', 'ae2:logic_processor_press', 'ae2:engineering_processor_press', 'ae2:calculation_processor_press'])
+
+    // MEGA放射性
+    custom({
+        "type": "thermal:smelter",
+        "ingredients": [
+            {
+                "value": [
+                    {
+                        "item": 'ae2:singularity'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'megacells:cell_component_16m'
+                    }
+                ],
+                "count": 1
+            },
+            {
+                "value": [
+                    {
+                        "item": 'ae2:spatial_cell_component_16'
+                    }
+                ],
+                "count": 1
+            }
+        ],
+        "result": [
+            {
+                "item": 'megacells:bulk_cell_component',
+                "count": 1
+            }
+        ],
+        "energy": 3000
+    })
+
+    // 砍伐之魔符
+    removeOutput('ars_nouveau:glyph_fell')
+    custom({
+        "type": "extendedcrafting:shapeless_ender_crafter",
+        "ingredients": [
+            {
+                "item": "thermal:saw_blade"
+            },
+            {
+                "item": "ars_nouveau:earth_essence"
+            },
+            {
+                "type": "forge:nbt",
+                "item": "minecraft:diamond_axe",
+                "count": 1
+            }
+        ],
+        "result": {
+            "item": 'ars_nouveau:glyph_fell'
+        }
+    })
+
+    // 锯木机
+    removeOutput('thermal:machine_sawmill')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_fell',
+            'thermal:saw_blade',
+            'ars_nouveau:glyph_split',
+            'thermal:rf_coil'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_sawmill',
+        3000,
+    )
+
+    // 压印模板
+    custom({
+        "type": "thermal:sawmill",
+        "ingredient": {
+            "item": 'ae2:mysterious_cube'
+        },
+        "result": [
+            {
+                "item": 'ae2:silicon_press',
+                "count": 1,
+                "chance": 0.5
+            },
+            {
+                "item": 'ae2:logic_processor_press',
+                "count": 1,
+                "chance": 0.5
+            },
+            {
+                "item": 'ae2:engineering_processor_press',
+                "count": 1,
+                "chance": 0.5
+            },
+            {
+                "item": 'ae2:calculation_processor_press',
+                "count": 1,
+                "chance": 0.5
+            }
+        ],
+        "energy": 5000
+    })
+
+    // 火箭控制电路
+    const enderiumPlate = 'thermal:enderium_plate'
+    event.recipes.create.sequenced_assembly('spongefactory:rocket_control_circuit', enderiumPlate, [
+        event.recipes.createDeploying(enderiumPlate, [enderiumPlate, 'ae2:engineering_processor']),
+        event.recipes.createDeploying(enderiumPlate, [enderiumPlate, 'ae2:logic_processor']),
+        event.recipes.createDeploying(enderiumPlate, [enderiumPlate, 'ae2:calculation_processor']),
+    ]).transitionalItem(enderiumPlate).loops(4)
+
+    // 火箭鼻锥
+    removeOutput('ad_astra:rocket_nose_cone')
+    custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "  A  ",
+            " ABA ",
+            "  C  ",
+            " CBC ",
+            "CCCCC"
+        ],
+        "key": {
+            "A": {
+                "item": "thermal:signalum_plate"
+            },
+            "B": {
+                "item": "spongefactory:rocket_control_circuit"
+            },
+            "C": {
+                "item": "thermal:steel_plate"
+            }
+        },
+        "result": {
+            "item": 'ad_astra:rocket_nose_cone'
+        }
+    })
+
+    // 火箭尾翼
+    removeOutput('ad_astra:rocket_fin')
+    custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            "  A  ",
+            " ABA ",
+            "ABABA",
+            "AA AA",
+            "A   A"
+        ],
+        "key": {
+            "A": {
+                "item": "thermal:steel_plate"
+            },
+            "B": {
+                "item": "spongefactory:rocket_control_circuit"
+            }
+        },
+        "result": {
+            "item": 'ad_astra:rocket_fin'
+        }
+    })
+
+    // 钢引擎
+    removeOutput('ad_astra:steel_engine')
+    custom({
+        "type": "extendedcrafting:shaped_table",
+        "pattern": [
+            " AAA ",
+            "ABCBA",
+            "ABCBA",
+            " ADA ",
+            "A   A"
+        ],
+        "key": {
+            "A": {
+                "item": "thermal:steel_plate"
+            },
+            "B": {
+                "item": "spongefactory:rocket_control_circuit"
+            },
+            "C": {
+                "item": "ad_astra:engine_frame"
+            },
+            "D": {
+                "item": "ad_astra:engine_fan"
+            }
+        },
+        "result": {
+            "item": 'ad_astra:steel_engine'
+        }
+    })
+
+    // 氧化钠
+    event.smelting('spongefactory:sodium_oxide', 'spongefactory:sodium_ingot')
+    // 过氧化钠
+    event.smelting('spongefactory:sodium_peroxide', 'spongefactory:sodium_oxide')
+
+    // 氧气装载机
+    removeOutput('ad_astra:oxygen_loader')
+    event.shaped('ad_astra:oxygen_loader',
+        [
+            'SBS',
+            'CDC',
+            'SBS'
+        ], {
+            S: 'thermal:steel_plate',
+            B: 'spongefactory:sodium_peroxide',
+            C: 'ad_astra:oxygen_tank',
+            D: 'thermal:machine_bottler'
+        }
+    )
+
+    // 洗矿场
+    removeOutput('industrialforegoing:washing_factory')
+    // 发酵站
+    removeOutput('industrialforegoing:fermentation_station')
+
+    // 石英玻璃
+    removeOutput('ae2:quartz_glass')
+    custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "a": {
+                "tag": "ae2:all_quartz_dust"
+            },
+            "b": {
+                "item": 'minecraft:glass'
+            }
+        },
+        "pattern": [
+            "aba",
+            "bab",
+            "aba"
+        ],
+        "result": {
+            "count": 2,
+            "item": "ae2:quartz_glass"
+        }
+    })
+    // 聚能石英玻璃
+    removeOutput('ae2:quartz_vibrant_glass')
+    custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "a": {
+                "item": "minecraft:glowstone_dust"
+            },
+            "b": {
+                "item": "ae2:quartz_glass"
+            },
+            "c": {
+                "tag": 'spongefactory:polished_corundum'
+            }
+        },
+        "pattern": [
+            " c ",
+            "aba",
+            " c "
+        ],
+        "result": {
+            "item": "ae2:quartz_vibrant_glass"
+        }
+    })
+    // 照明面板
+    removeOutput("ae2:semi_dark_monitor")
+    custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "a": {
+                "tag": "forge:dusts/glowstone"
+            },
+            "b": {
+                "item": 'ae2:quartz_vibrant_glass'
+            },
+            "c": {
+                "tag": 'forge:ingots/desh'
+            },
+            "d": {
+                "tag": "forge:dusts/redstone"
+            }
+        },
+        "pattern": [
+            " ab",
+            "cdb",
+            " ab"
+        ],
+        "result": {
+            "count": 3,
+            "item": "ae2:semi_dark_monitor"
+        }
+    })
+
+    // 陨石罗盘
+    removeOutput('ae2:meteorite_compass')
+    custom({
+        "type": "architects_palette:warping",
+        "ingredient": [
+            {
+                "item": 'naturescompass:naturescompass'
+            }
+        ],
+        "result": {
+            "item": 'ae2:meteorite_compass'
+        },
+        "dimension": "minecraft:the_end"
+    })
+
+    // 锌板
+    removeOutput('#forge:plates/zinc')
+    pressMetalToPlate('create:zinc_ingot', 'createaddition:zinc_sheet')
+
+    // 福禄伊克斯水晶
+    event.remove({id: "create:compat/ae2/mixing/fluix_crystal"})
+    event.remove({id: "ae2:transform/fluix_crystals"})
+    event.remove({id: "ae2:transform/fluix_crystal"})
+    custom({
+        "type": "thermal:crystallizer",
+        "ingredients": [
+            {
+                "fluid": "minecraft:water",
+                "amount": 2000
+            },
+            {
+                "tag": 'forge:dusts/fluix'
+            }
+        ],
+        "result": [
+            {
+                "item": 'ae2:fluix_crystal'
+            }
+        ]
+    })
+
+    // 离心分离机
+    removeOutput('thermal:machine_centrifuge')
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_rotate',
+            'immersiveengineering:turntable',
+            'ad_astra:desh_plate',
+            'spongefactory:desh_coil'
+        ],
+        'spongefactory:advanced_machine_frame',
+        'thermal:machine_centrifuge',
+        3000,
+    )
+
+    // 福禄伊克斯粉
+    custom({
+        "type": "thermal:centrifuge",
+        "ingredient": {
+            "item": 'ad_astra:moon_sand'
+        },
+        "result": [
+            {
+                "item": 'minecraft:gravel',
+                "chance": 1
+            },
+            {
+                "item": 'ae2:fluix_dust',
+                "chance": 0.25
+            }
+        ],
+        "energy": 10000
+    })
+
+    // 月沙
+    custom({
+        "type": "thermal:rock_gen",
+        "adjacent": 'minecraft:blue_ice',
+        "below": 'ad_astra:moon_stone',
+        "result": {
+            "item": 'ad_astra:moon_sand'
+        }
+    })
+    custom({
+        "type": "mekanism:crushing",
+        "input": {
+            "ingredient": {
+                "item": 'ad_astra:moon_cobblestone'
+            }
+        },
+        "output": {
+            "item": 'ad_astra:moon_sand'
+        }
+    })
+    // 月石
+    custom({
+        "type": "thermal:rock_gen",
+        "below": 'ad_astra:moon_stone',
+        "result": {
+            "item": 'ad_astra:moon_stone'
+        }
+    })
+
+    // 石英纤维
+    removeOutput('ae2:quartz_fiber')
+    custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "a": {
+                "item": "ae2:quartz_glass"
+            },
+            "b": {
+                "item": 'ae2:fluix_dust'
+            }
+        },
+        "pattern": [
+            "aaa",
+            "bbb",
+            "aaa"
+        ],
+        "result": {
+            "count": 3,
+            "item": "ae2:quartz_fiber"
+        }
+    })
+
+    // ME箱子
+    removeOutput('ae2:chest')
+    custom({
+        "type": "minecraft:crafting_shaped",
+        "key": {
+            "a": {
+                "item": 'ae2:quartz_vibrant_glass'
+            },
+            "b": {
+                "item": "ae2:terminal"
+            },
+            "c": {
+                "item": "ae2:fluix_glass_cable"
+            },
+            "d": {
+                "item": 'ad_astra:desh_ingot'
+            },
+            "e": {
+                "item": 'ad_astra:desh_plate'
+            }
+        },
+        "pattern": [
+            "aba",
+            "c c",
+            "ded"
+        ],
+        "result": {
+            "item": "ae2:chest"
+        }
+    })
+
+    // 熔融戴斯
+    moltenIngot('ad_astra:desh_ingot', 'spongefactory:molten_desh')
+
+    // 戴斯线圈
+    custom({
+        "type": "thermal:bottler",
+        "ingredients": [
+            {
+                "item": 'spongefactory:induction_coil'
+            },
+            {
+                "fluid": 'spongefactory:molten_desh',
+                "amount": 500
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:desh_coil'
+            }
+        ]
+    })
+
+    // 中级机器框架
+    removeOutput('industrialforegoing:machine_frame_simple')
+    event.recipes.thermal.smelter('industrialforegoing:machine_frame_simple', ['2x spongefactory:desh_coil', 'industrialforegoing:machine_frame_pity'])
+
+    // 屠宰场
+    removeOutput('industrialforegoing:mob_slaughter_factory')
+    event.shaped('industrialforegoing:mob_slaughter_factory',
+        [
+            'PPP',
+            'PCP',
+            'PSP'
+        ], {
+            C: 'industrialforegoing:machine_frame_simple',
+            S: 'industrialforegoing:fluid_extractor',
+            P: 'mob_grinding_utils:saw'
+        }
+    )
+
+    // IF各种工具
+    removeOutput('industrialforegoing:meat_feeder')
+    removeOutput('industrialforegoing:infinity_launcher')
+    removeOutput("industrialforegoing:infinity_trident")
+    removeOutput("industrialforegoing:infinity_saw")
+    removeOutput("industrialforegoing:infinity_backpack")
+    removeOutput("industrialforegoing:infinity_hammer")
+    removeOutput("industrialforegoing:infinity_drill")
+    removeOutput("industrialforegoing:infinity_nuke")
+    removeOutput("industrialforegoing:mob_imprisonment_tool")
+
+    // 发电机
+    removeOutput('industrialforegoing:bioreactor')
+    removeOutput('industrialforegoing:biofuel_generator')
+    removeOutput('industrialforegoing:mycelial_reactor')
+    removeOutput('industrialforegoing:mycelial_furnace')
+    removeOutput('industrialforegoing:mycelial_slimey')
+    removeOutput('industrialforegoing:mycelial_culinary')
+    removeOutput('industrialforegoing:mycelial_potion')
+    removeOutput('industrialforegoing:mycelial_disenchantment')
+    removeOutput('industrialforegoing:mycelial_ender')
+    removeOutput('industrialforegoing:mycelial_explosive')
+    removeOutput('industrialforegoing:mycelial_frosty')
+    removeOutput('industrialforegoing:mycelial_halitosis')
+    removeOutput('industrialforegoing:mycelial_magma')
+    removeOutput('industrialforegoing:mycelial_pink')
+    removeOutput('industrialforegoing:mycelial_netherstar')
+    removeOutput('industrialforegoing:mycelial_death')
+    removeOutput('industrialforegoing:mycelial_rocket')
+    removeOutput('industrialforegoing:mycelial_crimed')
+    removeOutput('industrialforegoing:mycelial_meatallurgic')
+
+    // 存储与运输
+    removeOutput('industrialforegoing:conveyor')
+    removeOutput('industrialforegoing:common_black_hole_unit')
+    removeOutput('industrialforegoing:pity_black_hole_unit')
+    removeOutput('industrialforegoing:simple_black_hole_unit')
+    removeOutput('industrialforegoing:advanced_black_hole_unit')
+    removeOutput('industrialforegoing:supreme_black_hole_unit')
+    removeOutput('industrialforegoing:common_black_hole_tank')
+    removeOutput('industrialforegoing:pity_black_hole_tank')
+    removeOutput('industrialforegoing:simple_black_hole_tank')
+    removeOutput('industrialforegoing:advanced_black_hole_tank')
+    removeOutput('industrialforegoing:supreme_black_hole_tank')
+    removeOutput('industrialforegoing:black_hole_controller')
+    removeOutput('industrialforegoing:item_transporter_type')
+    removeOutput('industrialforegoing:fluid_transporter_type')
+    removeOutput('industrialforegoing:world_transporter_type')
+
+    // 冶金灌注机
+    removeOutput('mekanism:metallurgic_infuser')
+    event.shaped('mekanism:metallurgic_infuser',
+        [
+            'SMS',
+            'PCL',
+            'SSS'
+        ], {
+            C: 'industrialforegoing:machine_frame_simple',
+            S: 'industrialforegoing:pink_slime_ingot',
+            P: 'thermal:machine_bottler',
+            M: 'thermal:machine_smelter',
+            L: 'thermal:machine_furnace',
+        }
+    )
+
+    // 电解核心
+    removeOutput('mekanism:electrolytic_core')
+    event.shaped('mekanism:electrolytic_core',
+        [
+            'SMS',
+            'PSL',
+            'S S'
+        ], {
+            S: 'mekanism:alloy_infused',
+            P: 'thermal:iron_dust',
+            L: 'thermal:gold_dust',
+            M: 'spongefactory:desh_coil'
+        }
+    )
+
+    // 电解分离器
+    removeOutput('mekanism:electrolytic_separator')
+    event.shaped('mekanism:electrolytic_separator',
+        [
+            'SMS',
+            'LBL',
+            'SOS'
+        ], {
+            S: 'minecraft:iron_ingot',
+            M: 'mekanism:electrolytic_core',
+            B: 'industrialforegoing:machine_frame_simple',
+            L: 'mekanism:alloy_infused',
+            O: 'minecraft:redstone'
+        }
+    )
+
+    // 基础加压管道
+    removeOutput('mekanism:basic_pressurized_tube')
+    event.shaped('8x mekanism:basic_pressurized_tube',
+        [
+            'SMS',
+        ], {
+            S: 'thermal:steel_ingot',
+            M: 'mekanism:alloy_infused'
+        }
+    )
 })

@@ -42,6 +42,16 @@ ServerEvents.tags('item', event => {
 
     // 盐块
     event.add('mekanism:block_salt', 'mekanism:block_salt')
+
+    // 多驱冲压机
+    event.add('thermal:crafting/dies', 'ae2:calculation_processor_press')
+    event.add('thermal:crafting/dies', 'ae2:engineering_processor_press')
+    event.add('thermal:crafting/dies', 'ae2:logic_processor_press')
+    event.add('thermal:crafting/dies', 'ae2:silicon_press')
+    event.add('thermal:crafting/dies', 'spongefactory:universal_press')
+
+    // 催化剂 急速冷冻机
+    event.add('thermal:crafting/casts', 'thermal:iron_plate')
 })
 
 ServerEvents.tags('block', event => {
