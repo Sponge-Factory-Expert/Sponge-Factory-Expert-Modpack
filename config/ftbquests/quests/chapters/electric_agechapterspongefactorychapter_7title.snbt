@@ -952,6 +952,28 @@
 			x: 57.5d
 			y: 1.5d
 		}
+		{
+			dependencies: ["4D028B9C6523AC83"]
+			id: "207D8FAA71EE45C8"
+			tasks: [{
+				id: "79D4261BF98F265B"
+				item: "immersiveengineering:ingot_aluminum"
+				type: "item"
+			}]
+			x: 62.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["15ADC77703DC52D9"]
+			id: "4D028B9C6523AC83"
+			tasks: [{
+				id: "6780CD329E7DB9E0"
+				item: "mekanism:rotary_condensentrator"
+				type: "item"
+			}]
+			x: 60.0d
+			y: 1.5d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_7.title}"
 }

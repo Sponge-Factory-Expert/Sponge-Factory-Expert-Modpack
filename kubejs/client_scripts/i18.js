@@ -12,6 +12,8 @@ ClientEvents.lang('en_us', event => {
 
     event.add('electric_age.chapter.spongefactory.chapter_6.title', 'Chapter 6')
     event.add('electric_age.chapter.spongefactory.chapter_7.title', 'Chapter 7')
+    event.add('electric_age.chapter.spongefactory.chapter_8.title', 'Chapter 8')
+    event.add('electric_age.chapter.spongefactory.chapter_9.title', 'Chapter 9')
     event.add('chapter.spongefactory.welcome.multiblock.title', "Multiblock Structure")
     event.add('chapter.spongefactory.welcome.multiblock.subtitle', "There are some structures in Schematic Table, which can be downloaded to Empty Schematic. The name of the structure is usually the abbreviation of Mod + name")
     event.add('chapter.spongefactory.welcome.quests.title',"Quests")
@@ -35,6 +37,8 @@ ClientEvents.lang('zh_cn', event => {
 
     event.add('electric_age.chapter.spongefactory.chapter_6.title', '第六章')
     event.add('electric_age.chapter.spongefactory.chapter_7.title', '第七章')
+    event.add('electric_age.chapter.spongefactory.chapter_8.title', '第八章')
+    event.add('electric_age.chapter.spongefactory.chapter_9.title', '第九章')
     event.add('chapter.spongefactory.welcome.multiblock.title', "多方块结构")
     event.add('chapter.spongefactory.welcome.multiblock.subtitle', "蓝图桌里有一些结构，可以下载到空白蓝图。 结构名通常是Mod的缩写+名称")
     event.add('chapter.spongefactory.welcome.quests.title',"任务")

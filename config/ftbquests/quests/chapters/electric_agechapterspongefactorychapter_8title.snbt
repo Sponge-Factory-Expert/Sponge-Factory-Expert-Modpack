@@ -1,0 +1,319 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "electric_agechapterspongefactorychapter_8title"
+	group: "101DBDEF848F1E88"
+	icon: "ae2:controller"
+	id: "2FFA309E88FD217C"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["207D8FAA71EE45C8"]
+			id: "2E1BE006C1806302"
+			tasks: [{
+				id: "2567FBEE3B022C16"
+				item: "spongefactory:craft_core"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["2E1BE006C1806302"]
+			id: "689ABE8A80C17DF5"
+			tasks: [{
+				id: "088A5E6D9DBD7914"
+				item: "ae2:controller"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "01E40B094F7DF090"
+			rewards: [{
+				id: "4C048268D0148A25"
+				item: "expatternprovider:pattern_provider_upgrade"
+				random_bonus: 3
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "1AE3F709327B5037"
+					item: "ae2:interface"
+					type: "item"
+				}
+				{
+					id: "1AD147AA5B99F97F"
+					item: "ae2:pattern_provider"
+					type: "item"
+				}
+			]
+			x: 3.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "42AF2B2D8E483442"
+			rewards: [{
+				count: 4
+				id: "31EE72830CC67E2A"
+				item: "ae2:molecular_assembler"
+				random_bonus: 4
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "03C1C9D32B1D90EC"
+				item: "ae2:molecular_assembler"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "6E6794C7D15E82BD"
+			rewards: [{
+				id: "066CF7199C7B09CC"
+				item: "ae2:cell_component_4k"
+				random_bonus: 2
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "0F17F40462D7E055"
+				item: "ae2:cell_component_1k"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "2878F6434641B767"
+			rewards: [
+				{
+					count: 64
+					id: "58F87BAED9BCD70B"
+					item: "ae2:white_smart_cable"
+					type: "item"
+				}
+				{
+					count: 64
+					id: "0B3DBC5E6B44AC01"
+					item: "ae2:white_smart_dense_cable"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "0A2EE290E54B8ED1"
+					item: "ae2:fluix_smart_cable"
+					type: "item"
+				}
+				{
+					id: "706345644C70AF6F"
+					item: "ae2:fluix_smart_dense_cable"
+					type: "item"
+				}
+			]
+			x: 3.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "43E40407160BF80E"
+			rewards: [{
+				id: "2BA9899B03295718"
+				item: "megacells:mega_crafting_accelerator"
+				random_bonus: 2
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "7639EC5F59F325FD"
+				item: "ae2:crafting_unit"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "23CDC652E855D0AB"
+			rewards: [{
+				id: "3242FC7FA4E73CBF"
+				item: "expatternprovider:drive_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5F196349E801E094"
+				item: "ae2:drive"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["7419DCFAB1FC0F54"]
+			id: "3A43877D14E894D0"
+			rewards: [{
+				count: 64
+				id: "1A2357B82A3C8B11"
+				item: "ae2:blank_pattern"
+				random_bonus: 32
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "156DD714FE833D8B"
+				item: "ae2:blank_pattern"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "7419DCFAB1FC0F54"
+			tasks: [
+				{
+					id: "2358FCD6C99C232F"
+					item: "ae2:pattern_encoding_terminal"
+					type: "item"
+				}
+				{
+					id: "31748CA3AD9330AE"
+					item: "ae2:pattern_access_terminal"
+					type: "item"
+				}
+				{
+					id: "6987054FB6865CA7"
+					item: "ae2:crafting_terminal"
+					type: "item"
+				}
+			]
+			x: 3.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "3553D325D65961A1"
+			rewards: [{
+				id: "75D9E4C35F07CA3A"
+				item: "merequester:requester_terminal"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7DCD7ED574C27186"
+				item: "merequester:requester"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["689ABE8A80C17DF5"]
+			id: "27784DBBCA01BAAE"
+			rewards: [{
+				count: 3
+				id: "02BC9AF5F641DC96"
+				item: "ae2:speed_card"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "00B85706534E0898"
+					item: "ae2:basic_card"
+					type: "item"
+				}
+				{
+					id: "0DBEC354A9BE4868"
+					item: "ae2:advanced_card"
+					type: "item"
+				}
+			]
+			x: 3.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["6E6794C7D15E82BD"]
+			id: "756D6E9B02F8253E"
+			tasks: [{
+				id: "208A7A964D4B5A3C"
+				item: "ae2:condenser"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["756D6E9B02F8253E"]
+			id: "45076A1291BC6164"
+			tasks: [{
+				id: "01AA6895193FC179"
+				item: "ae2:matter_ball"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["45076A1291BC6164"]
+			id: "48D22D7FBB0ABC44"
+			tasks: [{
+				id: "2BB11897A4DABBF4"
+				item: "spongefactory:molten_matter_bucket"
+				type: "item"
+			}]
+			x: 11.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["48D22D7FBB0ABC44"]
+			id: "1794AAEEBDED5D20"
+			tasks: [{
+				id: "4E55432C01B6AD8D"
+				item: "industrialforegoing:machine_frame_advanced"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1794AAEEBDED5D20"]
+			id: "0F2185C19E5128A9"
+			tasks: [
+				{
+					id: "1E5AD7836BD6CCA9"
+					item: "industrialforegoing:fluid_laser_base"
+					type: "item"
+				}
+				{
+					id: "0342A012802DF01A"
+					item: "industrialforegoing:laser_drill"
+					type: "item"
+				}
+			]
+			x: 16.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0F2185C19E5128A9"]
+			id: "64729972F09D6D81"
+			optional: true
+			tasks: [{
+				id: "652400BDAC5BCCA9"
+				item: "industrialforegoing:stasis_chamber"
+				type: "item"
+			}]
+			x: 18.5d
+			y: 0.0d
+		}
+	]
+	title: "{electric_age.chapter.spongefactory.chapter_8.title}"
+}

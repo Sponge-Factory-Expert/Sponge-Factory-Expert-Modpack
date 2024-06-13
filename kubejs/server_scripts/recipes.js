@@ -299,7 +299,6 @@ ServerEvents.recipes(event => {
     // 铝
     addOreWashingRecipes("aluminum")
     addOreGroundRecipes("aluminum")
-    // TODO: 后续加上电解冶炼铝
     // 铅
     addOreWashingRecipes("lead")
     addOreGroundRecipes("lead")
@@ -6509,4 +6508,106 @@ ServerEvents.recipes(event => {
             M: 'mekanism:alloy_infused'
         }
     )
+
+    // 熔融铝土矿
+    custom({
+        "type": "thermal:crucible",
+        "ingredient": {
+            "item": 'spongefactory:ground_aluminum_ore'
+        },
+        "result": [
+            {
+                "fluid": 'spongefactory:molten_bauxite',
+                "amount": 100
+            }
+        ],
+        "energy": 6000
+    })
+
+    // 铝
+    custom({
+        "type": "mekanism:separating",
+        "input": {
+            "amount": 2,
+            "fluid": 'spongefactory:molten_bauxite'
+        },
+        "leftGasOutput": {
+            "amount": 4,
+            "gas": 'spongefactory:aluminum'
+        },
+        "rightGasOutput": {
+            "amount": 3,
+            "gas": "mekanism:oxygen"
+        }
+    })
+
+    // 熔融铝
+    moltenIngot('immersiveengineering:ingot_aluminum', 'spongefactory:molten_aluminum')
+    custom({
+        "type": "mekanism:rotary",
+        "fluidInput": {
+            "amount": 1,
+            "fluid": 'spongefactory:molten_aluminum'
+        },
+        "fluidOutput": {
+            "amount": 1,
+            "fluid": 'spongefactory:molten_aluminum'
+        },
+        "gasInput": {
+            "amount": 1,
+            "gas": 'spongefactory:aluminum'
+        },
+        "gasOutput": {
+            "amount": 1,
+            "gas": 'spongefactory:aluminum'
+        }
+    })
+
+    // 粗铝
+    removeOutput('immersiveengineering:raw_aluminum')
+    event.remove({input: 'immersiveengineering:raw_aluminum'})
+
+    // 基础化学品储罐
+    removeOutput('mekanism:basic_chemical_tank')
+    event.shaped('mekanism:basic_chemical_tank',
+        [
+            'SMS',
+            'M M',
+            'SMS'
+        ], {
+            S: 'spongefactory:titanium_ingot',
+            M: 'mekanism:alloy_infused'
+        }
+    )
+
+    // 回旋式气液转换器
+    removeOutput("mekanism:rotary_condensentrator")
+    custom({
+        "type": "mekanism:mek_data",
+        "key": {
+            "#": {
+                "item": "mekanism:basic_fluid_tank"
+            },
+            "C": {
+                "item": 'spongefactory:desh_coil'
+            },
+            "E": {
+                "item": "mekanism:energy_tablet"
+            },
+            "G": {
+                "tag": "forge:glass"
+            },
+            "T": {
+                "item": "mekanism:basic_chemical_tank"
+            }
+        },
+        "pattern": [
+            "GCG",
+            "TE#",
+            "GCG"
+        ],
+        "result": {
+            "item": "mekanism:rotary_condensentrator"
+        }
+    })
 })
