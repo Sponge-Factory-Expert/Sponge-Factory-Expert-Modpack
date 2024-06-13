@@ -314,6 +314,22 @@
 			x: 18.5d
 			y: 0.0d
 		}
+		{
+			dependencies: ["0F2185C19E5128A9"]
+			id: "0E1FEB28BD95E42B"
+			rewards: [{
+				id: "577DD4271A8469FE"
+				item: "industrialforegoing:ether_gas_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4F41BA3893C06A47"
+				item: "industrialforegoing:ether_gas_bucket"
+				type: "item"
+			}]
+			x: 18.5d
+			y: 2.0d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_8.title}"
 }

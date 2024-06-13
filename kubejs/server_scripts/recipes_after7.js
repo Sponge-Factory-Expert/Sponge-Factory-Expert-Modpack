@@ -356,11 +356,11 @@ ServerEvents.recipes(event => {
             'MPM',
             'SCS'
         ], {
-            F:'minecraft:soul_sand',
-            P:"industrialforegoing:machine_frame_advanced",
-            M:'minecraft:ghast_tear',
-            S:'industrialforegoing:range_addon2',
-            C:'thermal:machine_chiller'
+            F: 'minecraft:soul_sand',
+            P: "industrialforegoing:machine_frame_advanced",
+            M: 'minecraft:ghast_tear',
+            S: Item.of('industrialforegoing:range_addon2', '{TitaniumAugment:{Range:2.0f}}').weakNBT(),
+            C: 'thermal:machine_chiller'
         }
     )
 })
