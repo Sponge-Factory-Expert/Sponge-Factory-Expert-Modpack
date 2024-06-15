@@ -363,4 +363,90 @@ ServerEvents.recipes(event => {
             C: 'thermal:machine_chiller'
         }
     )
+
+    // 超级机器框架
+    removeOutput("industrialforegoing:machine_frame_supreme")
+    custom({
+        "type": "industrialforegoing:dissolution_chamber",
+        "input": [
+            {
+                "item": 'thermal:steel_plate'
+            },
+            {
+                "tag": "industrialforegoing:machine_frame/advanced"
+            },
+            {
+                "item": 'thermal:steel_plate'
+            },
+            {
+                "item": "minecraft:netherite_ingot"
+            },
+            {
+                "item": "minecraft:netherite_ingot"
+            },
+            {
+                "tag": "forge:gems/diamond"
+            },
+            {
+                "tag": "forge:gears/diamond"
+            },
+            {
+                "tag": "forge:gems/diamond"
+            }
+        ],
+        "inputFluid": "{Amount:135,FluidName:\"industrialforegoing:ether_gas\"}",
+        "output": {
+            "count": 1,
+            "item": "industrialforegoing:machine_frame_supreme"
+        },
+        "processingTime": 300
+    })
+
+    // 颜料提取器
+    removeOutput('mekanism:pigment_extractor')
+    event.shaped('mekanism:pigment_extractor',
+        [
+            'SFS',
+            'MPM',
+            'SFS'
+        ], {
+            S: 'minecraft:redstone',
+            P: "industrialforegoing:machine_frame_supreme",
+            M: 'minecraft:flint',
+            F: 'thermal:device_tree_extractor'
+        }
+    )
+
+    // 上色机
+    removeOutput('mekanism:painting_machine')
+    event.shaped('mekanism:painting_machine',
+        [
+            'SFS',
+            'MPM',
+            'SFS'
+        ], {
+            S: 'mekanism:alloy_infused',
+            P: "industrialforegoing:machine_frame_supreme",
+            M: 'mekanism:dye_base',
+            F: 'thermal:machine_bottler'
+        }
+    )
+
+    // 基础控制电路
+    removeOutput('mekanism:basic_control_circuit')
+    custom({
+        "type": "mekanism:painting",
+        "chemicalInput": {
+            "amount": 2048,
+            "pigment": "mekanism:lime"
+        },
+        "itemInput": {
+            "ingredient": {
+                "item": 'ae2:matter_ball'
+            }
+        },
+        "output": {
+            "item": 'mekanism:basic_control_circuit'
+        }
+    })
 })

@@ -330,6 +330,83 @@
 			x: 18.5d
 			y: 2.0d
 		}
+		{
+			dependencies: ["0E1FEB28BD95E42B"]
+			id: "45DC193F9E760F90"
+			tasks: [{
+				id: "43327CD56B9E0F54"
+				item: "industrialforegoing:machine_frame_supreme"
+				type: "item"
+			}]
+			x: 21.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["45DC193F9E760F90"]
+			id: "6CD907F68200742F"
+			tasks: [{
+				id: "722A4355D7ABA66C"
+				item: "mekanism:pigment_extractor"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["45DC193F9E760F90"]
+			id: "50ED5CC7AD5FBC0F"
+			tasks: [{
+				id: "268272BE88CCCE39"
+				item: "mekanism:painting_machine"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"50ED5CC7AD5FBC0F"
+				"6CD907F68200742F"
+			]
+			id: "0511D008500B5925"
+			tasks: [{
+				disable_toast: true
+				id: "07DF75B83DEB34F7"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			x: 26.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0511D008500B5925"]
+			id: "6485EECA6A9F75A8"
+			tasks: [{
+				id: "39159FA231B94282"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "mekanism:personal_storage"
+					}
+				}
+				title: "Any #mekanism:personal_storage"
+				type: "item"
+			}]
+			x: 28.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6485EECA6A9F75A8"]
+			id: "017803D0B02F5D72"
+			tasks: [{
+				id: "467BD97A5A602999"
+				item: "mekanism:chemical_oxidizer"
+				type: "item"
+			}]
+			x: 31.0d
+			y: 2.0d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_8.title}"
 }
