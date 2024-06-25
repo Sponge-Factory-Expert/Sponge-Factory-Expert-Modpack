@@ -100,7 +100,7 @@
 
 			[client.gui.window.sideConfig]
 				x = 10
-				y = 16
+				y = 17
 
 			[client.gui.window.transporterConfig]
 				x = 6

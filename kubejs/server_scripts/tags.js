@@ -52,6 +52,13 @@ ServerEvents.tags('item', event => {
 
     // 催化剂 急速冷冻机
     event.add('thermal:crafting/casts', 'thermal:iron_plate')
+
+    // 花药台
+    let apothecaryTypes = ['default', 'forest', 'plains', 'mountain', 'fungal', 'swamp', 'desert', 'taiga', 'mesa', 'mossy', 'livingrock', 'deepslate']
+    for (let type of apothecaryTypes) {
+        let apothecaryId = 'botania:apothecary_' + type
+        event.add('spongefactory:apothecary', apothecaryId)
+    }
 })
 
 ServerEvents.tags('block', event => {

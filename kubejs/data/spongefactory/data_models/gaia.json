@@ -1,0 +1,71 @@
+{
+  "type": "botania:doppleganger",
+  "name": "entity.botania.doppleganger",
+  "name_color": "0xFF9CF2",
+  "gui_scale": 0.8,
+  "gui_x_offset": 0,
+  "gui_y_offset": 0,
+  "gui_z_offset": 0,
+  "sim_cost": 4096,
+  "input": {
+    "item": "botania:manasteel_ingot"
+  },
+  "base_drop": {
+    "item": "botania:life_essence"
+  },
+  "trivia": "hostilenetworks.trivia.doppleganger",
+  "fabricator_drops": [
+    {
+      "item": "botania:life_essence",
+      "count": 16
+    },
+    {
+      "item": "mythicbotany:nidavellir_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:niflheim_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:muspelheim_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:joetunheim_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:midgard_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:alfheim_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:vanaheim_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:asgard_rune",
+      "count": 1
+    },
+    {
+      "item": "mythicbotany:helheim_rune",
+      "count": 1
+    }
+  ],
+  "tier_data": [
+    6,
+    54,
+    354,
+    1254
+  ],
+  "data_per_kill": [
+    2,
+    4,
+    12,
+    30
+  ]
+}

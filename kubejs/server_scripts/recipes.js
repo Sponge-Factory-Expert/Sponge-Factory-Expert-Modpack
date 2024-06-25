@@ -6302,6 +6302,7 @@ ServerEvents.recipes(event => {
     // 月石
     custom({
         "type": "thermal:rock_gen",
+        "adjacent": 'minecraft:water',
         "below": 'ad_astra:moon_stone',
         "result": {
             "item": 'ad_astra:moon_stone'

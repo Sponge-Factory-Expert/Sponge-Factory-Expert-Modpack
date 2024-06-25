@@ -449,4 +449,328 @@ ServerEvents.recipes(event => {
             "item": 'mekanism:basic_control_circuit'
         }
     })
+
+    // 一氧化碳
+    custom({
+        "type": "mekanism:oxidizing",
+        "input": {
+            "ingredient": {
+                "item": 'mekanism:dust_charcoal'
+            }
+        },
+        "output": {
+            "amount": 100,
+            "gas": "spongefactory:carbon_monoxide"
+        }
+    })
+
+    // 氧化镍
+    custom({
+        "type": "mekanism:oxidizing",
+        "input": {
+            "ingredient": {
+                "item": 'spongefactory:ground_nickel_ore'
+            }
+        },
+        "output": {
+            "amount": 100,
+            "gas": "spongefactory:nickel_oxide"
+        }
+    })
+
+    // 化学灌注机
+    event.replaceInput({output: 'mekanism:chemical_infuser'}, 'mekanism:steel_casing', 'industrialforegoing:machine_frame_supreme')
+
+    // 四羰基镍
+    custom({
+        "type": "mekanism:chemical_infusing",
+        "leftInput": {
+            "amount": 1,
+            "gas": "spongefactory:nickel_oxide"
+        },
+        "output": {
+            "amount": 1,
+            "gas": "spongefactory:nickel_tetracarbonyl"
+        },
+        "rightInput": {
+            "amount": 5,
+            "gas": "spongefactory:carbon_monoxide"
+        }
+    })
+
+    // 移除测试配方
+    event.remove({id: 'spongefactory:bedrock'})
+    // 镍粉
+    custom({
+        "type": "spongefactory:fluidized_bed_reactor",
+        "duration": 100,
+        "gasInput": {
+            "amount": 100,
+            "gas": "spongefactory:nickel_tetracarbonyl"
+        },
+        "gasOutput": {
+            "amount": 400,
+            "gas": "spongefactory:carbon_monoxide"
+        },
+        "itemOutput": {
+            "item": 'thermal:nickel_dust'
+
+        }
+    })
+
+    // 流化床反应室
+    event.shaped('spongefactory:fluidized_bed_reactor',
+        [
+            'SFS',
+            'MPM',
+            'SRS'
+        ], {
+            S: 'mekanism:alloy_infused',
+            P: 'mekanism:chemical_infuser',
+            M: 'mekanism:basic_chemical_tank',
+            F: 'toomanyglyphs:glyph_filter_item',
+            R: 'spongefactory:high_temperature_deposition_substrate'
+        }
+    )
+
+    // 动物排污机
+    removeOutput('industrialforegoing:sewer')
+    event.shaped('industrialforegoing:sewer',
+        [
+            'SFS',
+            'MPM',
+            'MRM'
+        ], {
+            S: 'mekanism:alloy_infused',
+            P: 'industrialforegoing:machine_frame_supreme',
+            M: 'minecraft:brick',
+            F: 'thermal:device_tree_extractor',
+            R: 'thermal:iron_gear'
+        }
+    )
+
+    // 污水堆肥机
+    removeOutput('industrialforegoing:sewage_composter')
+    event.shaped('industrialforegoing:sewage_composter',
+        [
+            'SFS',
+            'XPX',
+            'MRM'
+        ], {
+            F: 'thermal:device_composter',
+            P: 'industrialforegoing:machine_frame_supreme',
+            M: 'minecraft:brick',
+            S: 'mekanism:alloy_infused',
+            R: 'thermal:iron_gear',
+            X: 'minecraft:piston'
+        }
+    )
+
+    // 花肥
+    removeOutput('botania:fertilizer')
+    event.shaped('4x botania:fertilizer',
+        [
+            'SXS',
+            'XSX',
+            'SXS'
+        ], {
+            S: 'industrialforegoing:fertilizer',
+            X: 'spongefactory:holy_shit'
+        }
+    )
+
+    // 花药台
+    let apothecaryTypes = ['default', 'forest', 'plains', 'mountain', 'fungal', 'swamp', 'desert', 'taiga', 'mesa', 'mossy', 'livingrock', 'deepslate']
+    for (let type of apothecaryTypes) {
+        let apothecaryId = 'botania:apothecary_' + type
+        event.replaceInput({output: apothecaryId}, '#botania:petals', 'botania:fertilizer')
+    }
+    event.replaceInput({output: 'botanicalmachinery:mechanical_apothecary'}, 'botania:apothecary_default', '#spongefactory:apothecary')
+
+    // 魔源石
+    custom({
+        "type": "thermal:rock_gen",
+        "adjacent": 'ars_nouveau:source_gem_block',
+        "result": {
+            "item": 'ars_nouveau:sourcestone'
+        }
+    })
+
+    // 活石
+    event.remove({id: 'botania:pure_daisy/livingrock'})
+    event.remove({id: 'productivebees:block_conversion/botania/stone_to_livingrock'})
+    custom({
+        "type": "botania:pure_daisy",
+        "input": {
+            "type": "block",
+            "block": 'ars_nouveau:sourcestone'
+        },
+        "output": {
+            "name": "botania:livingrock"
+        }
+    })
+    custom({
+        "type": "productivebees:block_conversion",
+        "bee": "productivebees:pure",
+        "from": {
+            "Name": 'ars_nouveau:sourcestone'
+        },
+        "to": {
+            "Name": "botania:livingrock"
+        },
+        "conditions": [
+            {
+                "type": "forge:mod_loaded",
+                "modid": "botania"
+            },
+            {
+                "type": "productivebees:bee_exists",
+                "bee": "productivebees:pure"
+            }
+        ]
+    })
+
+    // 魔力钢
+    event.remove({id: 'botania:mana_infusion/manasteel'})
+    event.remove({id: 'botania:mana_infusion/manasteel_block'})
+    custom({
+        "type": "botania:mana_infusion",
+        "input": {
+            "item": 'spongefactory:ferromagnetic_material'
+        },
+        "mana": 3000,
+        "output": {
+            "item": "botania:manasteel_ingot"
+        }
+    })
+
+    // 电磁屏蔽机器框架
+    event.shaped('spongefactory:electromagnetic_shielding_machine_frame',
+        [
+            ' X ',
+            'XSX',
+            ' X '
+        ], {
+            S: 'spongefactory:advanced_machine_frame',
+            X: 'botania:manasteel_ingot'
+        }
+    )
+
+    // 充磁机
+    event.recipes.ars_nouveau.enchanting_apparatus(
+        [
+            'ars_nouveau:glyph_rotate',
+            'spongefactory:magnet_wire',
+            'botania:manasteel_ingot',
+            'ars_nouveau:glyph_pull'
+        ],
+        'spongefactory:electromagnetic_shielding_machine_frame',
+        'spongefactory:machine_magnetizer',
+        3000,
+    )
+
+    // 符文祭坛
+    removeOutput('botania:runic_altar')
+    event.shaped('botania:runic_altar',
+        [
+            'XXX',
+            'XSX'
+        ], {
+            S: 'botania:manasteel_block',
+            X: 'botania:livingrock'
+        }
+    )
+
+    // 魔力场锭
+    custom({
+        "type": "spongefactory:magnetizer",
+        "ingredients": [
+            {
+                "item": 'botania:manasteel_ingot'
+            }
+        ],
+        "result": [
+            {
+                "item": 'spongefactory:mana_field_ingot'
+            }
+        ]
+    })
+
+    // 空白数据模型
+    removeOutput('hostilenetworks:blank_data_model')
+    event.shaped('hostilenetworks:blank_data_model',
+        [
+            'XXX',
+            'XSX',
+            'XXX'
+        ], {
+            S: 'minecraft:smooth_stone',
+            X: 'spongefactory:mana_field_ingot'
+        }
+    )
+
+    // 神秘植物学的符文
+    removeOutput('mythicbotany:midgard_rune')
+    removeOutput('mythicbotany:alfheim_rune')
+    removeOutput('mythicbotany:vanaheim_rune')
+    removeOutput('mythicbotany:asgard_rune')
+    removeOutput('mythicbotany:joetunheim_rune')
+    removeOutput('mythicbotany:muspelheim_rune')
+    removeOutput('mythicbotany:niflheim_rune')
+    removeOutput('mythicbotany:helheim_rune')
+    removeOutput('mythicbotany:nidavellir_rune')
+
+    // 魔力符文
+    removeOutput('botania:rune_mana')
+    custom({
+        "type": "botania:runic_altar",
+        "ingredients": [
+            {
+                "item": 'botania:mana_diamond'
+            },
+            {
+                "tag": "botania:manasteel_ingots"
+            },
+            {
+                "item": 'botanicalmachinery:mana_emerald'
+            },
+            {
+                "item": 'botania:mana_bottle'
+            },
+            {
+                "item": 'botania:mana_string'
+            },
+            {
+                "item": "botania:mana_pearl"
+            },
+            {
+                "item": 'botania:mana_glass'
+            },
+            {
+                "item":'botania:mana_powder'
+            },
+            {
+                "item": 'botania:quartz_mana'
+            },
+            {
+                "item": 'spongefactory:mana_field_ingot'
+            }
+        ],
+        "mana": 8000,
+        "output": {
+            "item": "botania:rune_mana"
+        }
+    })
+
+    // 魔力池
+    removeOutput('botania:mana_pool')
+    event.shaped('botania:mana_pool',
+        [
+            'XSX',
+            'XXX'
+        ], {
+            S: 'botania:rune_mana',
+            X: 'botania:livingrock'
+        }
+    )
 })

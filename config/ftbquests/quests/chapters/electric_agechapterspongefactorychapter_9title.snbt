@@ -1,0 +1,291 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "electric_agechapterspongefactorychapter_9title"
+	group: "101DBDEF848F1E88"
+	id: "48D4424995470FF9"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["4DE1FBB5F7DEE569"]
+			id: "135CBF46A792859D"
+			tasks: [{
+				id: "42624B4541DCDE0D"
+				item: "industrialforegoing:sewer"
+				type: "item"
+			}]
+			x: -17.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["135CBF46A792859D"]
+			id: "7BE744436A77EC03"
+			rewards: [{
+				id: "3EFF0DA807C23036"
+				item: "industrialforegoing:sewage_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "66E6C1E30B0898F3"
+				item: "industrialforegoing:sewage_bucket"
+				type: "item"
+			}]
+			x: -14.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["7BE744436A77EC03"]
+			id: "120CCA163773DD5A"
+			tasks: [{
+				id: "723CCD2B7FB32451"
+				item: "industrialforegoing:sewage_composter"
+				type: "item"
+			}]
+			x: -11.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["120CCA163773DD5A"]
+			id: "76787844D40B0FED"
+			tasks: [{
+				id: "24486870115FBCA8"
+				item: "industrialforegoing:fertilizer"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["76787844D40B0FED"]
+			id: "6B673025E75B1A60"
+			tasks: [{
+				id: "5AFC19358D11D560"
+				item: "botania:fertilizer"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["6B673025E75B1A60"]
+			id: "177BD2EB548C9C2B"
+			tasks: [{
+				id: "1326F1F7CDA244B6"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "spongefactory:apothecary"
+					}
+				}
+				title: "Any #spongefactory:apothecary"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["177BD2EB548C9C2B"]
+			id: "08A6B90B73F83912"
+			tasks: [{
+				id: "0DE190B470507BB9"
+				item: "botania:pure_daisy"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["08A6B90B73F83912"]
+			id: "079999F948B3C7A4"
+			tasks: [{
+				id: "62CD681D2B37879B"
+				item: "botania:livingrock"
+				type: "item"
+			}]
+			x: 3.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["08A6B90B73F83912"]
+			id: "726E9921A5D2C0C5"
+			tasks: [{
+				id: "08C42F485DF71BAD"
+				item: "botania:livingwood_log"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["079999F948B3C7A4"]
+			id: "06CE2CC3C67CDF7F"
+			tasks: [{
+				id: "3791BA62F6F30D89"
+				item: "botania:diluted_pool"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["726E9921A5D2C0C5"]
+			id: "128EFC0DA94B6289"
+			tasks: [{
+				id: "35FC442AAAD2CF56"
+				item: "botania:livingwood_twig"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["128EFC0DA94B6289"]
+			id: "3B7E7336CAF95481"
+			tasks: [{
+				id: "01FFF2D11F72F884"
+				item: {
+					Count: 1b
+					id: "botania:twig_wand"
+					tag: {
+						color1: 0
+						color2: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["177BD2EB548C9C2B"]
+			id: "0E3EE6AA492FC4C8"
+			tasks: [{
+				id: "7B3879DD1D88C4D2"
+				item: "botania:endoflame"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"06CE2CC3C67CDF7F"
+				"0E3EE6AA492FC4C8"
+				"430899E340577DEA"
+			]
+			id: "5F3D1185A85F5359"
+			tasks: [{
+				id: "0E240E93C028B896"
+				item: "botania:manasteel_ingot"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["726E9921A5D2C0C5"]
+			id: "430899E340577DEA"
+			tasks: [{
+				id: "6A6764BF43606930"
+				item: "botania:mana_spreader"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5F3D1185A85F5359"]
+			id: "1DEC0BA3C3DC8761"
+			tasks: [{
+				id: "096119D1BCD11664"
+				item: "spongefactory:electromagnetic_shielding_machine_frame"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["1DEC0BA3C3DC8761"]
+			id: "6CE400AA1C2EB724"
+			tasks: [{
+				id: "6DF649C87F68891C"
+				item: "spongefactory:machine_magnetizer"
+				type: "item"
+			}]
+			x: 14.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["5F3D1185A85F5359"]
+			id: "7D4650699F47C3C5"
+			tasks: [{
+				id: "7C9E7D6D5422D9B2"
+				item: "botania:manasteel_block"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7D4650699F47C3C5"]
+			id: "75972A04C1CDD0DB"
+			tasks: [{
+				id: "1FA73DA9628E45DB"
+				item: "botania:runic_altar"
+				type: "item"
+			}]
+			x: 14.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6CE400AA1C2EB724"]
+			id: "786B3E7DF600107F"
+			tasks: [{
+				id: "1ADE288BA694D5BA"
+				item: "spongefactory:mana_field_ingot"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["786B3E7DF600107F"]
+			id: "504EE1E07C6AE434"
+			tasks: [{
+				id: "5EF2B9C48C69DB87"
+				item: "hostilenetworks:blank_data_model"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"75972A04C1CDD0DB"
+				"3B7E7336CAF95481"
+			]
+			id: "3B7CE878702BD248"
+			tasks: [{
+				id: "0D159324778A28AF"
+				item: "botania:rune_mana"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3B7CE878702BD248"]
+			id: "411B6AE0D1A7F13D"
+			tasks: [{
+				id: "4B949BD065A864B7"
+				item: "botania:mana_pool"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -0.5d
+		}
+	]
+	title: "{electric_age.chapter.spongefactory.chapter_9.title}"
+}
