@@ -747,7 +747,7 @@ ServerEvents.recipes(event => {
                 "item": 'botania:mana_glass'
             },
             {
-                "item":'botania:mana_powder'
+                "item": 'botania:mana_powder'
             },
             {
                 "item": 'botania:quartz_mana'
@@ -773,4 +773,38 @@ ServerEvents.recipes(event => {
             X: 'botania:livingrock'
         }
     )
+
+    // 精密锯木机
+    removeOutput('mekanism:precision_sawmill')
+    event.shaped('mekanism:precision_sawmill',
+        [
+            'AIA',
+            'XSX',
+            'AIA'
+        ], {
+            S: 'thermal:machine_sawmill',
+            X: 'mekanism:basic_control_circuit',
+            A: 'botania:piston_relay',
+            I: 'mekanism:alloy_reinforced'
+        }
+    )
+
+    // 活木木板
+    event.remove({id: 'botania:livingwood_planks'})
+    event.remove({output: 'botania:livingwood_planks', type: 'create:cutting'})
+    custom({
+        "type": "mekanism:sawing",
+        "input": {
+            "ingredient": {
+                "item": 'botania:livingwood_log'
+            }
+        },
+        "mainOutput": {
+            "count": 2,
+            "item": 'botania:livingwood_planks'
+        }
+    })
+
+    // 强化黑曜石粉到灌注类型：强化黑曜石
+    event.remove({id:'mekanism:infusion_conversion/refined_obsidian/from_dust'})
 })

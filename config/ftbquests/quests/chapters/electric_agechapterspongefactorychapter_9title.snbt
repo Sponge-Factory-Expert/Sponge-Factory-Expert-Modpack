@@ -286,6 +286,39 @@
 			x: 20.5d
 			y: -0.5d
 		}
+		{
+			dependencies: ["411B6AE0D1A7F13D"]
+			id: "590FF3FEE0512C92"
+			tasks: [{
+				id: "2D6E5BA654BE4740"
+				item: "botania:piston_relay"
+				type: "item"
+			}]
+			x: 23.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["590FF3FEE0512C92"]
+			id: "056FAD895CC0B151"
+			tasks: [{
+				id: "6EC6F77077D4F62C"
+				item: "mekanism:precision_sawmill"
+				type: "item"
+			}]
+			x: 26.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["056FAD895CC0B151"]
+			id: "7E4D354E0F984E00"
+			tasks: [{
+				id: "4C1D9C3B08793133"
+				item: "botania:livingwood_planks"
+				type: "item"
+			}]
+			x: 29.5d
+			y: -0.5d
+		}
 	]
 	title: "{electric_age.chapter.spongefactory.chapter_9.title}"
 }
